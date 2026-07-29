@@ -1,0 +1,45 @@
+{
+    "name": "web-pos",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "imports": {
+        "#/*": "./src/*"
+    },
+    "scripts": {
+        "dev": "vite dev --port 4001",
+        "generate-routes": "tsr generate",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint": "eslint",
+        "format": "prettier --write . && eslint --fix",
+        "check": "prettier --check ."
+    },
+    "dependencies": {
+        "@repo/web-ui": "workspace:*",
+        "@tailwindcss/vite": "catalog:",
+        "@tanstack/react-devtools": "catalog:",
+        "@tanstack/react-router": "catalog:",
+        "@tanstack/react-router-devtools": "catalog:",
+        "tailwindcss": "catalog:",
+        "react": "catalog:",
+        "react-dom": "catalog:"
+    },
+    "devDependencies": {
+        "@repo/eslint-config": "workspace:*",
+        "@repo/prettier-config": "workspace:*",
+        "@repo/typescript-config": "workspace:*",
+        "@tanstack/devtools-vite": "catalog:",
+        "@tanstack/eslint-config": "catalog:",
+        "@tanstack/router-cli": "catalog:",
+        "@tanstack/router-plugin": "catalog:",
+        "@types/react": "catalog:",
+        "@types/react-dom": "catalog:",
+        "@vitejs/plugin-react": "catalog:",
+        "typescript": "catalog:",
+        "vite": "catalog:",
+        "@tailwindcss/vite": "catalog:",
+        "@types/node": "catalog:",
+        "eslint": "catalog:"
+    }
+}

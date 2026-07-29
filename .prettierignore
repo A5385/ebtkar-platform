@@ -1,0 +1,15 @@
+**/node_modules
+**/.next
+**/.turbo
+**/.expo
+**/dist
+**/build
+**/out
+**/coverage
+
+**/routeTree.gen.ts
+**/generated/**
+
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

@@ -1,0 +1,42 @@
+{
+    "name": "web-auth",
+    "version": "0.0.1",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "dev": "vite dev --port 4000",
+        "generate-routes": "tsr generate",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint": "eslint",
+        "format": "prettier --write . && eslint --fix",
+        "check": "prettier --check ."
+    },
+    "dependencies": {
+        "@repo/web-ui": "workspace:*",
+        "@tailwindcss/vite": "catalog:",
+        "@tanstack/react-devtools": "catalog:",
+        "@tanstack/react-router": "catalog:",
+        "@tanstack/react-router-devtools": "catalog:",
+        "react": "catalog:",
+        "react-dom": "catalog:",
+        "tailwindcss": "catalog:"
+    },
+    "devDependencies": {
+        "@repo/eslint-config": "workspace:*",
+        "@repo/prettier-config": "workspace:*",
+        "@repo/typescript-config": "workspace:*",
+        "@tailwindcss/vite": "catalog:",
+        "@tanstack/devtools-vite": "catalog:",
+        "@tanstack/eslint-config": "catalog:",
+        "@tanstack/router-cli": "catalog:",
+        "@tanstack/router-plugin": "catalog:",
+        "@types/node": "catalog:",
+        "@types/react": "catalog:",
+        "@types/react-dom": "catalog:",
+        "@vitejs/plugin-react": "catalog:",
+        "eslint": "catalog:",
+        "typescript": "catalog:",
+        "vite": "catalog:"
+    }
+}

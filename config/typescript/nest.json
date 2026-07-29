@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    "types": ["node"],
+
+    "noEmit": false,
+    "noEmitOnError": true,
+
+    "allowImportingTsExtensions": false,
+    "verbatimModuleSyntax": false,
+
+    "declaration": false,
+    "declarationMap": false,
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    "sourceMap": true,
+    "removeComments": true,
+
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  }
+}

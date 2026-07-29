@@ -1,0 +1,19 @@
+{
+  "name": "@repo/typescript-config",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "exports": {
+    "./base.json": "./base.json",
+    "./bundler.json": "./bundler.json",
+    "./react-app.json": "./react-app.json",
+    "./react-library.json": "./react-library.json",
+    "./vite.json": "./vite.json",
+    "./nextjs.json": "./nextjs.json",
+    "./node.json": "./node.json",
+    "./nest.json": "./nest.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
