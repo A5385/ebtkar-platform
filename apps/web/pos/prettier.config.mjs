@@ -1,12 +1,4 @@
-import baseConfig from '@repo/prettier-config';
+import config from '@repo/prettier-config/prettier';
 
-/**
- * @type {
- *   import('prettier').Config &
- *   import('prettier-plugin-tailwindcss').PluginOptions
- * }
- */
-export default {
-    ...baseConfig,
-    tailwindStylesheet: '@repo/web-ui/globals.css',
-};
+/** @type {import("prettier").Config} */
+export default config;

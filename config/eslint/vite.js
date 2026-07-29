@@ -1,39 +1,26 @@
-import eslintConfigPrettier from "eslint-config-prettier/flat";
+import js from "@eslint/js";
+import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
-import { defineConfig, globalIgnores } from "eslint/config";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
-import { createReactConfig } from "./react.js";
-
-/**
- * Shared Vite + React configuration.
- *
- * @param {{ tsconfigRootDir?: string }} options
- */
-export function createViteConfig({ tsconfigRootDir } = {}) {
-  return defineConfig(
-    createReactConfig({ tsconfigRootDir }),
-
-    globalIgnores(["**/dist/**"]),
-
-    {
-      files: ["**/*.{js,jsx,ts,tsx}"],
-
-      plugins: {
-        "react-refresh": reactRefresh,
-      },
-
-      rules: {
-        "react-refresh/only-export-components": [
-          "warn",
-          {
-            allowConstantExport: true,
-          },
-        ],
-      },
-    },
-
-    eslintConfigPrettier,
-  );
-}
-
-export default createViteConfig;
+export default tseslint.config({
+  extends: [js.configs.recommended, ...tseslint.configs.recommended],
+  files: ["**/*.{ts,tsx}"],
+  ignores: ["dist"],
+  languageOptions: {
+    ecmaVersion: 2020,
+    globals: globals.browser,
+  },
+  plugins: {
+    "react-hooks": reactHooks,
+    "react-refresh": reactRefresh,
+  },
+  rules: {
+    ...reactHooks.configs.recommended.rules,
+    "react-refresh/only-export-components": [
+      "warn",
+      { allowConstantExport: true },
+    ],
+  },
+});

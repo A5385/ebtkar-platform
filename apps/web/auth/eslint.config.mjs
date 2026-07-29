@@ -1,5 +1,4 @@
-import { createViteConfig } from '@repo/eslint-config/vite'
+/** @type {import("eslint").Linter.Config} */
+import { config } from '@repo/eslint-config';
 
-export default createViteConfig({
-  tsconfigRootDir: import.meta.dirname,
-})
+export default config;

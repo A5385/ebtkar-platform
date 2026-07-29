@@ -1,5 +1,9 @@
-import { createNestConfig } from "@repo/eslint-config/nest";
+import { nestJsConfig } from '@repo/eslint-config/nest';
 
-export default createNestConfig({
-  tsconfigRootDir: import.meta.dirname,
-});
+/** @type {import("eslint").Linter.Config} */
+export default [
+    ...nestJsConfig,
+    {
+        ignores: ['.prettier.config.mjs', 'eslint.config.mjs'],
+    },
+];

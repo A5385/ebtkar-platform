@@ -10,33 +10,98 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Auth_layoutRouteImport } from './routes/auth/__layout'
+import { Route as Auth_layoutLoginRouteImport } from './routes/auth/__layout.login'
+import { Route as Auth_layoutNewPasswordRouteImport } from './routes/auth/__layout.new-password'
+import { Route as Auth_layoutRegisterRouteImport } from './routes/auth/__layout.register'
+import { Route as Auth_layoutVerifyEmailRouteImport } from './routes/auth/__layout.verify-email'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Auth_layoutRoute = Auth_layoutRouteImport.update({
+  id: '/auth/__layout',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Auth_layoutLoginRoute = Auth_layoutLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => Auth_layoutRoute,
+} as any)
+const Auth_layoutNewPasswordRoute = Auth_layoutNewPasswordRouteImport.update({
+  id: '/new-password',
+  path: '/new-password',
+  getParentRoute: () => Auth_layoutRoute,
+} as any)
+const Auth_layoutRegisterRoute = Auth_layoutRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => Auth_layoutRoute,
+} as any)
+const Auth_layoutVerifyEmailRoute = Auth_layoutVerifyEmailRouteImport.update({
+  id: '/verify-email',
+  path: '/verify-email',
+  getParentRoute: () => Auth_layoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof Auth_layoutRouteWithChildren
+  '/auth/login': typeof Auth_layoutLoginRoute
+  '/auth/new-password': typeof Auth_layoutNewPasswordRoute
+  '/auth/register': typeof Auth_layoutRegisterRoute
+  '/auth/verify-email': typeof Auth_layoutVerifyEmailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof Auth_layoutRouteWithChildren
+  '/auth/login': typeof Auth_layoutLoginRoute
+  '/auth/new-password': typeof Auth_layoutNewPasswordRoute
+  '/auth/register': typeof Auth_layoutRegisterRoute
+  '/auth/verify-email': typeof Auth_layoutVerifyEmailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth/__layout': typeof Auth_layoutRouteWithChildren
+  '/auth/__layout/login': typeof Auth_layoutLoginRoute
+  '/auth/__layout/new-password': typeof Auth_layoutNewPasswordRoute
+  '/auth/__layout/register': typeof Auth_layoutRegisterRoute
+  '/auth/__layout/verify-email': typeof Auth_layoutVerifyEmailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/auth/login'
+    | '/auth/new-password'
+    | '/auth/register'
+    | '/auth/verify-email'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/auth/login'
+    | '/auth/new-password'
+    | '/auth/register'
+    | '/auth/verify-email'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth/__layout'
+    | '/auth/__layout/login'
+    | '/auth/__layout/new-password'
+    | '/auth/__layout/register'
+    | '/auth/__layout/verify-email'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Auth_layoutRoute: typeof Auth_layoutRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +113,65 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/__layout': {
+      id: '/auth/__layout'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof Auth_layoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/__layout/login': {
+      id: '/auth/__layout/login'
+      path: '/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof Auth_layoutLoginRouteImport
+      parentRoute: typeof Auth_layoutRoute
+    }
+    '/auth/__layout/new-password': {
+      id: '/auth/__layout/new-password'
+      path: '/new-password'
+      fullPath: '/auth/new-password'
+      preLoaderRoute: typeof Auth_layoutNewPasswordRouteImport
+      parentRoute: typeof Auth_layoutRoute
+    }
+    '/auth/__layout/register': {
+      id: '/auth/__layout/register'
+      path: '/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof Auth_layoutRegisterRouteImport
+      parentRoute: typeof Auth_layoutRoute
+    }
+    '/auth/__layout/verify-email': {
+      id: '/auth/__layout/verify-email'
+      path: '/verify-email'
+      fullPath: '/auth/verify-email'
+      preLoaderRoute: typeof Auth_layoutVerifyEmailRouteImport
+      parentRoute: typeof Auth_layoutRoute
+    }
   }
 }
 
+interface Auth_layoutRouteChildren {
+  Auth_layoutLoginRoute: typeof Auth_layoutLoginRoute
+  Auth_layoutNewPasswordRoute: typeof Auth_layoutNewPasswordRoute
+  Auth_layoutRegisterRoute: typeof Auth_layoutRegisterRoute
+  Auth_layoutVerifyEmailRoute: typeof Auth_layoutVerifyEmailRoute
+}
+
+const Auth_layoutRouteChildren: Auth_layoutRouteChildren = {
+  Auth_layoutLoginRoute: Auth_layoutLoginRoute,
+  Auth_layoutNewPasswordRoute: Auth_layoutNewPasswordRoute,
+  Auth_layoutRegisterRoute: Auth_layoutRegisterRoute,
+  Auth_layoutVerifyEmailRoute: Auth_layoutVerifyEmailRoute,
+}
+
+const Auth_layoutRouteWithChildren = Auth_layoutRoute._addFileChildren(
+  Auth_layoutRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Auth_layoutRoute: Auth_layoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

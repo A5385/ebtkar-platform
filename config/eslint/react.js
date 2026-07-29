@@ -1,48 +1,23 @@
-import eslintConfigPrettier from "eslint-config-prettier/flat";
 import pluginReact from "eslint-plugin-react";
 import pluginReactHooks from "eslint-plugin-react-hooks";
-import { defineConfig } from "eslint/config";
 import globals from "globals";
-
-import { createBaseConfig } from "./base.js";
+import { config as baseConfig } from "./base.js";
 
 /**
- * Shared React configuration.
- *
- * @param {{ tsconfigRootDir?: string }} options
+ * A custom ESLint configuration for libraries that use React.
  */
-export function createReactConfig({ tsconfigRootDir } = {}) {
-  return defineConfig(
-    createBaseConfig({ tsconfigRootDir }),
-
-    pluginReact.configs.flat.recommended,
-    pluginReact.configs.flat["jsx-runtime"],
-    pluginReactHooks.configs.flat.recommended,
-
-    {
-      files: ["**/*.{js,jsx,ts,tsx}"],
-
-      languageOptions: {
-        globals: {
-          ...globals.browser,
-          ...globals.serviceworker,
-        },
-      },
-
-      settings: {
-        react: {
-          version: "detect",
-        },
-      },
-
-      rules: {
-        "react/react-in-jsx-scope": "off",
+export const config = [
+  ...baseConfig,
+  pluginReact.configs.flat.recommended,
+  pluginReact.configs.flat["jsx-runtime"],
+  {
+    languageOptions: {
+      ...pluginReact.configs.flat.recommended.languageOptions,
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
       },
     },
-
-    // Must remain last.
-    eslintConfigPrettier,
-  );
-}
-
-export default createReactConfig;
+  },
+  pluginReactHooks.configs.flat.recommended,
+];

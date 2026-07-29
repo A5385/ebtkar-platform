@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "type": "module",
   "private": true,
-  "exports": "./prettier.mjs",
+  "exports": {
+    "./prettier": "./prettier.mjs"
+  },
   "dependencies": {
     "prettier-plugin-tailwindcss": "catalog:"
   },

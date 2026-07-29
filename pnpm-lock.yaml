@@ -99,6 +99,9 @@ catalogs:
     eslint-config-prettier:
       specifier: ^10.1.1
       version: 10.1.8
+    eslint-plugin-only-warn:
+      specifier: ^1.1.0
+      version: 1.2.1
     eslint-plugin-react:
       specifier: ^7.37.5
       version: 7.37.5
@@ -440,6 +443,9 @@ importers:
       eslint-config-prettier:
         specifier: 'catalog:'
         version: 10.1.8(eslint@10.8.0(jiti@2.7.0))
+      eslint-plugin-only-warn:
+        specifier: 'catalog:'
+        version: 1.2.1
       eslint-plugin-react:
         specifier: 'catalog:'
         version: 7.37.5(eslint@10.8.0(jiti@2.7.0))
@@ -3281,6 +3287,9 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.23.0'
+
+  eslint-plugin-only-warn@1.2.1:
+    resolution: {integrity: sha512-j37hwfaQDEOfkZ1Dpvu/HnWLavlzQxQxfbrU/9Jb4R9qzrE1eTYuRJyrxq7LzLRI8miG5FOV6veoUVhx7AI84w==}
 
   eslint-plugin-react-hooks@7.1.1:
     resolution: {integrity: sha512-f2I7Gw6JbvCexzIInuSbZpfdQ44D7iqdWX01FKLvrPgqxoE7oMj8clOfto8U6vYiz4yd5oKu39rRSVOe1zRu0g==}
@@ -7049,7 +7058,7 @@ snapshots:
       immer: 11.1.15
       redux: 5.0.1
       redux-thunk: 3.1.0(redux@5.0.1)
-      reselect: 5.2.0
+      reselect: 5.1.1
     optionalDependencies:
       react: 19.2.8
       react-redux: 9.3.0(@types/react@19.2.17)(react@19.2.8)(redux@5.0.1)
@@ -8779,6 +8788,8 @@ snapshots:
       ts-declaration-location: 1.0.7(typescript@6.0.3)
     transitivePeerDependencies:
       - typescript
+
+  eslint-plugin-only-warn@1.2.1: {}
 
   eslint-plugin-react-hooks@7.1.1(eslint@10.8.0(jiti@2.7.0)):
     dependencies:

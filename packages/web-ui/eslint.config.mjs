@@ -1,5 +1,4 @@
-import { createReactConfig } from "@repo/eslint-config/react";
+import { config } from '@repo/eslint-config/react';
 
-export default createReactConfig({
-  tsconfigRootDir: import.meta.dirname,
-});
+/** @type {import("eslint").Linter.Config} */
+export default config;

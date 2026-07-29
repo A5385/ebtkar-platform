@@ -1,73 +1,31 @@
-import eslintConfigPrettier from "eslint-config-prettier/flat";
-import { defineConfig } from "eslint/config";
 import globals from "globals";
-import tseslint from "typescript-eslint";
-
-import { createBaseConfig } from "./base.js";
+import { config as baseConfig } from "./base.js";
 
 /**
- * Shared ESLint configuration for NestJS applications.
+ * A custom ESLint configuration for Nest.js.
  *
- * @param {{ tsconfigRootDir: string }} options
- */
-export function createNestConfig({ tsconfigRootDir }) {
-  if (!tsconfigRootDir) {
-    throw new Error(
-      "createNestConfig requires tsconfigRootDir from the consuming project.",
-    );
-  }
-
-  return defineConfig(
-    createBaseConfig({
-      tsconfigRootDir,
-    }),
-
-    ...tseslint.configs.recommendedTypeChecked,
-
-    {
-      name: "@repo/eslint-config/nest/source",
-
-      files: ["**/*.ts"],
-
-      languageOptions: {
-        sourceType: "module",
-
-        globals: {
-          ...globals.node,
-        },
-
-        parserOptions: {
-          projectService: true,
-          tsconfigRootDir,
-        },
+ * @type {import("eslint").Linter.Config[]}
+ * */
+export const nestJsConfig = [
+  ...baseConfig,
+  {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest,
       },
-
-      rules: {
-        "@typescript-eslint/no-explicit-any": "warn",
-        "@typescript-eslint/no-floating-promises": "error",
-        "@typescript-eslint/no-misused-promises": "error",
-        "@typescript-eslint/no-unsafe-argument": "warn",
+      sourceType: "commonjs",
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
-
-    {
-      name: "@repo/eslint-config/nest/tests",
-
-      files: ["**/*.spec.ts", "**/*.test.ts", "test/**/*.ts"],
-
-      languageOptions: {
-        globals: {
-          ...globals.jest,
-        },
-      },
-
-      rules: {
-        "@typescript-eslint/no-explicit-any": "off",
-      },
+  },
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-floating-promises": "warn",
+      "@typescript-eslint/no-unsafe-argument": "warn",
     },
-
-    eslintConfigPrettier,
-  );
-}
-
-export default createNestConfig;
+  },
+];

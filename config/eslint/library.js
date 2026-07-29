@@ -1,33 +1,37 @@
-import eslintConfigPrettier from "eslint-config-prettier/flat";
-import { defineConfig } from "eslint/config";
-import globals from "globals";
-
-import { createBaseConfig } from "./base.js";
+import { config as baseConfig } from "./base.js";
 
 /**
- * Shared Node.js library configuration.
+ * A custom ESLint configuration for Node.js libraries.
  *
- * @param {{ tsconfigRootDir?: string }} options
- */
-export function createLibraryConfig({ tsconfigRootDir } = {}) {
-  return defineConfig(
-    createBaseConfig({ tsconfigRootDir }),
-
-    {
-      files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
-
-      languageOptions: {
+ * @type {import("eslint").Linter.Config[]}
+ * */
+export const libraryConfig = [
+  ...baseConfig,
+  {
+    languageOptions: {
+      globals: {
+        React: true,
+        JSX: true,
+      },
+      parserOptions: {
         ecmaVersion: "latest",
         sourceType: "module",
-
-        globals: {
-          ...globals.node,
+      },
+    },
+    env: {
+      node: true,
+    },
+    settings: {
+      "import/resolver": {
+        typescript: {
+          project: "./tsconfig.json",
         },
       },
     },
+  },
+  {
+    ignores: [".*.js", "node_modules/", "dist/"],
+  },
+];
 
-    eslintConfigPrettier,
-  );
-}
-
-export default createLibraryConfig;
+export default libraryConfig;
