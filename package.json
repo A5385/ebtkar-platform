@@ -11,7 +11,8 @@
     "clean": "find . -type d \\( -name node_modules -o -name .next -o -name .turbo -o -name dist -o -name .expo \\) -prune -exec rm -rf {} + && find . -type f \\( -name tsconfig.tsbuildinfo \\) -delete",
     "hard:clean": "find . -type d \\( -name node_modules -o -name .next -o -name .turbo -o -name dist -o -name .expo \\) -prune -exec rm -rf {} + && find . -type f \\( -name pnpm-lock.yaml -o -name tsconfig.tsbuildinfo \\) -delete",
     "reset": "pnpm clean && pnpm install ",
-    "hard:reset": "pnpm hard:clean && pnpm install"
+    "hard:reset": "pnpm hard:clean && pnpm install",
+    "auth:api:dev": "turbo run dev --filter=api-auth --filter=@repo/auth-database --filter=@repo/schemas"
   },
   "devDependencies": {
     "prettier": "catalog:",

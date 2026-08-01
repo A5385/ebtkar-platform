@@ -1,0 +1,56 @@
+{
+  "name": "@repo/auth-database",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Schema, migrations, and seed scripts for the authentication database",
+  "packageManager": "pnpm@10.33.4",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "bunchee",
+    "dev": "bunchee --watch",
+    "lint": "eslint src/",
+    "ts": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "db:validate": "prisma validate",
+    "db:format": "prisma format"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "catalog:",
+    "dotenv": "catalog:",
+    "pg": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "zod-prisma-types": "catalog:",
+    "@types/node": "catalog:",
+    "@types/pg": "catalog:",
+    "prisma": "catalog:",
+    "bunchee": "catalog:",
+    "typescript": "catalog:",
+    "tsx": "catalog:"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/es/index.d.ts",
+        "default": "./dist/es/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  }
+}

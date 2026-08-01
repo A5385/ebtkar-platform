@@ -13,6 +13,7 @@
         "check": "prettier --check ."
     },
     "dependencies": {
+        "@repo/helpers": "workspace:*",
         "@repo/web-ui": "workspace:*",
         "@tailwindcss/vite": "catalog:",
         "@tanstack/react-devtools": "catalog:",
