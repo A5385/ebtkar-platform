@@ -27,9 +27,11 @@
     },
     "dependencies": {
         "@nestjs/common": "catalog:",
+        "@nestjs/config": "catalog:",
         "@nestjs/core": "catalog:",
         "@nestjs/mapped-types": "*",
-        "@nestjs/microservices": "^11.1.28",
+        "@nestjs/microservices": "catalog:",
+        "@repo/api-shared": "workspace:*",
         "@nestjs/platform-express": "catalog:",
         "@prisma/adapter-pg": "catalog:",
         "@repo/auth-database": "workspace:*",
@@ -40,10 +42,13 @@
         "cookie-parser": "catalog:",
         "dotenv": "catalog:",
         "nestjs-zod": "catalog:",
+        "class-transformer": "catalog:",
+        "class-validator": "catalog:",
         "reflect-metadata": "catalog:",
         "rxjs": "catalog:"
     },
     "devDependencies": {
+        "@repo/types": "workspace:*",
         "@nestjs/cli": "catalog:",
         "@nestjs/schematics": "catalog:",
         "@nestjs/testing": "catalog:",

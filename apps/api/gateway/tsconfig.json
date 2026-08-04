@@ -4,8 +4,18 @@
         "outDir": "./dist",
         "incremental": true,
         "tsBuildInfoFile": "./node_modules/.cache/tsconfig.tsbuildinfo",
-        "types": ["node", "jest"]
+        "types": [
+            "node",
+            "jest"
+        ]
     },
-    "include": ["src/**/*.ts", "test/**/*.ts"],
-    "exclude": ["node_modules", "dist", "coverage"]
+    "include": [
+        "src/**/*.ts",
+        "test/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "coverage"
+    ]
 }

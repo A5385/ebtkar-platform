@@ -22,14 +22,18 @@
     },
     "dependencies": {
         "@nestjs/common": "catalog:",
+        "@nestjs/config": "catalog:",
         "@nestjs/core": "catalog:",
         "@nestjs/mapped-types": "*",
-        "@nestjs/microservices": "^11.1.28",
+        "@nestjs/microservices": "catalog:",
         "@nestjs/platform-express": "catalog:",
         "@prisma/adapter-pg": "catalog:",
         "@repo/api-dto": "workspace:*",
+        "@repo/api-shared": "workspace:*",
         "@repo/schemas": "workspace:*",
         "bcryptjs": "catalog:",
+        "class-transformer": "catalog:",
+        "class-validator": "catalog:",
         "cookie-parser": "catalog:",
         "dotenv": "catalog:",
         "nestjs-zod": "catalog:",
@@ -37,6 +41,7 @@
         "rxjs": "catalog:"
     },
     "devDependencies": {
+        "@repo/types": "workspace:*",
         "@nestjs/cli": "catalog:",
         "@nestjs/schematics": "catalog:",
         "@nestjs/testing": "catalog:",

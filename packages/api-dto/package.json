@@ -10,8 +10,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "bunchee",
-    "dev": "bunchee --watch",
+    "build:pkg": "bunchee",
+    "dev:pkg": "bunchee --watch",
     "lint": "eslint src/",
     "ts": "tsc --noEmit"
   },
@@ -20,6 +20,8 @@
   "license": "ISC",
   "packageManager": "pnpm@10.33.4",
   "dependencies": {
+    "class-transformer": "catalog:",
+    "class-validator": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

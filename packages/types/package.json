@@ -1,0 +1,42 @@
+{
+  "name": "@repo/types",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "types package for the repo contain the common types",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build:pkg": "bunchee",
+    "dev:pkg": "bunchee --watch",
+    "lint": "eslint src/",
+    "ts": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.4",
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "bunchee": "catalog:",
+    "typescript": "catalog:"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/es/index.d.ts",
+        "default": "./dist/es/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  }
+}

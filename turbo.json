@@ -1,14 +1,28 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "globalEnv": ["DATABASE_URL", "PORT", "SERVER_PREFIX"],
+  "globalEnv": [
+    "DATABASE_URL",
+    "PORT",
+    "SERVER_PREFIX",
+    "AUTH_MICROSERVICE_HOST",
+    "AUTH_MICROSERVICE_PORT",
+    "ALLOWED_ORIGINS"
+  ],
 
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**"],
-      "env": ["DATABASE_URL", "PORT", "SERVER_PREFIX"]
+      "env": [
+        "DATABASE_URL",
+        "PORT",
+        "SERVER_PREFIX",
+        "AUTH_MICROSERVICE_HOST",
+        "AUTH_MICROSERVICE_PORT",
+        "ALLOWED_ORIGINS"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -23,8 +37,12 @@
       "cache": false,
       "persistent": true
     },
-    "auth:api:dev": {
+    "dev:pkg": {
       "cache": false,
+      "persistent": true
+    },
+    "build:pkg": {
+      "cache": true,
       "persistent": true
     }
   }
