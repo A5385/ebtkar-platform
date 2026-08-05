@@ -13,15 +13,16 @@
     "noEmit": false,
     "noEmitOnError": true,
 
-    "declaration": false,
-    "declarationMap": false,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    "composite": true,
+    "incremental": true,
 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
 
-    "sourceMap": true,
-    "removeComments": true,
-
-    "verbatimModuleSyntax": false
+    "stripInternal": true
   }
 }

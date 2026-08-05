@@ -1,4 +1,5 @@
 // packages\api-shared\src\response-handler\type.ts
+
 import type { LocaleType, MethodType } from "@repo/types";
 
 export type GetByType = { key: string; value: string };

@@ -1,21 +1,34 @@
 {
-    "extends": "@repo/typescript-config/nest.json",
     "compilerOptions": {
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "resolvePackageJsonExports": true,
+        "target": "ES2023",
+        "rootDir": "./src",
         "outDir": "./dist",
-        "incremental": true,
-        "tsBuildInfoFile": "./node_modules/.cache/tsconfig.tsbuildinfo",
-        "types": [
-            "node",
-            "jest"
-        ]
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "isolatedModules": true,
+        "declaration": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "incremental": false,
+        "skipLibCheck": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": false,
+        "strictBindCallApply": false,
+        "noFallthroughCasesInSwitch": false
     },
     "include": [
-        "src/**/*.ts",
-        "test/**/*.ts"
+        "src/**/*.ts"
     ],
     "exclude": [
         "node_modules",
         "dist",
-        "coverage"
+        "test",
+        "**/*.spec.ts"
     ]
 }

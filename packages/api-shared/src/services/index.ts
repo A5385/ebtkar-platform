@@ -1,5 +1,5 @@
-export * from "./config-service/env-config.module";
-export * from "./config-service/env-config.service";
+export * from "./config-service/env-config.module.js";
+export * from "./config-service/env-config.service.js";
 
-export * from "./error-service/error.module";
-export * from "./error-service/error.service";
+export * from "./error-service/error.module.js";
+export * from "./error-service/error.service.js";

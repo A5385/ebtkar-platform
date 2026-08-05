@@ -1,1 +1,1 @@
-export * from "./normalize-error-details";
+export * from "./normalize-error-details.js";

@@ -1,12 +1,16 @@
 {
     "extends": "@repo/typescript-config/vite.json",
     "compilerOptions": {
-        "composite": true,
-        "tsBuildInfoFile": "./node_modules/.cache/tsconfig.app.tsbuildinfo",
+        "baseUrl": ".",
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": [
+                "./src/*"
+            ]
         }
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx"],
-    "exclude": ["dist", "node_modules"]
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.d.ts"
+    ]
 }

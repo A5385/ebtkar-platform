@@ -2,18 +2,24 @@
   "name": "@repo/auth-database",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "description": "Schema, migrations, and seed scripts for the authentication database",
   "packageManager": "pnpm@10.33.4",
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "default": "./dist/*.js"
+    }
+  },
   "scripts": {
-    "build:pkg": "bunchee",
-    "dev:pkg": "bunchee --watch",
+    "build:pkg": "tsc -b -v",
+    "dev:pkg": "tsc --watch",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
     "lint": "eslint src/",
     "ts": "tsc --noEmit",
     "db:generate": "prisma generate",
@@ -37,20 +43,7 @@
     "@types/node": "catalog:",
     "@types/pg": "catalog:",
     "prisma": "catalog:",
-    "bunchee": "catalog:",
     "typescript": "catalog:",
     "tsx": "catalog:"
-  },
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/es/index.d.ts",
-        "default": "./dist/es/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
-    }
   }
 }

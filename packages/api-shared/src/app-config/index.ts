@@ -1,2 +1,2 @@
-export * from "./call-app";
-export * from "./config";
+export * from "./call-app/index.js";
+export * from "./config/index.js";
