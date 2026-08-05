@@ -12,7 +12,7 @@
     "hard:clean": "find . -type d \\( -name node_modules -o -name .next -o -name .turbo -o -name dist -o -name .expo \\) -prune -exec rm -rf {} + && find . -type f \\( -name pnpm-lock.yaml -o -name tsconfig.tsbuildinfo \\) -delete",
     "reset": "pnpm clean && pnpm install ",
     "hard:reset": "pnpm hard:clean && pnpm install",
-    "auth:api:dev": "turbo run dev --filter=api-gateway --filter=api-auth ",
+    "gateway:dev": "turbo run dev --filter api-gateway --filter api-auth ",
     "dev:pkg": "turbo run dev:pkg",
     "build:pkg": "turbo run build:pkg"
   },

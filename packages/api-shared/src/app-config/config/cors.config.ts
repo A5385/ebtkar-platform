@@ -9,7 +9,7 @@ const customOrigin: CorsOptions["origin"] = (origin, callback) => {
   );
 
   if (!origin) {
-    Logger.debug("Request without Origin header allowed");
+    // Logger.debug("Request without Origin header allowed");
     return callback(null, true);
   }
 
