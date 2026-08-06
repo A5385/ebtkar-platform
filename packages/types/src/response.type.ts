@@ -22,7 +22,13 @@ export type ResponseType<T extends unknown = unknown> = ApiSuccessResponse<T> &
   ApiErrorResponse;
 
 export type MethodType =
-  "create" | "get-all" | "find-by" | "find-by-id" | "update" | "delete";
+  | "create"
+  | "get-all"
+  | "find-by"
+  | "find-by-id"
+  | "update"
+  | "delete"
+  | "login";
 
 export type LocaleType = "ar" | "en";
 export type MessageType = "success" | "error";

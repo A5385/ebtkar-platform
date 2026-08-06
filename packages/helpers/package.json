@@ -27,6 +27,9 @@
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.33.4",
+  "dependencies": {
+    "bcryptjs": "catalog:"
+  },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",

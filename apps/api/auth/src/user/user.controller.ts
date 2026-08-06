@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { RegisterDto } from '@repo/api-dto';
+import { ChangePasswordDto, RegisterDto } from '@repo/api-dto';
 import { MSM_PATTERN } from '@repo/api-shared';
 import { UserService } from './user.service';
 
@@ -26,5 +26,14 @@ export class UserController {
     @MessagePattern(MSM_PATTERN.user.findByEmail)
     async findUserByEmail(@Payload() dto: { email: string }) {
         return await this.userService.findUserByEmail(dto.email);
+    }
+    @MessagePattern(MSM_PATTERN.user.changePassword)
+    async changePassword(
+        @Payload()
+        data: ChangePasswordDto & { email: string },
+    ) {
+        const { email, ...dto } = data;
+
+        return await this.userService.changeUserPassword(email, dto);
     }
 }

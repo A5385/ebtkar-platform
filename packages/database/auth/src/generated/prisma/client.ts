@@ -45,6 +45,11 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
+ * Model LoginInfo
+ * 
+ */
+export type LoginInfo = Prisma.LoginInfoModel
+/**
  * Model Profile
  * 
  */

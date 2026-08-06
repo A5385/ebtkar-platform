@@ -1,5 +1,7 @@
-export * from "./config-service/env-config.module.js";
-export * from "./config-service/env-config.service.js";
+export * from "./env-config.service.js";
 
-export * from "./error-service/error.module.js";
-export * from "./error-service/error.service.js";
+export * from "./error.service.js";
+
+export * from "./logger.service.js";
+
+export * from "./shared.module.js";

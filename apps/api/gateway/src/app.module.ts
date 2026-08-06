@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ClientsModule } from '@nestjs/microservices';
-import { EnvConfigModule, ErrorModule, HttpExceptionFilter } from '@repo/api-shared';
+import { HttpExceptionFilter } from '@repo/api-shared';
 import { ZodSerializerInterceptor, ZodValidationPipe } from 'nestjs-zod';
 import { MICROSERVICES_CLIENTS } from './constants';
 import { RpcToHttpInterceptor } from './rpc-to-http.interceptor';
@@ -16,8 +16,6 @@ import { registerMicroservice } from './utils/register-microservice';
                 port: Number(process.env.AUTH_MICROSERVICE_PORT ?? 5002),
             }),
         ]),
-        EnvConfigModule,
-        ErrorModule,
     ],
     providers: [
         {
@@ -36,10 +34,6 @@ import { registerMicroservice } from './utils/register-microservice';
             provide: APP_FILTER,
             useClass: HttpExceptionFilter,
         },
-        // {
-        //     provide: APP_FILTER,
-        //     useClass: httpFilter,
-        // },
     ],
     controllers: [UserController],
 })

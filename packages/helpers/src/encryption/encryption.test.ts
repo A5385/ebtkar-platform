@@ -6,7 +6,7 @@ import {
   encryptJson,
   encryptString,
   generateEncryptionKey,
-} from "./index.js";
+} from "../index.js";
 
 describe("crypto helpers", () => {
   it("encrypts and decrypts a string", async () => {

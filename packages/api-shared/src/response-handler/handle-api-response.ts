@@ -9,12 +9,14 @@ import {
 } from "@repo/auth-database";
 import type { ResponseType } from "@repo/types";
 import { ErrorService } from "../services";
+import { WinstonLoggerService } from "../services/logger.service";
 import { GenerateApiResponse } from "./generate-response";
 import { generateMessage, getErrorMessage } from "./message-generator";
 import type { GenerateMessageProps } from "./type";
 
 export interface HandleApiResponseProps<T> extends GenerateMessageProps {
   fn: () => Promise<T>;
+  logger: WinstonLoggerService;
 }
 
 interface NormalizedError {
@@ -23,26 +25,23 @@ interface NormalizedError {
   error: string | string[];
 }
 
-const errorService = new ErrorService();
-
 export async function handleApiResponse<T>({
   fn,
-  locale = "en",
   statusCode,
   method,
   moduleName,
   id,
   getBy,
+  logger,
 }: HandleApiResponseProps<T>): Promise<ResponseType<T> | undefined> {
+  const errorService = new ErrorService(logger);
   const logMsgProps: GenerateMessageProps = {
-    locale: "en",
     getBy,
     id,
     method,
     moduleName,
   };
   const responseMsgProps: GenerateMessageProps = {
-    locale,
     method,
     moduleName,
   };
@@ -50,8 +49,8 @@ export async function handleApiResponse<T>({
   try {
     const payload = await fn();
     if (payload) {
-      Logger.log(
-        generateMessage({ type: "success", ...logMsgProps }),
+      logger.log(
+        generateMessage({ type: "success", ...logMsgProps }).replace("_", " "),
         "HandleApiResponse",
       );
 
@@ -71,10 +70,11 @@ export async function handleApiResponse<T>({
     );
 
     Logger.error(
-      generateMessage({ type: "error", ...logMsgProps }),
+      generateMessage({ type: "error", ...logMsgProps }).replace("_", " "),
       "HandleApiResponse",
     );
     return errorService.throwException(
+      moduleName,
       normalizedError.statusCode,
       normalizedError.message,
     );

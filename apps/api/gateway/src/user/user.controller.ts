@@ -1,7 +1,7 @@
 // apps\api\gateway\src\user\user.controller.ts
-import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Param, Patch, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { RegisterDto } from '@repo/api-dto';
+import { ChangePasswordDto, RegisterDto } from '@repo/api-dto';
 import { MSM_PATTERN } from '@repo/api-shared';
 import { MICROSERVICES_CLIENTS } from '../constants';
 
@@ -28,5 +28,12 @@ export class UserController {
     @Get('find-by-email/:email')
     findUserByEmail(@Param('email') email: string) {
         return this.authService.send(MSM_PATTERN.user.findByEmail, { email });
+    }
+    @Patch('change-password/:email')
+    changePassword(@Param('email') email: string, @Body() dto: ChangePasswordDto) {
+        return this.authService.send(MSM_PATTERN.user.changePassword, {
+            email,
+            ...dto,
+        });
     }
 }

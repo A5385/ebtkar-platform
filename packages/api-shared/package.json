@@ -26,6 +26,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.33.4",
   "dependencies": {
+    "@repo/helpers": "workspace:*",
     "@nestjs/config": "catalog:",
     "@nestjs/common": "catalog:",
     "@nestjs/core": "catalog:",
@@ -39,7 +40,10 @@
     "nestjs-zod": "catalog:",
     "reflect-metadata": "catalog:",
     "rxjs": "catalog:",
-    "zod": "catalog:"
+    "zod": "catalog:",
+    "winston": "catalog:",
+    "nest-winston": "catalog:",
+    "winston-daily-rotate-file": "catalog:"
   },
   "devDependencies": {
     "@repo/auth-database": "workspace:*",

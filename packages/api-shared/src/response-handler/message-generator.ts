@@ -1,82 +1,47 @@
 // packages\api-shared\src\response-handler\message-generator.ts
-import type { LocaleType, MessageType, MethodType } from "@repo/types";
+import type { MessageType, MethodType } from "@repo/types";
 import type { GenerateMessageProps } from "./type";
 
 export function generateMessage({
   moduleName,
   type,
   method,
-  locale = "en",
   getBy,
   id,
+  email,
 }: GenerateMessageProps & { type: MessageType }): string {
-  const messages: Record<
-    MethodType,
-    Record<MessageType, Record<LocaleType, string>>
-  > = {
+  const messages: Record<MethodType, Record<MessageType, string>> = {
     create: {
-      success: {
-        en: `${moduleName} created successfully.`,
-        ar: `تم إنشاء ${moduleName} بنجاح.`,
-      },
-      error: {
-        en: `Failed to create ${moduleName}.`,
-        ar: `فشل إنشاء ${moduleName}.`,
-      },
+      success: `${moduleName}_created_successfully.`,
+      error: `Failed_to_create ${moduleName}.`,
     },
     update: {
-      success: {
-        en: `${moduleName} updated successfully.`,
-        ar: `تم تعديل ${moduleName} بنجاح.`,
-      },
-      error: {
-        en: `Failed to update ${moduleName}.`,
-        ar: `فشل تعديل ${moduleName}.`,
-      },
+      success: `${moduleName}_updated_successfully.`,
+      error: `failed_to_update_${moduleName}.`,
     },
     delete: {
-      success: {
-        en: `${moduleName} deleted successfully.`,
-        ar: `تم حذف ${moduleName} بنجاح.`,
-      },
-      error: {
-        en: `Failed to delete ${moduleName}.`,
-        ar: `فشل حذف ${moduleName}.`,
-      },
+      success: `${moduleName}_deleted_successfully.`,
+      error: `failed_to_delete_${moduleName}.`,
     },
     "get-all": {
-      success: {
-        en: `${moduleName} records retrieved successfully.`,
-        ar: `تم استرجاع بيانات ${moduleName} بنجاح.`,
-      },
-      error: {
-        en: `Failed to retrieve ${moduleName} records.`,
-        ar: `فشل استرجاع بيانات ${moduleName}.`,
-      },
+      success: `${moduleName}_records_retrieved_successfully.`,
+      error: `failed_to_retrieve_${moduleName}_records.`,
     },
     "find-by": {
-      success: {
-        en: `${moduleName} retrieved successfully ${getBy ? `with ${getBy.key}: ${getBy?.value}` : ""}.`,
-        ar: `تم استرجاع ${moduleName} بنجاح.`,
-      },
-      error: {
-        en: `Failed to retrieve ${moduleName} ${getBy ? `with ${getBy.key}: ${getBy?.value}` : ""}.`,
-        ar: `فشل استرجاع ${moduleName}.`,
-      },
+      success: `${moduleName}_retrieved_successfully ${getBy ? `_with ${getBy.key}: ${getBy?.value}` : ""}.`,
+      error: `failed_to_retrieve_${moduleName}_${getBy ? `with ${getBy.key}: ${getBy?.value}` : ""}.`,
     },
     "find-by-id": {
-      success: {
-        en: `${moduleName} retrieved successfully ${id ? `with ID: ${id}` : ""}.`,
-        ar: `تم استرجاع ${moduleName} بنجاح.`,
-      },
-      error: {
-        en: `Failed to retrieve ${moduleName} ${id ? `with ID: ${id}` : ""}.`,
-        ar: `فشل استرجاع ${moduleName}.`,
-      },
+      success: `${moduleName}_retrieved_successfully_${id ? `with ID: ${id}` : ""}.`,
+      error: `failed_to_retrieve_${moduleName} ${id ? `with ID: ${id}` : ""}.`,
+    },
+    login: {
+      success: `${email} you_successfully_login`,
+      error: `Failed_to_login ${email}.`,
     },
   };
 
-  return messages[method][type][locale];
+  return messages[method][type];
 }
 
 export function getErrorMessage(error: unknown): string {

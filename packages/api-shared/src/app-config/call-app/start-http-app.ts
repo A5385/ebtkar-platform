@@ -1,4 +1,4 @@
-import { Logger } from "@nestjs/common";
+import { ConsoleLogger, Logger } from "@nestjs/common";
 import { NestFactory, type IEntryNestModule } from "@nestjs/core";
 import type { NestExpressApplication } from "@nestjs/platform-express";
 import type { AppOptions } from "./app-options.type";
@@ -10,10 +10,11 @@ export async function startHttpApplication(
   options: AppOptions,
 ) {
   const port = parsePort(env.PORT, "PORT");
-
   const prefix = normalizePrefix(env.SERVER_PREFIX ?? "api");
 
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    logger: new ConsoleLogger({}),
+  });
   // console.log("🚀 >  startHttpApplication >  app:", app);
 
   selectHttpAppService(app, options, prefix);

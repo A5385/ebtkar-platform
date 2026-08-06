@@ -12,7 +12,7 @@ export async function hashString(
   const sodium = await getSodium();
   const valueBytes = await stringToBytes(value);
 
-  const hash = sodium.crypto_generichash(outputLength, valueBytes);
+  const hash = sodium.crypto_generichash(outputLength, valueBytes, null);
 
   return bytesToBase64(hash);
 }

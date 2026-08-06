@@ -398,6 +398,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
+  LoginInfo: 'LoginInfo',
   Profile: 'Profile'
 } as const
 
@@ -414,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "profile"
+    modelProps: "user" | "loginInfo" | "profile"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -489,6 +490,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    LoginInfo: {
+      payload: Prisma.$LoginInfoPayload<ExtArgs>
+      fields: Prisma.LoginInfoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LoginInfoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LoginInfoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload>
+        }
+        findFirst: {
+          args: Prisma.LoginInfoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LoginInfoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload>
+        }
+        findMany: {
+          args: Prisma.LoginInfoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload>[]
+        }
+        create: {
+          args: Prisma.LoginInfoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload>
+        }
+        createMany: {
+          args: Prisma.LoginInfoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LoginInfoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload>[]
+        }
+        delete: {
+          args: Prisma.LoginInfoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload>
+        }
+        update: {
+          args: Prisma.LoginInfoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload>
+        }
+        deleteMany: {
+          args: Prisma.LoginInfoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LoginInfoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LoginInfoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload>[]
+        }
+        upsert: {
+          args: Prisma.LoginInfoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LoginInfoPayload>
+        }
+        aggregate: {
+          args: Prisma.LoginInfoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLoginInfo>
+        }
+        groupBy: {
+          args: Prisma.LoginInfoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoginInfoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LoginInfoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LoginInfoCountAggregateOutputType> | number
         }
       }
     }
@@ -618,6 +693,18 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const LoginInfoScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  lastLogin: 'lastLogin',
+  code: 'code',
+  at: 'at',
+  rt: 'rt'
+} as const
+
+export type LoginInfoScalarFieldEnum = (typeof LoginInfoScalarFieldEnum)[keyof typeof LoginInfoScalarFieldEnum]
 
 
 export const ProfileScalarFieldEnum = {
@@ -875,6 +962,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  loginInfo?: Prisma.LoginInfoOmit
   profile?: Prisma.ProfileOmit
 }
 

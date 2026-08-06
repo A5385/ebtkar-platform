@@ -42,10 +42,21 @@ model User {
   isBlocked  Boolean?  @default(false)
   isActive   Boolean   @default(true)
 
-  profile Profile?
+  profile   Profile?
+  loginInfo LoginInfo?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model LoginInfo {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [userId])
+  lastLogin DateTime @updatedAt
+  code      String
+  at        String
+  rt        String
 }
 
 model Profile {
