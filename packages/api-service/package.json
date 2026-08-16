@@ -1,0 +1,35 @@
+{
+  "name": "@repo/api=service",
+  "version": "1.0.0",
+  "description": "Helpers package for the repo contain the common helper functions",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build:pkg": "tsc -b -v",
+    "dev:pkg": "tsc --watch",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "lint": "eslint src/",
+    "ts": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

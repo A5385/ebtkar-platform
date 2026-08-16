@@ -13,16 +13,19 @@
     "reset": "pnpm clean && pnpm install ",
     "hard:reset": "pnpm hard:clean && pnpm install",
     "gateway:dev": "turbo run dev --filter api-gateway --filter api-auth ",
+    "warehouse:dev": "turbo run dev --filter api-gateway --filter api-auth --filter api-warehouse",
     "dev:pkg": "turbo run dev:pkg",
-    "build:pkg": "turbo run build:pkg"
+    "build:pkg": "turbo run build:pkg",
+    "admin:dev": "pnpm --filter admin dev"
   },
   "devDependencies": {
     "prettier": "catalog:",
     "prettier-plugin-tailwindcss": "catalog:",
     "turbo": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "dotenv-cli": "catalog:"
   },
-  "packageManager": "pnpm@10.33.4",
+  "packageManager": "pnpm@11.21.0",
   "engines": {
     "node": ">=20"
   }

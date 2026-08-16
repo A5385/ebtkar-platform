@@ -1,0 +1,17 @@
+{
+  "name": "@repo/vite-config",
+  "type": "module",
+  "exports": {
+    "./vite": "./vite.mjs"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "catalog:",
+    "@tanstack/router-plugin": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "babel-plugin-react-compiler": "catalog:",
+    "vite": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}

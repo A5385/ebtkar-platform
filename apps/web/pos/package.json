@@ -7,7 +7,7 @@
         "#/*": "./src/*"
     },
     "scripts": {
-        "dev": "vite dev --port 4001",
+        "dev": "vite dev",
         "generate-routes": "tsr generate",
         "build": "vite build",
         "preview": "vite preview",
@@ -30,6 +30,7 @@
         "@repo/eslint-config": "workspace:*",
         "@repo/prettier-config": "workspace:*",
         "@repo/typescript-config": "workspace:*",
+        "@repo/vite-config": "workspace:*",
         "@tailwindcss/vite": "catalog:",
         "@tanstack/devtools-vite": "catalog:",
         "@tanstack/eslint-config": "catalog:",

@@ -30,40 +30,78 @@ generator zod {
   useDefaultValidators     = false // default is true
   // coerceDate               = false // default is true
   // writeNullishInModelTypes         = true // default is false
-  prismaClientPath         = "@repo/contracts/auth" // default is client output path
 }
 
 model User {
-  userId     String    @id @default(cuid())
-  email      String    @unique
-  password   String
+  userId String @id @default(cuid())
+  role   Role   @default(TENANT)
+
+  email    String @unique
+  password String
+
   otp        Int?
   isVerified DateTime?
-  isBlocked  Boolean?  @default(false)
+  isBlocked  Boolean   @default(false)
   isActive   Boolean   @default(true)
 
-  profile   Profile?
-  loginInfo LoginInfo?
+  profile     Profile?
+  loginEvents LoginEvent[]
+  authCodes   AuthCode[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model LoginInfo {
-  id        String   @id @default(cuid())
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [userId])
-  lastLogin DateTime @updatedAt
-  code      String
-  at        String
-  rt        String
+enum Role {
+  TENANT
+  ADMIN
+}
+
+model LoginEvent {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [userId])
+
+  loginAt   DateTime @default(now())
+  ipAddress String?
+  service   String?
+  userAgent String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, loginAt])
+}
+
+model AuthCode {
+  id   String @id @default(cuid())
+  code String @unique
+
+  accessToken  String
+  refreshToken String
+
+  redirectUri String
+  expiresAt   DateTime
+  consumedAt  DateTime?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [userId])
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 model Profile {
-  profileId String  @id @default(cuid())
-  userId    String  @unique
-  user      User    @relation(fields: [userId], references: [userId])
-  fullName  String?
-  mobile    String?
-  address   String?
+  profileId String @id @default(cuid())
+
+  fullName String?
+  mobile   String?
+  address  String?
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [userId])
+
+  createdAt DateTime @default(now())
 }

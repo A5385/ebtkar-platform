@@ -22,6 +22,8 @@
         "shadcn": "catalog:",
         "tailwind-merge": "catalog:",
         "tw-animate-css": "catalog:",
+        "react-hook-form": "catalog:",
+        "@hookform/resolvers": "catalog:",
         "zod": "catalog:"
     },
     "devDependencies": {
@@ -45,7 +47,8 @@
     "exports": {
         "./globals.css": "./src/styles/globals.css",
         "./lib/*": "./src/lib/*.ts",
-        "./components/*": "./src/components/ui/*.tsx",
+        "./components/system-component/*": "./src/components/system-component/*.tsx",
+        "./components/ui/*": "./src/components/ui/*.tsx",
         "./hooks/*": "./src/hooks/*.ts"
     }
 }

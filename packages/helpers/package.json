@@ -26,7 +26,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.33.4",
   "dependencies": {
     "bcryptjs": "catalog:"
   },

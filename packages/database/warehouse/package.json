@@ -1,0 +1,48 @@
+{
+  "name": "@repo/warehouse-database",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Schema, migrations, and seed scripts for the authentication database",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build:pkg": "tsc -b -v",
+    "dev:pkg": "tsc --watch",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "lint": "eslint src/",
+    "ts": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "db:validate": "prisma validate",
+    "db:format": "prisma format"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "catalog:",
+    "dotenv": "catalog:",
+    "pg": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "zod-prisma-types": "catalog:",
+    "@types/node": "catalog:",
+    "@types/pg": "catalog:",
+    "prisma": "catalog:",
+    "typescript": "catalog:",
+    "tsx": "catalog:"
+  }
+}
