@@ -62,7 +62,7 @@ catalog:
   '@swc/jest': '~0.2.38'
 
   # React
-  react: '^19.0.0'
+  react: '^19.2.8'
   react-dom: '^19.0.0'
   '@types/react': '^19.0.0'
   '@types/react-dom': '^19.0.0'
@@ -111,7 +111,6 @@ catalog:
   # Validation and configuration
   zod: '^4.4.3'
   dotenv: '^17.4.2'
-
 
   # Web UI / shadcn
   '@base-ui/react': '^1.7.0'

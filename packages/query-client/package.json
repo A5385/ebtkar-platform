@@ -1,0 +1,26 @@
+{
+    "name": "@org/query-client",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "nx": {
+        "name": "query-client"
+    },
+    "dependencies": {
+        "@tanstack/react-query": "^5.102.4",
+        "react": "catalog:",
+        "tslib": "^2.3.0"
+    }
+}

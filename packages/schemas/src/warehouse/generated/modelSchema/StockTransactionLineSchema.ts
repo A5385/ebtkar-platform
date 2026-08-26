@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Decimal as PrismaDecimal } from '../../../../../../database/warehouse/src/generated/prisma/internal/prismaNamespace';
+import { Decimal as PrismaDecimal } from '@org/database-warehouse/prisma-namespace';
 
 /////////////////////////////////////////
 // STOCK TRANSACTION LINE SCHEMA

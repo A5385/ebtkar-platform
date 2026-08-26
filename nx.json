@@ -3,9 +3,9 @@
     "tui": {
         "enabled": false
     },
-      "sync": {
-    "applyChanges": true
-  },
+    "sync": {
+        "applyChanges": true
+    },
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
         "production": [

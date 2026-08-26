@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { Prisma } from '../../../../../../database/warehouse/src/generated/prisma/client';
+import type { Prisma } from '@org/database-warehouse/prisma';
 
 export const DecimalJsLikeSchema: z.ZodType<Prisma.DecimalJsLike> = z.object({
   d: z.array(z.number()),

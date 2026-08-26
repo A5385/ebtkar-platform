@@ -44,6 +44,33 @@
         },
         {
             "path": "./packages/web-ui"
+        },
+        {
+            "path": "./packages/types"
+        },
+        {
+            "path": "./packages/constants"
+        },
+        {
+            "path": "./packages/api-dto"
+        },
+        {
+            "path": "./packages/api-shared"
+        },
+        {
+            "path": "./packages/http-client"
+        },
+        {
+            "path": "./packages/query-client"
+        },
+        {
+            "path": "./packages/data-service"
+        },
+        {
+            "path": "./packages/web-client-runtime"
+        },
+        {
+            "path": "./packages/env"
         }
     ],
     "compilerOptions": {}

@@ -12,6 +12,9 @@
     "references": [
         {
             "path": "../../database/warehouse/tsconfig.lib.json"
+        },
+        {
+            "path": "../../database/auth/tsconfig.lib.json"
         }
     ],
     "exclude": [

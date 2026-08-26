@@ -9,4 +9,4 @@ export {
 
 // export type * from "./generated/prisma/client";
 
-export * from './generated/prisma/internal/prismaNamespace.js';
+// export * from './generated/prisma/internal/prismaNamespace.js';

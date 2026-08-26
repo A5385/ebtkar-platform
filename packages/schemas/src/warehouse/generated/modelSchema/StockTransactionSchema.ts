@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { StockTransactionTypeSchema } from '../inputTypeSchemas/StockTransactionTypeSchema'
+import { StockTransactionTypeSchema } from '../inputTypeSchemas/StockTransactionTypeSchema.js'
 
 /////////////////////////////////////////
 // STOCK TRANSACTION SCHEMA

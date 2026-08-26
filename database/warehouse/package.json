@@ -13,10 +13,22 @@
             "types": "./dist/index.d.ts",
             "import": "./dist/index.js",
             "default": "./dist/index.js"
+        },
+        "./prisma": {
+            "@org/source": "./src/generated/prisma/client.ts",
+            "types": "./dist/generated/prisma/client.d.ts",
+            "import": "./dist/generated/prisma/client.js",
+            "default": "./dist/generated/prisma/client.js"
+        },
+        "./prisma-namespace": {
+            "@org/source": "./src/generated/prisma/internal/prismaNamespace.ts",
+            "types": "./dist/generated/prisma/internal/prismaNamespace.d.ts",
+            "import": "./dist/generated/prisma/internal/prismaNamespace.js",
+            "default": "./dist/generated/prisma/internal/prismaNamespace.js"
         }
     },
     "scripts": {
-        "db:gen": "prisma generate",
+        "db:gen": "prisma generate && pnpm --dir ../.. schemas:post-generate",
         "db:mig": "prisma migrate dev",
         "db:dep": "prisma migrate deploy",
         "db:seed": "prisma db seed",
@@ -35,10 +47,19 @@
                 "executor": "@nx-tools/nx-prisma:format"
             },
             "prisma-generate": {
-                "executor": "@nx-tools/nx-prisma:generate"
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "database/warehouse",
+                    "command": "pnpm db:gen"
+                }
             },
             "prisma-migrate": {
-                "executor": "@nx-tools/nx-prisma:migrate"
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "database/warehouse",
+                    "command": "pnpm db:mig",
+                    "forwardAllArgs": true
+                }
             },
             "prisma-pull": {
                 "executor": "@nx-tools/nx-prisma:pull"
@@ -66,19 +87,19 @@
             }
         }
     },
-   "dependencies": {
-  "@prisma/adapter-pg": "catalog:",
-  "@prisma/client": "catalog:",
-  "dotenv": "catalog:",
-
-  "tslib": "catalog:","@nestjs/common": "catalog:"
-},
-"devDependencies": {
-  "@types/pg": "catalog:",
-  "prisma": "catalog:",
-  "vite": "catalog:",
-  "vite-plugin-dts": "catalog:",
-  "vitest": "catalog:",
-  "zod-prisma-types": "catalog:"
-}
+    "dependencies": {
+        "@prisma/adapter-pg": "catalog:",
+        "@prisma/client": "catalog:",
+        "dotenv": "catalog:",
+        "@nestjs/common": "catalog:",
+        "tslib": "catalog:"
+    },
+    "devDependencies": {
+        "@types/pg": "catalog:",
+        "prisma": "catalog:",
+        "vite": "catalog:",
+        "vite-plugin-dts": "catalog:",
+        "vitest": "catalog:",
+        "zod-prisma-types": "catalog:"
+    }
 }
