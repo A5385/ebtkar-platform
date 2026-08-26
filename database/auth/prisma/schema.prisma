@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator zod {
+  provider = "npx zod-prisma-types"
+  output   = "../../../packages/schemas/src/auth/generated"
+
+  useMultipleFiles         = true
+  writeBarrelFiles         = false
+  createInputTypes         = false
+  addInputTypeValidation   = false
+  addIncludeType           = false
+  addSelectType            = false
+  validateWhereUniqueInput = false
+  useDefaultValidators     = false
+}
+
+model User {
+  userId      String       @id @default(cuid())
+  role        Role         @default(TENANT)
+  email       String       @unique
+  password    String
+  otp         Int?
+  isVerified  DateTime?
+  isBlocked   Boolean      @default(false)
+  isActive    Boolean      @default(true)
+  profile     Profile?
+  loginEvents LoginEvent[]
+  authCodes   AuthCode[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+enum Role {
+  TENANT
+  ADMIN
+}
+
+model LoginEvent {
+  id        String   @id @default(cuid())
+  loginAt   DateTime @default(now())
+  ipAddress String?
+  service   String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [userId])
+  createdAt DateTime @default(now())
+
+  @@index([userId, loginAt])
+}
+
+model AuthCode {
+  id           String    @id @default(cuid())
+  code         String    @unique
+  accessToken  String?
+  refreshToken String?
+  expiresAt    DateTime?
+  consumedAt   DateTime?
+  //////////////////////////////
+  userId       String
+  user         User      @relation(fields: [userId], references: [userId])
+  createdAt    DateTime  @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model Profile {
+  profileId String   @id @default(cuid())
+  fullName  String?
+  mobile    String?
+  address   String?
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [userId])
+  createdAt DateTime @default(now())
+}

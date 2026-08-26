@@ -1,0 +1,33 @@
+{
+    "name": "@org/api-admin-e2e",
+    "version": "0.0.1",
+    "private": true,
+     "devDependencies": {
+    "@types/jest": "catalog:",
+    "jest": "catalog:",
+    "jest-environment-node": "catalog:",
+    "ts-jest": "catalog:"
+  },
+    "nx": {
+        "name": "api-admin-e2e",
+        "implicitDependencies": [
+            "api-admin"
+        ],
+        "targets": {
+            "e2e": {
+                "executor": "@nx/jest:jest",
+                "outputs": [
+                    "{projectRoot}/test-output/jest/coverage"
+                ],
+                "dependsOn": [
+                    "api-admin:build",
+                    "api-admin:serve"
+                ],
+                "options": {
+                    "jestConfig": "api/admin-e2e/jest.config.cts",
+                    "passWithNoTests": true
+                }
+            }
+        }
+    }
+}

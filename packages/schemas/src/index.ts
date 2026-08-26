@@ -1,1 +1,1 @@
-export * from "./auth/index.js";
+export * from './lib/shared-schemas.js';

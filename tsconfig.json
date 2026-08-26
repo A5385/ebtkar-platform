@@ -1,0 +1,50 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compileOnSave": false,
+    "files": [],
+    "references": [
+        {
+            "path": "./web/admin-e2e"
+        },
+        {
+            "path": "./web/admin"
+        },
+        {
+            "path": "./web/auth-e2e"
+        },
+        {
+            "path": "./web/auth"
+        },
+        {
+            "path": "./api/gateway-e2e"
+        },
+        {
+            "path": "./api/gateway"
+        },
+        {
+            "path": "./api/auth-e2e"
+        },
+        {
+            "path": "./api/auth"
+        },
+        {
+            "path": "./api/admin-e2e"
+        },
+        {
+            "path": "./api/admin"
+        },
+        {
+            "path": "./database/auth"
+        },
+        {
+            "path": "./packages/schemas"
+        },
+        {
+            "path": "./database/warehouse"
+        },
+        {
+            "path": "./packages/web-ui"
+        }
+    ],
+    "compilerOptions": {}
+}

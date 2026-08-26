@@ -1,112 +1,142 @@
 packages:
-  - "apps/web/*"
-  - "apps/api/*"
-  - "apps/mobile/*"
-  - "packages/*"
-  - "packages/database/*"
-  - "config/**"
+  - 'packages/*'
+  - 'web/*'
+  - 'api/*'
+  - 'database/*'
+  - 'database/warehouse/packages/*'
 
 allowBuilds:
-  "@prisma/engines": true
-  "@swc/core": true
-  esbuild: true
-  msw: false
-  prisma: true
   unrs-resolver: true
+  esbuild: false
+  '@swc/core': false
+  '@nestjs/core': false
+  '@parcel/watcher': true
+  less: true
+  nx: true
+  '@prisma/engines': true
+  prisma: true
+  '@prisma/client': true
 
 catalog:
-  "@base-ui/react": "^1.6.0"
-  "@eslint/js": "^10"
-  "dotenv-cli": "^11.0.0"
-  "babel-plugin-react-compiler": "^1.0.0"
-  "react-hook-form": "^7.85.0"
-  "@hookform/resolvers": "^5.8.0"
-  # nestjs
-  "@nestjs/cli": "^11.0.0"
-  "@nestjs/common": "^11.0.1"
-  "@nestjs/core": "^11.0.1"
-  "@nestjs/microservices": "^11.1.28"
-  "@nestjs/platform-express": "^11.0.1"
-  "@nestjs/schematics": "^11.0.0"
-  "@nestjs/testing": "^11.0.1"
-  "@next/eslint-plugin-next": "^16.2.0"
-  "@prisma/adapter-pg": "~7.9.1"
-  "@prisma/client": "~7.9.1"
-  "@prisma/client-runtime-utils": "7.2.0"
-  "@tailwindcss/vite": "^4.1.18"
-  "@tanstack/devtools-vite": "latest"
-  "@tanstack/eslint-config": "latest"
-  "@tanstack/react-devtools": "latest"
-  "@tanstack/react-router": "latest"
-  "@tanstack/react-router-devtools": "latest"
-  "@tanstack/router-cli": "^1.132.0"
-  "@tanstack/router-plugin": "latest"
-  "@turbo/gen": "^2.9.15"
-  "@types/cookie-parser": "~1.4.10"
-  "@types/express": "^5.0.0"
-  "@types/jest": "^30.0.0"
-  "@types/node": "^24"
-  "class-transformer": "^0.5.1"
-  "class-validator": "^0.15.1"
-  "@nestjs/config": "^4.0.4"
-  "winston": "^3.19.0"
-  "winston-daily-rotate-file": "5.0.0"
-  "nest-winston": "1.10.2"
+  # Nx
+  nx: '23.1.1'
+  '@nx-tools/nx-prisma': '^7.3.0'
+  '@nx/devkit': '23.1.1'
+  '@nx/eslint': '23.1.1'
+  '@nx/eslint-plugin': '23.1.1'
+  '@nx/jest': '23.1.1'
+  '@nx/js': '23.1.1'
+  '@nx/nest': '23.1.1'
+  '@nx/node': '23.1.1'
+  '@nx/playwright': '23.1.1'
+  '@nx/react': '23.1.1'
+  '@nx/vite': '23.1.1'
+  '@nx/vitest': '23.1.1'
+  '@nx/web': '23.1.1'
+  '@nx/webpack': '23.1.1'
 
-  # database
-  "@types/pg": "^8.16.0"
-  "@types/react": "^19.2.0"
-  "@types/react-dom": "^19.2.0"
-  "@types/supertest": "^6.0.2"
-  "@vitejs/plugin-react": "^6.0.1"
-  "bcryptjs": "^3.0.3"
-  "bunchee": "^7.0.0"
-  "class-variance-authority": "^0.7.1"
-  "clsx": "^2.1.1"
-  "cookie-parser": "~1.4.7"
-  "date-fns": "^4.4.0"
-  "dotenv": "^17.2.3"
-  "embla-carousel-react": "^8.6.0"
-  "eslint": "^10"
-  "eslint-config-prettier": "^10.1.1"
-  "eslint-plugin-only-warn": "^1.1.0"
-  "eslint-plugin-react": "^7.37.5"
-  "eslint-plugin-react-hooks": "^7.1.1"
-  "eslint-plugin-react-refresh": "^0.5.2"
-  "eslint-plugin-turbo": "^2.6.0"
-  "globals": "^17"
-  "jest": "^30.0.0"
-  "libsodium-wrappers": "^0.8.4"
-  "lucide-react": "^1.27.0"
-  "nestjs-zod": "^5.5.0"
-  "pg": "^8.16.3"
-  "prettier": "^3.8.3"
-  "prettier-plugin-tailwindcss": "^0.8.0"
-  "prisma": "~7.9.1"
-  "react": "^19.2.6"
-  "react-day-picker": "^10.0.1"
-  "react-dom": "^19.2.6"
-  "react-resizable-panels": "^4.12.2"
-  "recharts": "3.8.0"
-  "reflect-metadata": "^0.2.2"
-  "rxjs": "^7.8.1"
-  "shadcn": "^4.16.0"
-  "source-map-support": "^0.5.21"
-  "supertest": "^7.0.0"
-  "tailwind-merge": "^3.6.0"
-  "tailwindcss": "^4.1.18"
-  "ts-jest": "^29.4.12"
-  "ts-loader": "^9.5.2"
-  "ts-node": "^10.9.2"
-  "tsconfig-paths": "^4.2.0"
-  "tsx": "4.21.0"
-  "turbo": "^2.9.18"
-  "tw-animate-css": "^1.4.0"
-  "typescript": "^6.0.3"
-  "typescript-eslint": "^8.46.2"
-  "vite": "^8.0.0"
-  "zod": "^4.4.3"
-  "zod-prisma-types": "^3.3.11"
+  # TypeScript
+  typescript: '~6.0.3'
+  typescript-eslint: '^8.58.0'
+  tslib: '^2.3.0'
+  ts-node: '10.9.1'
+  tsx: '^4.23.12'
 
-minimumReleaseAgeExclude:
-  - '@hookform/resolvers@5.8.0'
+  # ESLint and formatting
+  '@eslint/js': '^9.8.0'
+  eslint: '^9.39.1'
+  eslint-config-prettier: '^10.0.0'
+  eslint-plugin-import: '2.31.0'
+  eslint-plugin-jsx-a11y: '6.10.1'
+  eslint-plugin-playwright: '^1.6.2'
+  eslint-plugin-react: '^7.35.0'
+  eslint-plugin-react-hooks: '5.0.0'
+  jsonc-eslint-parser: '^2.1.0'
+  prettier: '^3.8.1'
+
+  # SWC
+  '@swc-node/register': '1.11.1'
+  '@swc/cli': '~0.8.1'
+  '@swc/core': '1.15.8'
+  '@swc/helpers': '0.5.23'
+  '@swc/jest': '~0.2.38'
+
+  # React
+  react: '^19.0.0'
+  react-dom: '^19.0.0'
+  '@types/react': '^19.0.0'
+  '@types/react-dom': '^19.0.0'
+
+  # Vite
+  vite: '^8.0.0'
+  '@vitejs/plugin-react': '^6.0.0'
+  '@tailwindcss/vite': '^4.3.3'
+  vite-plugin-dts: '~4.5.0'
+
+  # Vitest
+  vitest: '~4.1.0'
+  '@vitest/coverage-v8': '~4.1.0'
+  '@vitest/ui': '~4.1.0'
+  jsdom: '^27.1.0'
+
+  # Jest
+  jest: '~30.3.0'
+  jest-environment-node: '~30.3.0'
+  jest-util: '~30.3.0'
+  ts-jest: '^29.4.7'
+  '@types/jest': '~30.0.0'
+
+  # Testing
+  '@testing-library/dom': '10.4.0'
+  '@testing-library/react': '16.3.0'
+  '@playwright/test': '^1.37.0'
+
+  # NestJS
+  '@nestjs/common': '^11.0.0'
+  '@nestjs/core': '^11.0.0'
+  '@nestjs/platform-express': '^11.0.0'
+  '@nestjs/schematics': '^11.0.0'
+  '@nestjs/testing': '^11.0.0'
+  reflect-metadata: '^0.2.0'
+  rxjs: '^7.8.0'
+
+  # Prisma and PostgreSQL
+  prisma: '^7.9.1'
+  '@prisma/client': '^7.9.1'
+  '@prisma/adapter-pg': '^7.9.1'
+  pg: '^8.16.3'
+  '@types/pg': '^8.23.1'
+  zod-prisma-types: '^3.3.11'
+
+  # Validation and configuration
+  zod: '^4.4.3'
+  dotenv: '^17.4.2'
+
+
+  # Web UI / shadcn
+  '@base-ui/react': '^1.7.0'
+  '@fontsource-variable/geist': '^5.3.0'
+  '@shadcn/react': '^0.3.0'
+  class-variance-authority: '^0.7.1'
+  clsx: '^2.1.1'
+  cmdk: '^1.1.1'
+  date-fns: '^4.4.0'
+  embla-carousel-react: '^8.6.0'
+  input-otp: '^1.5.0'
+  lucide-react: '^1.34.0'
+  react-day-picker: '^10.0.1'
+  react-resizable-panels: '^4.12.3'
+  recharts: '3.8.0'
+  shadcn: '^4.19.0'
+  tailwind-merge: '^3.6.0'
+  tailwindcss: '^4.3.3'
+  tw-animate-css: '^1.4.0'
+
+  # Webpack
+  webpack: '^5.101.3'
+  webpack-cli: '^7.0.0'
+  webpack-dev-server: '^5.2.1'
+
+  # Miscellaneous tooling
+  jiti: '2.4.2'
+  '@types/node': '^24.13.3'

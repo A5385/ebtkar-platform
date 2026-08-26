@@ -1,0 +1,13 @@
+{
+  "name": "@org/admin-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "catalog:"
+  },
+  "nx": {
+    "implicitDependencies": [
+      "@org/admin"
+    ]
+  }
+}

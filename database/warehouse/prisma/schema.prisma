@@ -1,0 +1,163 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator zod {
+  provider = "npx zod-prisma-types"
+  output   = "../../../packages/schemas/src/warehouse/generated"
+
+  useMultipleFiles         = true
+  writeBarrelFiles         = false
+  createInputTypes         = false
+  addInputTypeValidation   = false
+  addIncludeType           = false
+  addSelectType            = false
+  validateWhereUniqueInput = false
+  useDefaultValidators     = false
+}
+
+// ========================================
+// Warehouse
+// ========================================
+
+model Warehouse {
+  warehouseId String              @id @default(cuid())
+  tenantId    String
+  code        String
+  name        String
+  isActive    Boolean             @default(true)
+  locations   WarehouseLocation[]
+  stock       Stock[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+
+  @@unique([tenantId, code])
+  @@index([tenantId])
+}
+
+// ========================================
+// Location
+// ========================================
+
+model WarehouseLocation {
+  locationId  String    @id @default(cuid())
+  warehouseId String
+  warehouse   Warehouse @relation(fields: [warehouseId], references: [warehouseId])
+  name        String
+  code        String
+  stock       Stock[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([warehouseId, code])
+}
+
+// ========================================
+// Category
+// ========================================
+
+model Category {
+  categoryId String   @id @default(cuid())
+  tenantId   String
+  name       String
+  code       String?
+  items      Item[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([tenantId])
+}
+
+// ========================================
+// Item
+// ========================================
+
+model Item {
+  itemId           String                 @id @default(cuid())
+  tenantId         String
+  sku              String
+  name             String
+  categoryId       String?
+  category         Category?              @relation(fields: [categoryId], references: [categoryId])
+  unit             String
+  isActive         Boolean                @default(true)
+  stock            Stock[]
+  transactionLines StockTransactionLine[]
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+
+  @@unique([tenantId, sku])
+  @@index([tenantId])
+}
+
+// ========================================
+// Current Stock
+// ========================================
+
+model Stock {
+  stockId     String             @id @default(cuid())
+  tenantId    String
+  warehouseId String
+  warehouse   Warehouse          @relation(fields: [warehouseId], references: [warehouseId])
+  locationId  String?
+  location    WarehouseLocation? @relation(fields: [locationId], references: [locationId])
+  itemId      String
+  item        Item               @relation(fields: [itemId], references: [itemId])
+  quantity    Decimal            @default(0)
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  @@unique([tenantId, warehouseId, locationId, itemId])
+  @@index([tenantId])
+  @@index([itemId])
+}
+
+// ========================================
+// Stock Transaction
+// ========================================
+
+model StockTransaction {
+  transactionId String                 @id @default(cuid())
+  tenantId      String
+  type          StockTransactionType
+  referenceId   String?
+  notes         String?
+  lines         StockTransactionLine[]
+  createdAt     DateTime               @default(now())
+
+  @@index([tenantId, createdAt])
+}
+
+// ========================================
+// Stock Transaction Line
+// ========================================
+
+model StockTransactionLine {
+  lineId          String           @id @default(cuid())
+  transactionId   String
+  transaction     StockTransaction @relation(fields: [transactionId], references: [transactionId])
+  itemId          String
+  item            Item             @relation(fields: [itemId], references: [itemId])
+  fromWarehouseId String?
+  fromLocationId  String?
+  toWarehouseId   String?
+  toLocationId    String?
+  quantity        Decimal
+  createdAt       DateTime         @default(now())
+
+  @@index([transactionId])
+  @@index([itemId])
+}
+
+enum StockTransactionType {
+  RECEIPT
+  ISSUE
+  TRANSFER
+  ADJUSTMENT
+  RETURN
+}

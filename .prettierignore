@@ -1,15 +1,6 @@
-**/node_modules
-**/.next
-**/.turbo
-**/.expo
-**/dist
-**/build
-**/out
-**/coverage
-
-**/routeTree.gen.ts
-**/generated/**
-
-package-lock.json
-pnpm-lock.yaml
-yarn.lock
+# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.nx/cache
+/.nx/workspace-data
+.nx/self-healing

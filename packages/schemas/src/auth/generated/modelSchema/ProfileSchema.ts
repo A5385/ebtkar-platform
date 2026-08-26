@@ -6,10 +6,11 @@ import { z } from 'zod';
 
 export const ProfileSchema = z.object({
   profileId: z.string(),
-  userId: z.string(),
   fullName: z.string().nullable(),
   mobile: z.string().nullable(),
   address: z.string().nullable(),
+  userId: z.string(),
+  createdAt: z.coerce.date(),
 })
 
 export type Profile = z.infer<typeof ProfileSchema>

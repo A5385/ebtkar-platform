@@ -1,36 +1,30 @@
 {
-  "name": "@repo/schemas",
-  "version": "1.0.0",
-  "description": "Schemas package for the repo contain the common schema definitions",
+  "name": "@org/shared-schemas",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
+      "@org/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
-    },
-    "./*": {
-      "types": "./dist/*.d.ts",
-      "import": "./dist/*.js",
-      "default": "./dist/*.js"
     }
   },
-  "scripts": {
-    "build:pkg": "tsc -b -v",
-    "dev:pkg": "tsc --watch",
-    "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "lint": "eslint src/",
-    "ts": "tsc --noEmit"
+  "nx": {
+    "name": "shared-schemas"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "tslib": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/prettier-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "typescript": "catalog:"
+    "vite": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vitest": "catalog:"
   }
 }
