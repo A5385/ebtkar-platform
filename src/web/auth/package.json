@@ -1,0 +1,28 @@
+{
+    "name": "@org/auth",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "@org/localization": "workspace:*",
+        "react-i18next": "catalog:",
+        "@org/web-ui": "workspace:*",
+        "@org/constants": "workspace:*",
+        "@org/web-client-runtime": "workspace:*",
+        "@org/schemas": "workspace:*",
+        "react": "catalog:",
+        "react-dom": "catalog:"
+    },
+    "devDependencies": {
+        "@org/types": "workspace:*",
+        "@tailwindcss/vite": "catalog:",
+        "@testing-library/dom": "catalog:",
+        "@testing-library/react": "catalog:",
+        "@types/react": "catalog:",
+        "@types/react-dom": "catalog:",
+        "@vitejs/plugin-react": "catalog:",
+        "@vitest/coverage-v8": "catalog:",
+        "jsdom": "catalog:",
+        "vite": "catalog:",
+        "vitest": "catalog:"
+    }
+}

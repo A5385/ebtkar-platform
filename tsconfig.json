@@ -4,73 +4,76 @@
     "files": [],
     "references": [
         {
-            "path": "./web/admin-e2e"
+            "path": "./src/packages/web-client-runtime"
         },
         {
-            "path": "./web/admin"
+            "path": "./src/packages/data-service"
         },
         {
-            "path": "./web/auth-e2e"
+            "path": "./src/packages/query-client"
         },
         {
-            "path": "./web/auth"
+            "path": "./src/packages/http-client"
         },
         {
-            "path": "./api/gateway-e2e"
+            "path": "./src/packages/constants"
         },
         {
-            "path": "./api/gateway"
+            "path": "./src/database/warehouse"
         },
         {
-            "path": "./api/auth-e2e"
+            "path": "./src/packages/api-dto"
         },
         {
-            "path": "./api/auth"
+            "path": "./src/packages/schemas"
         },
         {
-            "path": "./api/admin-e2e"
+            "path": "./src/api/gateway-e2e"
         },
         {
-            "path": "./api/admin"
+            "path": "./src/packages/web-ui"
         },
         {
-            "path": "./database/auth"
+            "path": "./src/packages/types"
         },
         {
-            "path": "./packages/schemas"
+            "path": "./src/api/admin-e2e"
         },
         {
-            "path": "./database/warehouse"
+            "path": "./src/database/auth"
         },
         {
-            "path": "./packages/web-ui"
+            "path": "./src/web/auth-e2e"
         },
         {
-            "path": "./packages/types"
+            "path": "./src/api/auth-e2e"
         },
         {
-            "path": "./packages/constants"
+            "path": "./src/packages/env"
         },
         {
-            "path": "./packages/api-dto"
+            "path": "./src/api/gateway"
         },
         {
-            "path": "./packages/api-shared"
+            "path": "./src/web/admin"
         },
         {
-            "path": "./packages/http-client"
+            "path": "./src/api/admin"
         },
         {
-            "path": "./packages/query-client"
+            "path": "./src/web/auth"
         },
         {
-            "path": "./packages/data-service"
+            "path": "./src/api/auth"
         },
         {
-            "path": "./packages/web-client-runtime"
+            "path": "./src/packages/localization"
         },
         {
-            "path": "./packages/env"
+            "path": "./src/packages/api-shared"
+        },
+        {
+            "path": "./src/web/admin-e2e"
         }
     ],
     "compilerOptions": {}
