@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/packages/http-client',
     test: {
+        passWithNoTests: true,
         name: 'http-client',
         watch: false,
         globals: true,

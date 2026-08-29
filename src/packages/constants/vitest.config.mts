@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/packages/constants',
     test: {
+        passWithNoTests: true,
         name: 'constants',
         watch: false,
         globals: true,

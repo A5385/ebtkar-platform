@@ -2,11 +2,25 @@ import nx from '@nx/eslint-plugin';
 import baseConfig from '../../../eslint.config.mjs';
 
 export default [
-    ...nx.configs['flat/react'],
     ...baseConfig,
+    ...nx.configs['flat/react'],
+
     {
         files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-        // Override or add rules here
-        rules: {},
+        rules: {
+            '@nx/enforce-module-boundaries': [
+                'error',
+                {
+                    enforceBuildableLibDependency: false,
+                    allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
+                    depConstraints: [
+                        {
+                            sourceTag: '*',
+                            onlyDependOnLibsWithTags: ['*'],
+                        },
+                    ],
+                },
+            ],
+        },
     },
 ];

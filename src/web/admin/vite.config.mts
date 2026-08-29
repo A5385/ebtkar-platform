@@ -1,5 +1,6 @@
 /// <reference types='vitest' />
 import react from '@vitejs/plugin-react';
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
@@ -13,7 +14,7 @@ export default defineConfig(() => ({
         port: 7001,
         host: 'localhost',
     },
-    plugins: [react()],
+    plugins: [tanstackRouter({ target: 'react', autoCodeSplitting: true }), react()],
     // Uncomment this if you are using workers.
     // worker: {
     //  plugins: [],

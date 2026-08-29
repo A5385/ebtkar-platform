@@ -1,17 +1,9 @@
 {
     "extends": "../../../tsconfig.base.json",
     "compilerOptions": {
-        "lib": [
-            "ES2022",
-            "DOM",
-            "DOM.Iterable"
-        ],
+        "lib": ["ES2022", "DOM", "DOM.Iterable"],
         "outDir": "dist",
-        "types": [
-            "node",
-            "@nx/react/typings/cssmodule.d.ts",
-            "@nx/react/typings/image.d.ts"
-        ],
+        "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts"],
         "rootDir": "src",
         "jsx": "react-jsx",
         "module": "esnext",
@@ -45,13 +37,14 @@
         "eslint.config.cjs",
         "eslint.config.mjs"
     ],
-    "include": [
-        "src/**/*.js",
-        "src/**/*.jsx",
-        "src/**/*.ts",
-        "src/**/*.tsx"
-    ],
+    "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
     "references": [
+        {
+            "path": "../localization/tsconfig.lib.json"
+        },
+        {
+            "path": "../query-client/tsconfig.lib.json"
+        },
         {
             "path": "../env/tsconfig.lib.json"
         },

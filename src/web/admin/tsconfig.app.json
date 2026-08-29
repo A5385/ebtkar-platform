@@ -37,19 +37,22 @@
     "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
     "references": [
         {
-            "path": "../../packages/schemas/tsconfig.lib.json"
+            "path": "../../packages/web-ui/tsconfig.lib.json"
         },
         {
             "path": "../../packages/web-client-runtime/tsconfig.lib.json"
         },
         {
-            "path": "../../packages/constants/tsconfig.lib.json"
+            "path": "../../packages/schemas/tsconfig.lib.json"
         },
         {
-            "path": "../../packages/web-ui/tsconfig.lib.json"
+            "path": "../../packages/query-client/tsconfig.lib.json"
         },
         {
             "path": "../../packages/localization/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/constants/tsconfig.lib.json"
         },
         {
             "path": "../../packages/types/tsconfig.lib.json"

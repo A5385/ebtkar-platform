@@ -1,2 +1,2 @@
 // packages/http-client/src/index.ts
-export {};
+export * from './http-client.js';

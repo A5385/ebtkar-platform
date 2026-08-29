@@ -1,43 +1,17 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { pathExists, resolveFromRoot, walkFiles, workspaceRoot } from './script-helpers.js';
 
-const workspaceRoot = process.cwd();
-const databasesRoot = path.join(workspaceRoot, 'database');
-const schemasRoot = path.join(workspaceRoot, 'packages', 'schemas', 'src');
+const databasesRoot = resolveFromRoot('src/database');
+const schemasRoot = resolveFromRoot('src/packages/schemas/src');
 
-async function pathExists(targetPath) {
-    try {
-        await fs.access(targetPath);
-        return true;
-    } catch {
-        return false;
-    }
+interface Database {
+    name: string;
+    packageName: string;
+    generatedSchemasPath: string;
 }
 
-async function walk(directoryPath) {
-    const entries = await fs.readdir(directoryPath, {
-        withFileTypes: true,
-    });
-
-    const files = [];
-
-    for (const entry of entries) {
-        const fullPath = path.join(directoryPath, entry.name);
-
-        if (entry.isDirectory()) {
-            files.push(...(await walk(fullPath)));
-            continue;
-        }
-
-        if (entry.isFile() && entry.name.endsWith('.ts') && !entry.name.endsWith('.d.ts')) {
-            files.push(fullPath);
-        }
-    }
-
-    return files;
-}
-
-async function discoverDatabases() {
+async function discoverDatabases(): Promise<Database[]> {
     const entries = await fs.readdir(databasesRoot, {
         withFileTypes: true,
     });
@@ -58,7 +32,9 @@ async function discoverDatabases() {
             continue;
         }
 
-        const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf8'));
+        const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf8')) as {
+            name?: string;
+        };
 
         if (!packageJson.name) {
             console.warn(`Skipped ${databaseName}: package.json has no package name.`);
@@ -75,7 +51,7 @@ async function discoverDatabases() {
     return databases.sort((left, right) => left.name.localeCompare(right.name));
 }
 
-function replacePrismaImports(source, packageName) {
+function replacePrismaImports(source: string, packageName: string): string {
     return source.replace(
         /(['"])([^'"]*generated\/prisma\/(?:client|internal\/prismaNamespace))(?:\.js)?\1/g,
         (match, quote, importPath) => {
@@ -92,7 +68,7 @@ function replacePrismaImports(source, packageName) {
     );
 }
 
-function addJavaScriptExtensions(source) {
+function addJavaScriptExtensions(source: string): string {
     return source.replace(
         /((?:from\s+|import\s*\(\s*)['"])(\.\.?\/[^'"]+)(['"])/g,
         (match, prefix, specifier, suffix) => {
@@ -107,8 +83,11 @@ function addJavaScriptExtensions(source) {
     );
 }
 
-async function fixDatabase(database) {
-    const files = await walk(database.generatedSchemasPath);
+async function fixDatabase(database: Database): Promise<void> {
+    const files = await walkFiles(
+        database.generatedSchemasPath,
+        (fileName) => fileName.endsWith('.ts') && !fileName.endsWith('.d.ts'),
+    );
 
     let fixedFilesCount = 0;
 
@@ -132,7 +111,7 @@ async function fixDatabase(database) {
     console.log(`${database.name}: ${fixedFilesCount} file(s) updated.`);
 }
 
-async function main() {
+async function main(): Promise<void> {
     const databases = await discoverDatabases();
 
     if (databases.length === 0) {
@@ -147,7 +126,7 @@ async function main() {
     }
 }
 
-main().catch((error) => {
+main().catch((error: unknown) => {
     console.error('Failed to fix generated schema imports.');
     console.error(error);
     process.exitCode = 1;

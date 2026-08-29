@@ -9,6 +9,7 @@ module.exports = {
             devtoolModuleFilenameTemplate: '[absolute-resource-path]',
         }),
     },
+
     plugins: [
         new NxAppWebpackPlugin({
             target: 'node',
@@ -16,6 +17,9 @@ module.exports = {
             main: './src/main.ts',
             tsConfig: './tsconfig.app.json',
             assets: ['./src/assets'],
+
+            externalDependencies: 'all',
+
             optimization: false,
             outputHashing: 'none',
             generatePackageJson: false,

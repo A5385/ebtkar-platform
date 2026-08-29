@@ -20,5 +20,8 @@
     },
     "dependencies": {
         "tslib": "catalog:"
+    },
+    "devDependencies": {
+        "@org/types": "workspace:*"
     }
 }

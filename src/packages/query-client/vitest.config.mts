@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/packages/query-client',
     test: {
+        passWithNoTests: true,
         name: 'query-client',
         watch: false,
         globals: true,

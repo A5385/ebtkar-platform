@@ -1,11 +1,6 @@
 {
     "name": "@org/web-ui",
     "version": "0.0.1",
-    "imports": {
-        "#/components/*": "./src/components/*.tsx",
-        "#/hooks/*": "./src/hooks/*.ts",
-        "#/lib/*": "./src/lib/*.ts"
-    },
     "exports": {
         "./components/*": {
             "types": "./src/components/*.tsx",
@@ -22,17 +17,31 @@
             "import": "./src/lib/*.ts",
             "default": "./src/lib/*.ts"
         },
-        "./styles.css": "./src/styles.css",
+        "./providers/*": {
+            "types": "./src/providers/*.tsx",
+            "import": "./src/providers/*.tsx",
+            "default": "./src/providers/*.tsx"
+        },
+        "./styles": "./src/styles.css",
+        "./i18n": {
+            "types": "./src/i18n.ts",
+            "import": "./src/i18n.ts",
+            "default": "./src/i18n.ts"
+        },
         "./package.json": "./package.json"
     },
     "nx": {
         "name": "web-ui"
     },
     "dependencies": {
-        "@org/env": "workspace:*",
         "@base-ui/react": "catalog:",
         "@fontsource-variable/geist": "catalog:",
+        "@hookform/resolvers": "^5.9.1",
+        "@org/env": "workspace:*",
+        "@org/localization": "workspace:*",
+        "@org/query-client": "workspace:*",
         "@shadcn/react": "catalog:",
+        "@tanstack/react-query": "catalog:",
         "class-variance-authority": "catalog:",
         "clsx": "catalog:",
         "cmdk": "catalog:",
@@ -41,6 +50,8 @@
         "input-otp": "catalog:",
         "lucide-react": "catalog:",
         "react-day-picker": "catalog:",
+        "react-hook-form": "catalog:",
+        "react-i18next": "catalog:",
         "react-resizable-panels": "catalog:",
         "recharts": "catalog:",
         "tailwind-merge": "catalog:",

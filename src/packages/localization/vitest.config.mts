@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/packages/localization',
     test: {
+        passWithNoTests: true,
         name: 'localization',
         watch: false,
         globals: true,

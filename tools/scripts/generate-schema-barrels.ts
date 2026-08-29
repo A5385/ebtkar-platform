@@ -1,24 +1,12 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { directoryExists, resolveFromRoot, workspaceRoot } from './script-helpers.js';
 
-const schemasRoot = path.resolve('packages/schemas/src');
+const schemasRoot = resolveFromRoot('src/packages/schemas/src');
 
 const generatedDirectories = ['inputTypeSchemas', 'modelSchema'];
 
-async function directoryExists(directoryPath) {
-    try {
-        const stat = await fs.stat(directoryPath);
-        return stat.isDirectory();
-    } catch (error) {
-        if (error?.code === 'ENOENT') {
-            return false;
-        }
-
-        throw error;
-    }
-}
-
-async function getTypeScriptFiles(directoryPath) {
+async function getTypeScriptFiles(directoryPath: string): Promise<string[]> {
     if (!(await directoryExists(directoryPath))) {
         return [];
     }
@@ -39,11 +27,11 @@ async function getTypeScriptFiles(directoryPath) {
         .sort((left, right) => left.localeCompare(right));
 }
 
-function toJavaScriptSpecifier(fileName) {
+function toJavaScriptSpecifier(fileName: string): string {
     return fileName.replace(/\.ts$/, '.js');
 }
 
-async function generateDatabaseIndex(databaseName) {
+async function generateDatabaseIndex(databaseName: string): Promise<boolean> {
     const databaseRoot = path.join(schemasRoot, databaseName);
     const generatedRoot = path.join(databaseRoot, 'generated');
 
@@ -78,12 +66,12 @@ async function generateDatabaseIndex(databaseName) {
 
     await fs.writeFile(indexPath, `${exportLines.join('\n').trim()}\n`, 'utf8');
 
-    console.log(`Generated: ${path.relative(process.cwd(), indexPath)}`);
+    console.log(`Generated: ${path.relative(workspaceRoot, indexPath)}`);
 
     return true;
 }
 
-async function main() {
+async function main(): Promise<void> {
     const entries = await fs.readdir(schemasRoot, {
         withFileTypes: true,
     });
@@ -116,10 +104,10 @@ async function main() {
 
     await fs.writeFile(rootIndexPath, rootIndexLines.join('\n'), 'utf8');
 
-    console.log(`Generated: ${path.relative(process.cwd(), rootIndexPath)}`);
+    console.log(`Generated: ${path.relative(workspaceRoot, rootIndexPath)}`);
 }
 
-main().catch((error) => {
+main().catch((error: unknown) => {
     console.error('Failed to generate schema barrel files.');
     console.error(error);
     process.exitCode = 1;

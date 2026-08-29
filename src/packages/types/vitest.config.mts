@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/packages/types',
     test: {
+        passWithNoTests: true,
         name: 'types',
         watch: false,
         globals: true,

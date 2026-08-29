@@ -9,6 +9,7 @@ export default defineConfig(() => ({
     //  plugins: [],
     // },
     test: {
+        passWithNoTests: true,
         name: 'web-ui',
         watch: false,
         globals: true,

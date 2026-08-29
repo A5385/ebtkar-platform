@@ -1,0 +1,16 @@
+{
+    "language": {
+        "switchToArabic": "Switch language to Arabic",
+        "switchToEnglish": "Switch language to English",
+        "arabic": "Arabic",
+        "english": "English"
+    },
+    "theme": {
+        "toggle": "Toggle theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System",
+        "switchToDark": "Switch to dark theme",
+        "switchToLight": "Switch to light theme"
+    }
+}

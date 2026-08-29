@@ -1,4 +1,3 @@
-/* eslint-disable */
 const { readFileSync } = require('fs');
 
 // Reading the SWC compilation config for the spec files
@@ -8,6 +7,7 @@ const swcJestConfig = JSON.parse(readFileSync(`${__dirname}/.spec.swcrc`, 'utf-8
 swcJestConfig.swcrc = false;
 
 module.exports = {
+    extensionsToTreatAsEsm: ['.ts'],
     displayName: 'api-admin',
     preset: '../../../jest.preset.js',
     testEnvironment: 'node',

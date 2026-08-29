@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/packages/env',
     test: {
+        passWithNoTests: true,
         name: 'env',
         watch: false,
         globals: true,

@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/packages/data-service',
     test: {
+        passWithNoTests: true,
         name: 'data-service',
         watch: false,
         globals: true,

@@ -1,0 +1,16 @@
+{
+    "language": {
+        "switchToArabic": "تغيير اللغة إلى العربية",
+        "switchToEnglish": "تغيير اللغة إلى الإنجليزية",
+        "arabic": "العربية",
+        "english": "الإنجليزية"
+    },
+    "theme": {
+        "toggle": "تغيير المظهر",
+        "light": "فاتح",
+        "dark": "داكن",
+        "system": "النظام",
+        "switchToDark": "التبديل إلى الوضع الداكن",
+        "switchToLight": "التبديل إلى الوضع الفاتح"
+    }
+}

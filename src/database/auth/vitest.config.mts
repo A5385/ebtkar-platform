@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/database/auth',
     test: {
+        passWithNoTests: true,
         name: 'database-auth',
         watch: false,
         globals: true,

@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/database/warehouse',
     test: {
+        passWithNoTests: true,
         name: 'database-warehouse',
         watch: false,
         globals: true,

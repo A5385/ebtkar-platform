@@ -4,6 +4,7 @@ export default defineConfig(() => ({
     root: __dirname,
     cacheDir: '../../../node_modules/.vite/packages/web-client-runtime',
     test: {
+        passWithNoTests: true,
         name: 'web-client-runtime',
         watch: false,
         globals: true,
