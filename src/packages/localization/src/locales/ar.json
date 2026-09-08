@@ -12,5 +12,16 @@
         "system": "النظام",
         "switchToDark": "التبديل إلى الوضع الداكن",
         "switchToLight": "التبديل إلى الوضع الفاتح"
-    }
+    },
+    "invalid_email": "يرجى إدخال عنوان بريد إلكتروني صحيح.",
+    "email_availability_checked": "تم التحقق من توفر البريد الإلكتروني.",
+    "invalid_database_input": "البيانات المُدخلة غير صحيحة.",
+    "database_service_unavailable": "خدمة قاعدة البيانات غير متاحة مؤقتًا.",
+    "record_already_exists": "هذا السجل موجود بالفعل.",
+    "record_not_found": "لم يتم العثور على السجل المطلوب.",
+    "record_is_referenced_by_another_record": "هذا السجل مرتبط بسجل آخر.",
+    "database_request_timeout": "انتهت مهلة طلب قاعدة البيانات.",
+    "database_operation_failed": "فشلت عملية قاعدة البيانات.",
+    "unknown_error_occurred_while_processing_your_request": "حدث خطأ غير معروف أثناء معالجة طلبك.",
+    "create_account": "إنشاء حساب"
 }

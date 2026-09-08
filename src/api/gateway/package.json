@@ -64,11 +64,13 @@
                 "defaultConfiguration": "development",
                 "dependsOn": [
                     "build",
+                    "watch-deps",
                     "watch-endpoints"
                 ],
                 "options": {
                     "buildTarget": "api-gateway:build",
-                    "runBuildTargetDependencies": false
+                    "runBuildTargetDependencies": false,
+                    "inspect": false
                 },
                 "configurations": {
                     "development": {
@@ -92,12 +94,24 @@
         "@org/constants": "workspace:*",
         "@nestjs/common": "catalog:",
         "@nestjs/core": "catalog:",
+        "@org/schemas": "workspace:*",
         "@nestjs/platform-express": "catalog:",
         "reflect-metadata": "catalog:",
         "rxjs": "catalog:",
-        "tslib": "catalog:"
+        "tslib": "catalog:",
+        "@nestjs/microservices": "catalog:",
+        "@nestjs/platform-socket.io": "catalog:",
+        "@nestjs/websockets": "catalog:",
+        "jose": "catalog:",
+        "kafkajs": "catalog:",
+        "socket.io": "catalog:",
+        "cookie-parser": "catalog:",
+        "express": "catalog:",
+        "nestjs-zod": "catalog:"
     },
     "devDependencies": {
+        "@types/express": "catalog:",
+        "@types/cookie-parser": "catalog:",
         "@org/types": "workspace:*",
         "@nestjs/testing": "catalog:",
         "@types/jest": "catalog:",

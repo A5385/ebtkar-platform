@@ -8,14 +8,14 @@
         "@org/localization": "workspace:*",
         "@org/query-client": "workspace:*",
         "@org/schemas": "workspace:*",
-        "@org/web-client-runtime": "workspace:*",
-        "@org/web-ui": "workspace:*",
+        "@org/shared-web": "workspace:*",
         "@tanstack/react-query": "catalog:",
         "@tanstack/react-router": "catalog:",
         "react": "catalog:",
         "react-dom": "catalog:",
         "react-hook-form": "catalog:",
         "react-i18next": "catalog:",
+        "socket.io-client": "catalog:",
         "zod": "catalog:"
     },
     "devDependencies": {

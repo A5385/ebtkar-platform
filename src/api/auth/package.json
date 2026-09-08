@@ -54,11 +54,13 @@
                 "executor": "@nx/js:node",
                 "defaultConfiguration": "development",
                 "dependsOn": [
-                    "build"
+                    "build",
+                    "watch-deps"
                 ],
                 "options": {
                     "buildTarget": "api-auth:build",
-                    "runBuildTargetDependencies": false
+                    "runBuildTargetDependencies": false,
+                    "inspect": false
                 },
                 "configurations": {
                     "development": {
@@ -79,19 +81,26 @@
     "dependencies": {
         "@org/api-dto": "workspace:*",
         "@org/api-shared": "workspace:*",
+        "@nestjs/mapped-types": "*",
         "@org/constants": "workspace:*",
         "@org/database-auth": "workspace:*",
+        "@org/schemas": "workspace:*",
         "@nestjs/common": "catalog:",
         "@nestjs/core": "catalog:",
         "@nestjs/platform-express": "catalog:",
         "reflect-metadata": "catalog:",
         "rxjs": "catalog:",
-        "tslib": "catalog:"
+        "tslib": "catalog:",
+        "express": "catalog:",
+        "@nestjs/microservices": "catalog:",
+        "kafkajs": "catalog:",
+        "nestjs-zod": "catalog:"
     },
     "devDependencies": {
         "@org/types": "workspace:*",
         "@nestjs/testing": "catalog:",
         "@types/jest": "catalog:",
+        "@types/express": "catalog:",
         "jest": "catalog:",
         "jest-environment-node": "catalog:",
         "ts-jest": "catalog:",

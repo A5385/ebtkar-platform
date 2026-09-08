@@ -1,13 +1,13 @@
 {
-  "name": "@org/auth-e2e",
-  "version": "0.0.1",
-  "private": true,
-  "devDependencies": {
-    "@playwright/test": "catalog:"
-  },
-  "nx": {
-    "implicitDependencies": [
-      "@org/auth"
-    ]
-  }
+    "name": "@org/auth-e2e",
+    "version": "0.0.1",
+    "private": true,
+    "devDependencies": {
+        "@playwright/test": "catalog:"
+    },
+    "nx": {
+        "implicitDependencies": [
+            "@org/auth"
+        ]
+    }
 }

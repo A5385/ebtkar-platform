@@ -37,10 +37,7 @@
     "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
     "references": [
         {
-            "path": "../../packages/web-ui/tsconfig.lib.json"
-        },
-        {
-            "path": "../../packages/web-client-runtime/tsconfig.lib.json"
+            "path": "../../packages/shared-web/tsconfig.lib.json"
         },
         {
             "path": "../../packages/schemas/tsconfig.lib.json"

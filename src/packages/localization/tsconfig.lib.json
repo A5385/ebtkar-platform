@@ -6,14 +6,9 @@
         "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
         "emitDeclarationOnly": true,
         "forceConsistentCasingInFileNames": true,
-        "types": [
-            "node"
-        ]
+        "types": ["node"]
     },
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.json"
-    ],
+    "include": ["src/**/*.ts", "src/**/*.json"],
     "references": [],
     "exclude": [
         "vite.config.ts",

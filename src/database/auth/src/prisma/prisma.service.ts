@@ -7,10 +7,8 @@ import { datasourceUrl } from './database-connection.js';
 @Injectable()
 export class AuthPrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
     constructor() {
-        if (datasourceUrl) {
-            const pool = new PrismaPg({ connectionString: datasourceUrl });
-            super({ adapter: pool });
-        }
+        const pool = new PrismaPg({ connectionString: datasourceUrl });
+        super({ adapter: pool });
     }
 
     private readonly logger = new Logger(AuthPrismaService.name);
@@ -27,3 +25,4 @@ export class AuthPrismaService extends PrismaClient implements OnModuleInit, OnM
         this.logger.log('Database connection closed ✅');
     }
 }
+

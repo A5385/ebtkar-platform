@@ -1,0 +1,51 @@
+{
+    "name": "@org/database-notification",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./prisma": {
+            "@org/source": "./src/generated/prisma/client.ts",
+            "types": "./dist/generated/prisma/client.d.ts",
+            "import": "./dist/generated/prisma/client.js",
+            "default": "./dist/generated/prisma/client.js"
+        }
+    },
+    "scripts": {
+        "db:gen": "prisma generate && pnpm --dir ../../.. schemas:post-generate",
+        "db:mig": "prisma migrate dev",
+        "db:dep": "prisma migrate deploy",
+        "db:studio": "prisma studio",
+        "db:validate": "prisma validate",
+        "db:format": "prisma format"
+    },
+    "nx": {
+        "name": "database-notification"
+    },
+    "dependencies": {
+        "@nestjs/common": "catalog:",
+        "@org/env": "workspace:*",
+        "@prisma/adapter-pg": "catalog:",
+        "@prisma/client": "7.10.0",
+        "dotenv": "catalog:",
+        "tslib": "catalog:"
+    },
+    "devDependencies": {
+        "@types/pg": "catalog:",
+        "prisma": "catalog:",
+        "vite": "catalog:",
+        "vite-plugin-dts": "catalog:",
+        "vitest": "catalog:",
+        "zod-prisma-types": "catalog:"
+    }
+}

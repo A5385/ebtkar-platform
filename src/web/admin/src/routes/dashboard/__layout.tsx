@@ -1,4 +1,4 @@
-import { Header } from '@org/web-ui/components/header';
+import { Header } from '@org/shared-web';
 import { createFileRoute, Outlet } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/dashboard/__layout')({

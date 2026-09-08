@@ -19,12 +19,9 @@
         "name": "query-client"
     },
     "dependencies": {
-        "@org/http-client": "workspace:*",
         "@tanstack/react-query": "catalog:",
         "react": "catalog:",
         "tslib": "catalog:"
     },
-    "devDependencies": {
-        "@org/types": "workspace:*"
-    }
+    "devDependencies": {}
 }

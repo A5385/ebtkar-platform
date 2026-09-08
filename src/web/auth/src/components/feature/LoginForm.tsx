@@ -1,15 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { UiFormContainer } from '@org/web-ui/components/form-components/ui-form-container';
-import { UiFormFooter } from '@org/web-ui/components/form-components/ui-form-footer';
-import { UiFormInputs } from '@org/web-ui/components/form-components/ui-form-inputs';
-import { UiFormSubmit } from '@org/web-ui/components/form-components/ui-form-submit';
-import { FormTextInput } from '@org/web-ui/components/form-inputs/form-text-input';
+import {
+    FormTextInput,
+    UiFormContainer,
+    UiFormFooter,
+    UiFormInputs,
+    UiFormSubmit,
+} from '@org/shared-web';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as z from 'zod';
 
 const LoginForm = () => {
     const { t } = useTranslation();
+
     const schema = z.object({
         email: z.email(),
         password: z.string(),
@@ -44,6 +47,8 @@ const LoginForm = () => {
                     label={t('password')}
                     placeholder='********'
                 />
+
+                <input />
             </UiFormInputs>
             <UiFormFooter>
                 <UiFormSubmit form={formId} className={'w-full'}>

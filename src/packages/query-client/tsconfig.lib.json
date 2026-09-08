@@ -11,15 +11,9 @@
         ]
     },
     "include": [
-        "src/**/*.ts"
-    ],
-    "references": [
-        {
-            "path": "../http-client/tsconfig.lib.json"
-        },
-        {
-            "path": "../types/tsconfig.lib.json"
-        }
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.d.ts"
     ],
     "exclude": [
         "vite.config.ts",
@@ -34,5 +28,6 @@
         "src/**/*.spec.js",
         "src/**/*.test.jsx",
         "src/**/*.spec.jsx"
-    ]
+    ],
+    "references": []
 }

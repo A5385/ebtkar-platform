@@ -1,6 +1,5 @@
-import '@org/web-ui/styles';
-import { GlobalProvider } from '@org/web-ui/providers/global-provider';
-import { i18n } from '@org/web-ui/i18n';
+import { GlobalProvider, i18n } from '@org/shared-web';
+import '@org/shared-web/styles';
 import { RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';

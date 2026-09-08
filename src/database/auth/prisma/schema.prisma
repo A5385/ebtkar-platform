@@ -28,9 +28,9 @@ generator zod {
 
 model User {
   userId      String       @id @default(cuid())
-  role        Role         @default(TENANT)
+  role        Role?        @default(TENANT)
   email       String       @unique
-  password    String
+  password    String?
   otp         Int?
   isVerified  DateTime?
   isBlocked   Boolean      @default(false)

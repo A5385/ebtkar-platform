@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator zod {
+  provider = "npx zod-prisma-types"
+  output   = "../../../packages/schemas/src/notification/generated"
+
+  useMultipleFiles         = true
+  writeBarrelFiles         = false
+  createInputTypes         = false
+  addInputTypeValidation   = false
+  addIncludeType           = false
+  addSelectType            = false
+  validateWhereUniqueInput = false
+  useDefaultValidators     = false
+}
+
+enum NotificationAudience {
+  ADMIN
+  USER
+}
+
+enum NotificationType {
+  USER_CREATED
+  SYSTEM
+}
+
+model Notification {
+  notificationId String               @id @default(cuid())
+  eventId        String               @unique
+  audience       NotificationAudience
+  recipientId    String?
+  type           NotificationType
+  title          String
+  message        String
+  metadata       Json?
+  readAt         DateTime?
+  createdAt      DateTime             @default(now())
+
+  @@index([audience, readAt, createdAt])
+  @@index([recipientId, readAt, createdAt])
+}

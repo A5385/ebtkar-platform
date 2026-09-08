@@ -6,16 +6,18 @@
         "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
         "emitDeclarationOnly": false,
         "forceConsistentCasingInFileNames": true,
-        "types": [
-            "node"
-        ]
+        "types": ["node"]
     },
-    "include": [
-        "src/**/*.ts"
-    ],
+    "include": ["src/**/*.ts"],
     "references": [
         {
             "path": "../../database/warehouse/tsconfig.lib.json"
+        },
+        {
+            "path": "../constants/tsconfig.lib.json"
+        },
+        {
+            "path": "../../database/notification/tsconfig.lib.json"
         },
         {
             "path": "../../database/auth/tsconfig.lib.json"

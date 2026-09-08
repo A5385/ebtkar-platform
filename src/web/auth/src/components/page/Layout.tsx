@@ -1,4 +1,4 @@
-import { cn } from '@org/web-ui/lib/utils';
+import { cn } from '@org/shared-web';
 import { Link, LinkOptions, Outlet } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 

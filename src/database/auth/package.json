@@ -28,7 +28,7 @@
         }
     },
     "scripts": {
-        "db:gen": "prisma generate && pnpm --dir ../.. schemas:post-generate",
+        "db:gen": "prisma generate && pnpm --dir ../../.. schemas:post-generate",
         "db:mig": "prisma migrate dev",
         "db:dep": "prisma migrate deploy",
         "db:seed": "prisma db seed",
@@ -88,8 +88,10 @@
         }
     },
     "dependencies": {
+        "@nestjs/common": "catalog:",
+        "@org/env": "workspace:*",
         "@prisma/adapter-pg": "catalog:",
-        "@prisma/client": "catalog:",
+        "@prisma/client": "7.10.0",
         "dotenv": "catalog:",
         "tslib": "catalog:"
     },

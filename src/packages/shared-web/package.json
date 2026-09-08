@@ -1,0 +1,57 @@
+{
+    "name": "@org/shared-web",
+    "version": "0.0.1",
+    "exports": {
+        ".": "./src/index.ts",
+        "./styles": "./src/styles.css",
+        "./package.json": "./package.json"
+    },
+    "nx": {
+        "name": "shared-web"
+    },
+    "dependencies": {
+        "@base-ui/react": "catalog:",
+        "@fontsource-variable/geist": "catalog:",
+        "@hookform/resolvers": "^5.9.1",
+        "@org/env": "workspace:*",
+        "@org/schemas": "workspace:*",
+        "@org/http-client": "workspace:*",
+        "@org/localization": "workspace:*",
+        "@org/query-client": "workspace:*",
+        "@org/types": "workspace:*",
+        "@shadcn/react": "catalog:",
+        "@tanstack/react-query": "catalog:",
+        "class-variance-authority": "catalog:",
+        "clsx": "catalog:",
+        "cmdk": "catalog:",
+        "date-fns": "catalog:",
+        "embla-carousel-react": "catalog:",
+        "input-otp": "catalog:",
+        "lucide-react": "catalog:",
+        "react-day-picker": "catalog:",
+        "react-hook-form": "catalog:",
+        "react-i18next": "catalog:",
+        "react-resizable-panels": "catalog:",
+        "recharts": "catalog:",
+        "tailwind-merge": "catalog:",
+        "tailwindcss": "catalog:",
+        "tw-animate-css": "catalog:"
+    },
+    "peerDependencies": {
+        "react": "catalog:",
+        "react-dom": "catalog:"
+    },
+    "devDependencies": {
+        "@testing-library/dom": "catalog:",
+        "@testing-library/react": "catalog:",
+        "@types/react": "catalog:",
+        "@types/react-dom": "catalog:",
+        "@vitejs/plugin-react": "catalog:",
+        "@vitest/coverage-v8": "catalog:",
+        "jsdom": "catalog:",
+        "react": "catalog:",
+        "react-dom": "catalog:",
+        "vite": "catalog:",
+        "vitest": "catalog:"
+    }
+}

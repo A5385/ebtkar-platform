@@ -5,6 +5,8 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
     root: import.meta.dirname,
+    envDir: '../../..',
+    envPrefix: ['VITE_', 'API_GATEWAY_'],
     cacheDir: '../../../node_modules/.vite/web/admin',
     server: {
         port: 7001,

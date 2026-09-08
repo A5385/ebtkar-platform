@@ -41,6 +41,18 @@ async function generateDatabaseIndex(databaseName: string): Promise<boolean> {
 
     const exportLines = [`// This file is auto-generated. Do not edit manually.`, ''];
 
+    const inputsRoot = path.join(databaseRoot, 'inputs');
+    const responseRoot = path.join(databaseRoot, 'response');
+
+    if (await directoryExists(inputsRoot)) {
+        exportLines.push(`// Custom input schemas`);
+        exportLines.push(`export * from './inputs/index.js';`, '');
+    }
+    if (await directoryExists(responseRoot)) {
+        exportLines.push(`// Custom response type`);
+        exportLines.push(`export * from './response/index.js';`, '');
+    }
+
     for (const generatedDirectory of generatedDirectories) {
         const directoryPath = path.join(generatedRoot, generatedDirectory);
         const files = await getTypeScriptFiles(directoryPath);

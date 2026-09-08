@@ -6,10 +6,10 @@ import { RoleSchema } from '../inputTypeSchemas/RoleSchema.js'
 /////////////////////////////////////////
 
 export const UserSchema = z.object({
-  role: RoleSchema,
+  role: RoleSchema.nullable(),
   userId: z.string(),
   email: z.string(),
-  password: z.string(),
+  password: z.string().nullable(),
   otp: z.number().nullable(),
   isVerified: z.coerce.date().nullable(),
   isBlocked: z.boolean(),

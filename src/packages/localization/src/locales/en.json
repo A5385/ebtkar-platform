@@ -12,5 +12,24 @@
         "system": "System",
         "switchToDark": "Switch to dark theme",
         "switchToLight": "Switch to light theme"
+    },
+    "create_account": "Create account",
+    "api_message": {
+        "success": {
+            "user_created_successfully": "User created successfully.",
+            "email_verified_successfully": "Email verified successfully.",
+            "email_availability_checked": "Email availability checked."
+        },
+        "error": {
+            "invalid_email": "Please enter a valid email address.",
+            "invalid_database_input": "The submitted data is invalid.",
+            "database_service_unavailable": "The database service is temporarily unavailable.",
+            "record_already_exists": "This record already exists.",
+            "record_not_found": "The requested record was not found.",
+            "record_is_referenced_by_another_record": "This record is referenced by another record.",
+            "database_request_timeout": "The database request timed out.",
+            "database_operation_failed": "The database operation failed.",
+            "unknown_error_occurred_while_processing_your_request": "An unknown error occurred while processing your request."
+        }
     }
 }
