@@ -31,6 +31,7 @@ export class UserController {
     async verifyEmail(@Body() dto: VerifyEmailDto) {
         return this.authService.send(MESSAGE_PATTERN.auth.user.verifyEmail, dto);
     }
+
     @Post('set-new-password')
     async setNewPassword(@Body() dto: SetNewPasswordDto) {
         return this.authService.send(MESSAGE_PATTERN.auth.user.setNewPassword, dto);

@@ -9,7 +9,7 @@ const RegisterForm = () => {
     const step = Number(params.get('step'));
 
     return (
-        <div>
+        <div className='w-full'>
             {(step === 1 || !step) && <VerifyEmailForm />}
             {step === 2 && <VerifyOtpForm />}
             {step === 3 && <SetNewPasswordForm />}

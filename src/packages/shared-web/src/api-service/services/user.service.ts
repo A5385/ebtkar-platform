@@ -4,6 +4,7 @@ import {
     CheckEmailSchemaFormType,
     CreateUserResponseType,
     CreateUserSchemaFormType,
+    SetNewPasswordSchemaFormType,
     VerifyEmailSchemaFormType,
 } from '@org/schemas/auth';
 import { useApiMutation } from '../use-api-mutation';
@@ -24,4 +25,10 @@ export const useVerifyEmailOtp = () =>
     useApiMutation<CreateUserResponseType, VerifyEmailSchemaFormType>({
         method: 'post',
         endpoint: 'user/verify-email',
+    });
+
+export const useSetNewPassword = () =>
+    useApiMutation<CreateUserResponseType, SetNewPasswordSchemaFormType>({
+        method: 'post',
+        endpoint: 'user/set-new-password',
     });

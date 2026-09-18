@@ -17,6 +17,7 @@ export type EndpointType =
     | `user/find-user-by-email/${string}`
     | `user/find-user-by-id/${string}`
     | 'user/get-all-users'
+    | 'user/set-new-password'
     | 'user/update-user'
     | 'user/verify-email'
 ;
