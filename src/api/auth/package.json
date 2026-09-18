@@ -107,5 +107,10 @@
         "webpack": "catalog:",
         "webpack-cli": "catalog:",
         "webpack-dev-server": "catalog:"
+    },
+    "scripts": {
+        "dev": "node ../../../tools/deployment/run.cjs dev api-auth",
+        "dev:build": "node ../../../tools/deployment/run.cjs dev:build api-auth",
+        "build": "node ../../../tools/deployment/run.cjs build api-auth"
     }
 }

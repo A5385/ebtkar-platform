@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 import { resolve } from 'node:path';
 
 config({
-    path: resolve(process.cwd(), '.env'),
+    path: process.env.APP_ENV_FILE || resolve(process.cwd(), '.env'),
 });
 
 export const apiEnv = createEnvInstance(process.env);

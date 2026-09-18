@@ -33,7 +33,7 @@ async function bootstrap() {
 
     app.use(cookieParser());
     app.enableCors({
-        origin: [authUrl, apiEnv.get('ADMIN_URL')].filter(Boolean),
+        origin: [authUrl, apiEnv.get('ADMIN_URL'), ...(apiEnv.get('ORIGIN') || '').split(',').map(value => value.trim())].filter(Boolean),
         credentials: true,
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'HEAD', 'DELETE', 'OPTIONS'],
         allowedHeaders: [

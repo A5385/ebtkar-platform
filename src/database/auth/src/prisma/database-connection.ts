@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(currentDir, '../../../../../.env') });
+dotenv.config({ path: process.env.APP_ENV_FILE || path.resolve(currentDir, '../../../../../.env') });
 
 const authDatabaseUrl = createEnvInstance(process.env).get('AUTH_DATABASE_URL');
 

@@ -59,3 +59,6 @@ test-output
 .pnpm-store
 
 
+
+# Machine-specific SSH configuration
+tools/deployment/dev.config.json

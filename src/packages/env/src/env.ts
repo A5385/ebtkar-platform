@@ -42,6 +42,7 @@ export const envKeys = [
     'WAREHOUSE_URL',
 
     // database,
+    'ADMIN_DATABASE_URL',
     'NOTIFICATION_DATABASE_URL',
     'AUTH_DATABASE_URL',
     'WAREHOUSE_DATABASE_URL',

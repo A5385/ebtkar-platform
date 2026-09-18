@@ -1,0 +1,194 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator zod {
+  provider = "npx zod-prisma-types"
+  output   = "../../../packages/schemas/src/admin/generated"
+
+  useMultipleFiles         = true
+  writeBarrelFiles         = false
+  createInputTypes         = false
+  addInputTypeValidation   = false
+  addIncludeType           = false
+  addSelectType            = false
+  validateWhereUniqueInput = false
+  useDefaultValidators     = false
+}
+
+//////////////////////////////////////////////////////
+// PLATFORM CONFIGURATION
+//////////////////////////////////////////////////////
+
+model GlobalSettings {
+  id              Boolean @id @default(true)
+  platformName    String  @default("Ebtkar")
+  maintenanceMode Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("global_settings")
+}
+
+model NetworkSettings {
+  id                Boolean @id @default(true)
+  httpClientRetries Int     @default(3)
+  requestTimeoutMs  Int     @default(30000)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("network_settings")
+}
+
+model TokensConfig {
+  id              Boolean @id @default(true)
+  accessTokenExp  Int     @default(900)
+  refreshTokenExp Int     @default(2592000)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("tokens_config")
+}
+
+//////////////////////////////////////////////////////
+// APPLICATIONS
+//////////////////////////////////////////////////////
+
+model App {
+  appId String @id @default(cuid())
+
+  name String @unique
+  code String @unique
+
+  modules Module[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("apps")
+}
+
+//////////////////////////////////////////////////////
+// MODULES
+//////////////////////////////////////////////////////
+
+model Module {
+  moduleId String @id @default(cuid())
+
+  name String
+  code String
+
+  appId       String
+  app         App          @relation(fields: [appId], references: [appId], onDelete: Cascade)
+  permissions Permission[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([appId, code])
+  @@map("modules")
+}
+
+//////////////////////////////////////////////////////
+// ACTIONS
+//////////////////////////////////////////////////////
+
+model Action {
+  actionId String @id @default(cuid())
+
+  name String @unique
+
+  permissions Permission[]
+
+  createdAt DateTime @default(now())
+
+  @@map("actions")
+}
+
+//////////////////////////////////////////////////////
+// PERMISSIONS
+//////////////////////////////////////////////////////
+
+model Permission {
+  permissionId String @id @default(cuid())
+
+  moduleId String
+  actionId String
+  resource String
+
+  module Module @relation(fields: [moduleId], references: [moduleId], onDelete: Cascade)
+  action Action @relation(fields: [actionId], references: [actionId], onDelete: Cascade)
+
+  roles RolePermission[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([moduleId, resource, actionId])
+  @@map("permissions")
+}
+
+//////////////////////////////////////////////////////
+// ROLES
+//////////////////////////////////////////////////////
+
+model Role {
+  roleId String @id @default(cuid())
+
+  name         String  @unique
+  description  String?
+  isSuperAdmin Boolean @default(false)
+
+  permissions RolePermission[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("roles")
+}
+
+//////////////////////////////////////////////////////
+// ROLE PERMISSIONS
+//////////////////////////////////////////////////////
+
+model RolePermission {
+  rolePermissionId String @id @default(cuid())
+
+  roleId       String
+  role         Role       @relation(fields: [roleId], references: [roleId], onDelete: Cascade)
+  permissionId String
+  permission   Permission @relation(fields: [permissionId], references: [permissionId], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+//////////////////////////////////////////////////////
+// AUDIT
+//////////////////////////////////////////////////////
+
+model AuditLog {
+  auditId  String  @id @default(cuid())
+  userId   String?
+  action   String
+  entity   String
+  oldValue Json?
+  newValue Json?
+
+  createdAt DateTime @default(now())
+
+  @@map("audit_logs")
+}

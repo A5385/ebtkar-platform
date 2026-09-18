@@ -35,6 +35,7 @@
         "recharts": "catalog:",
         "tailwind-merge": "catalog:",
         "tailwindcss": "catalog:",
+        "@tanstack/react-router": "catalog:",
         "tw-animate-css": "catalog:"
     },
     "peerDependencies": {

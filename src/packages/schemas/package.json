@@ -31,6 +31,7 @@
         "name": "shared-schemas"
     },
     "dependencies": {
+        "@org/database-admin": "workspace:*",
         "@org/database-auth": "workspace:*",
         "@org/database-notification": "workspace:*",
         "@org/constants": "workspace:*",

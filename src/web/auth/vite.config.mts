@@ -7,7 +7,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
     root: import.meta.dirname,
-    envDir: '../../..',
+    envDir: process.env.APP_ENV_FILE ? false : '../../..',
     envPrefix: ['VITE_', 'API_GATEWAY_'],
     cacheDir: '../../../node_modules/.vite/web/auth',
 

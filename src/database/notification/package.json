@@ -36,9 +36,11 @@
         "@nestjs/common": "catalog:",
         "@org/env": "workspace:*",
         "@prisma/adapter-pg": "catalog:",
-        "@prisma/client": "7.10.0",
+        "@prisma/client": "catalog:",
+        "pg": "catalog:",
         "dotenv": "catalog:",
-        "tslib": "catalog:"
+        "tslib": "catalog:",
+        "zod": "catalog:"
     },
     "devDependencies": {
         "@types/pg": "catalog:",

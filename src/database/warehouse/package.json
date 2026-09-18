@@ -90,11 +90,12 @@
     "dependencies": {
         "@org/env": "workspace:*",
         "@prisma/adapter-pg": "catalog:",
-        "@prisma/client": "7.10.0",
+        "@prisma/client": "catalog:",
+        "pg": "catalog:",
         "dotenv": "catalog:",
         "@nestjs/common": "catalog:",
         "tslib": "catalog:",
-        "zod": "^4.4.3"
+        "zod": "catalog:"
     },
     "devDependencies": {
         "@types/pg": "catalog:",

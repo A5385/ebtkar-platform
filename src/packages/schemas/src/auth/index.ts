@@ -12,7 +12,6 @@ export * from './generated/inputTypeSchemas/LoginEventScalarFieldEnumSchema.js';
 export * from './generated/inputTypeSchemas/NullsOrderSchema.js';
 export * from './generated/inputTypeSchemas/ProfileScalarFieldEnumSchema.js';
 export * from './generated/inputTypeSchemas/QueryModeSchema.js';
-export * from './generated/inputTypeSchemas/RoleSchema.js';
 export * from './generated/inputTypeSchemas/SortOrderSchema.js';
 export * from './generated/inputTypeSchemas/TransactionIsolationLevelSchema.js';
 export * from './generated/inputTypeSchemas/UserScalarFieldEnumSchema.js';

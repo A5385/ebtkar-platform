@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(currentDir, '../../../../../.env') });
+dotenv.config({ path: process.env.APP_ENV_FILE || path.resolve(currentDir, '../../../../../.env') });
 const notificationDatabaseUrl = createEnvInstance(process.env).get('NOTIFICATION_DATABASE_URL');
 
 if (!notificationDatabaseUrl) {

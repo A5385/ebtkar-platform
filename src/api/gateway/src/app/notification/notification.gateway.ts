@@ -15,7 +15,7 @@ function getCookie(cookieHeader: string | undefined, name: string): string | und
 @WebSocketGateway({
     namespace: '/notifications',
     cors: {
-        origin: [apiEnv.get('ADMIN_URL')].filter((value): value is string => Boolean(value)),
+        origin: [apiEnv.get('ADMIN_URL'), ...(apiEnv.get('ORIGIN') || '').split(',').map(value => value.trim())].filter((value): value is string => Boolean(value)),
         credentials: true,
     },
 })

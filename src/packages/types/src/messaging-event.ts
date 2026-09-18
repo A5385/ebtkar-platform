@@ -12,7 +12,7 @@ export interface OtpEmailRequestedEvent extends EventEnvelope {
 export interface UserCreatedEvent extends EventEnvelope {
     userId: string;
     email: string;
-    role: 'TENANT' | 'ADMIN';
+    role: string;
 }
 
 export interface AdminNotification {

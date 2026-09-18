@@ -33,6 +33,9 @@
             "path": "../../packages/api-shared/tsconfig.lib.json"
         },
         {
+            "path": "../../database/admin/tsconfig.lib.json"
+        },
+        {
             "path": "../../packages/api-dto/tsconfig.lib.json"
         },
         {

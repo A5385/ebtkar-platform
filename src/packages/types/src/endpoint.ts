@@ -7,6 +7,10 @@ export type EndpointType =
     | 'auth/logout'
     | 'auth/refresh-token'
     | 'auth/welcome'
+    | 'permission'
+    | `permission/${string}`
+    | 'roles'
+    | `roles/${string}`
     | 'user/check-email'
     | 'user/create-user'
     | `user/delete-user/${string}`

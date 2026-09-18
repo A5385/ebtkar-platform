@@ -28,7 +28,7 @@ generator zod {
 
 model User {
   userId      String       @id @default(cuid())
-  role        Role?        @default(TENANT)
+  role        String?      @default("TENANT")
   email       String       @unique
   password    String?
   otp         Int?
@@ -40,11 +40,6 @@ model User {
   authCodes   AuthCode[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-}
-
-enum Role {
-  TENANT
-  ADMIN
 }
 
 model LoginEvent {

@@ -49,5 +49,10 @@
     "devDependencies": {
         "@types/express": "catalog:",
         "@types/nodemailer": "catalog:"
+    },
+    "scripts": {
+        "dev": "node ../../../tools/deployment/run.cjs dev api-messaging",
+        "dev:build": "node ../../../tools/deployment/run.cjs dev:build api-messaging",
+        "build": "node ../../../tools/deployment/run.cjs build api-messaging"
     }
 }

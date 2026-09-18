@@ -102,6 +102,9 @@ catalogs:
     '@prisma/adapter-pg':
       specifier: 7.10.0
       version: 7.10.0
+    '@prisma/client':
+      specifier: 7.10.0
+      version: 7.10.0
     '@shadcn/react':
       specifier: ^0.3.0
       version: 0.3.0
@@ -267,6 +270,9 @@ catalogs:
     nx:
       specifier: 23.1.2
       version: 23.1.2
+    pg:
+      specifier: 8.23.0
+      version: 8.23.0
     prettier:
       specifier: 3.9.6
       version: 3.9.6
@@ -655,6 +661,9 @@ importers:
       '@nestjs/core':
         specifier: 'catalog:'
         version: 12.0.1(@nestjs/common@12.0.1(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/microservices@12.0.1)(@nestjs/platform-express@12.0.1)(@nestjs/websockets@12.0.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/mapped-types':
+        specifier: '*'
+        version: 12.0.0(@nestjs/common@12.0.1(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(reflect-metadata@0.2.2)
       '@nestjs/microservices':
         specifier: 'catalog:'
         version: 12.0.1(@nestjs/common@12.0.1(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.0.1)(@nestjs/websockets@12.0.1)(cache-manager@7.2.9)(kafkajs@2.2.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -676,6 +685,9 @@ importers:
       '@org/constants':
         specifier: workspace:*
         version: link:../../packages/constants
+      '@org/database-admin':
+        specifier: workspace:*
+        version: link:../../database/admin
       '@org/schemas':
         specifier: workspace:*
         version: link:../../packages/schemas
@@ -808,6 +820,52 @@ importers:
         specifier: 'catalog:'
         version: 7.0.12
 
+  src/database/admin:
+    dependencies:
+      '@nestjs/common':
+        specifier: 'catalog:'
+        version: 12.0.1(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1)
+      '@org/env':
+        specifier: workspace:*
+        version: link:../../packages/env
+      '@prisma/adapter-pg':
+        specifier: 'catalog:'
+        version: 7.10.0
+      '@prisma/client':
+        specifier: 'catalog:'
+        version: 7.10.0(prisma@7.10.0(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3))(typescript@6.0.3)
+      dotenv:
+        specifier: 'catalog:'
+        version: 17.4.2
+      pg:
+        specifier: 'catalog:'
+        version: 8.23.0
+      tslib:
+        specifier: 'catalog:'
+        version: 2.8.1
+      zod:
+        specifier: 'catalog:'
+        version: 4.5.4
+    devDependencies:
+      '@types/pg':
+        specifier: 'catalog:'
+        version: 8.23.1
+      prisma:
+        specifier: 'catalog:'
+        version: 7.10.0(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3)
+      vite:
+        specifier: 'catalog:'
+        version: 8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(less@4.8.1(supports-color@8.1.1))(sass-embedded@1.103.1)(sass@1.103.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0)
+      vite-plugin-dts:
+        specifier: 'catalog:'
+        version: 5.0.3(esbuild@0.28.2)(rolldown@1.2.6)(supports-color@8.1.1)(typescript@6.0.3)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(less@4.8.1(supports-color@8.1.1))(sass-embedded@1.103.1)(sass@1.103.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.110.0)
+      vitest:
+        specifier: 'catalog:'
+        version: 4.1.11(@types/node@24.13.3)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(jsdom@30.0.1)(vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.2)(jiti@2.7.0)(less@4.8.1(supports-color@8.1.1))(sass-embedded@1.103.1)(sass@1.103.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0))
+      zod-prisma-types:
+        specifier: 'catalog:'
+        version: 3.3.11(@prisma/client@7.10.0(prisma@7.10.0(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3))(typescript@6.0.3))(prisma@7.10.0(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3))(zod@4.5.4)
+
   src/database/auth:
     dependencies:
       '@nestjs/common':
@@ -820,14 +878,20 @@ importers:
         specifier: 'catalog:'
         version: 7.10.0
       '@prisma/client':
-        specifier: 7.10.0
+        specifier: 'catalog:'
         version: 7.10.0(prisma@7.10.0(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3))(typescript@6.0.3)
       dotenv:
         specifier: 'catalog:'
         version: 17.4.2
+      pg:
+        specifier: 'catalog:'
+        version: 8.23.0
       tslib:
         specifier: 'catalog:'
         version: 2.8.1
+      zod:
+        specifier: 'catalog:'
+        version: 4.5.4
     devDependencies:
       '@types/pg':
         specifier: 'catalog:'
@@ -860,14 +924,20 @@ importers:
         specifier: 'catalog:'
         version: 7.10.0
       '@prisma/client':
-        specifier: 7.10.0
+        specifier: 'catalog:'
         version: 7.10.0(prisma@7.10.0(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3))(typescript@6.0.3)
       dotenv:
         specifier: 'catalog:'
         version: 17.4.2
+      pg:
+        specifier: 'catalog:'
+        version: 8.23.0
       tslib:
         specifier: 'catalog:'
         version: 2.8.1
+      zod:
+        specifier: 'catalog:'
+        version: 4.5.4
     devDependencies:
       '@types/pg':
         specifier: 'catalog:'
@@ -900,16 +970,19 @@ importers:
         specifier: 'catalog:'
         version: 7.10.0
       '@prisma/client':
-        specifier: 7.10.0
+        specifier: 'catalog:'
         version: 7.10.0(prisma@7.10.0(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(magicast@0.5.4)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(typescript@6.0.3))(typescript@6.0.3)
       dotenv:
         specifier: 'catalog:'
         version: 17.4.2
+      pg:
+        specifier: 'catalog:'
+        version: 8.23.0
       tslib:
         specifier: 'catalog:'
         version: 2.8.1
       zod:
-        specifier: ^4.4.3
+        specifier: 'catalog:'
         version: 4.5.4
     devDependencies:
       '@types/pg':
@@ -1069,6 +1142,9 @@ importers:
       '@org/constants':
         specifier: workspace:*
         version: link:../constants
+      '@org/database-admin':
+        specifier: workspace:*
+        version: link:../../database/admin
       '@org/database-auth':
         specifier: workspace:*
         version: link:../../database/auth
@@ -1130,6 +1206,9 @@ importers:
       '@tanstack/react-query':
         specifier: 'catalog:'
         version: 5.102.7(react@19.2.8)
+      '@tanstack/react-router':
+        specifier: 'catalog:'
+        version: 1.170.32(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       class-variance-authority:
         specifier: 'catalog:'
         version: 0.7.1

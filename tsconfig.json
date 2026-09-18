@@ -68,6 +68,9 @@
         },
         {
             "path": "./src/api/messaging"
+        },
+        {
+            "path": "./src/database/admin"
         }
     ],
     "compilerOptions": {}

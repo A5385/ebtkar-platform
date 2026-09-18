@@ -1,0 +1,14 @@
+{
+    "gateway": {
+        "serverPath": "/var/www/ebtkar-platform/gateway",
+        "pm2": "ebtkar-gateway"
+    },
+    "auth": {
+        "serverPath": "/var/www/ebtkar-platform/auth-api",
+        "pm2": "ebtkar-auth-api"
+    },
+    "warehouse": {
+        "serverPath": "/var/www/ebtkar-platform/warehouse-api",
+        "pm2": "ebtkar-warehouse-api"
+    }
+}

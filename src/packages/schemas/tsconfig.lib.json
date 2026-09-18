@@ -11,6 +11,9 @@
     "include": ["src/**/*.ts"],
     "references": [
         {
+            "path": "../../database/admin/tsconfig.lib.json"
+        },
+        {
             "path": "../../database/warehouse/tsconfig.lib.json"
         },
         {

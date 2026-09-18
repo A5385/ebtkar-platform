@@ -2,6 +2,11 @@
     "name": "@org/api-gateway",
     "version": "0.0.1",
     "private": true,
+    "scripts": {
+        "dev:build": "node ../../../tools/deployment/run.cjs dev:build api-gateway",
+        "dev": "node ../../../tools/deployment/run.cjs dev api-gateway",
+        "build": "node ../../../tools/deployment/run.cjs build api-gateway"
+    },
     "nx": {
         "name": "api-gateway",
         "targets": {
@@ -90,7 +95,9 @@
     },
     "dependencies": {
         "@org/api-dto": "workspace:*",
+        "@org/database-admin": "workspace:*",
         "@org/api-shared": "workspace:*",
+        "@nestjs/mapped-types": "*",
         "@org/constants": "workspace:*",
         "@nestjs/common": "catalog:",
         "@nestjs/core": "catalog:",

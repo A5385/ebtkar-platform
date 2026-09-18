@@ -11,7 +11,6 @@ import {
 } from '@org/api-shared';
 import { EVENT_PATTERN } from '@org/constants';
 import { AuthPrismaService } from '@org/database-auth';
-import { Role } from '@org/database-auth/prisma';
 import { User } from '@org/schemas/auth';
 import type { OtpEmailRequestedEvent, UserCreatedEvent } from '@org/types';
 import { randomInt, randomUUID } from 'node:crypto';
@@ -179,7 +178,7 @@ export class UserService {
                         }),
 
                         ...(role && {
-                            role: role as Role,
+                            role: role,
                         }),
 
                         ...((start || end) && {

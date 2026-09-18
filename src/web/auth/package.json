@@ -30,5 +30,24 @@
         "jsdom": "catalog:",
         "vite": "catalog:",
         "vitest": "catalog:"
+    },
+    "scripts": {
+        "dev": "node ../../../tools/deployment/run.cjs dev auth",
+        "dev:build": "node ../../../tools/deployment/run.cjs dev:build auth",
+        "build": "node ../../../tools/deployment/run.cjs build auth"
+    },
+    "nx": {
+        "targets": {
+            "build": {
+                "executor": "nx:run-commands",
+                "outputs": [
+                    "{projectRoot}/dist"
+                ],
+                "options": {
+                    "command": "vite build",
+                    "cwd": "src/web/auth"
+                }
+            }
+        }
     }
 }
