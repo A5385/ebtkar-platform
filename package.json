@@ -18,7 +18,7 @@
         "infra:down": "docker compose down",
         "infra:status": "docker compose ps",
         "// Build": "#############################################",
-        "build": "node tools/deployment/run.cjs build",
+        "build:api": "nx run-many -t build --projects=api-gateway,api-auth,api-messaging",
         "gateway:build": "nx build api-gateway",
         "api-auth:build": "nx build api-auth",
         "api-messaging:build": "nx build api-messaging",
