@@ -1,6 +1,12 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Req } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CheckEmailDto, CreateUserDto, UpdateUserDto, VerifyEmailDto } from '@org/api-dto';
+import {
+    CheckEmailDto,
+    CreateUserDto,
+    SetNewPasswordDto,
+    UpdateUserDto,
+    VerifyEmailDto,
+} from '@org/api-dto';
 import { MESSAGE_PATTERN } from '@org/constants';
 import type { Request } from 'express';
 import { MICROSERVICE_CLIENT } from '../../microservice';
@@ -24,6 +30,10 @@ export class UserController {
     @Post('verify-email')
     async verifyEmail(@Body() dto: VerifyEmailDto) {
         return this.authService.send(MESSAGE_PATTERN.auth.user.verifyEmail, dto);
+    }
+    @Post('set-new-password')
+    async setNewPassword(@Body() dto: SetNewPasswordDto) {
+        return this.authService.send(MESSAGE_PATTERN.auth.user.setNewPassword, dto);
     }
 
     @Patch('update-user')

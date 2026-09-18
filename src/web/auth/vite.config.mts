@@ -1,13 +1,13 @@
 /// <reference types="vitest" />
 
 import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
     root: import.meta.dirname,
-    envDir: process.env.APP_ENV_FILE ? false : '../../..',
+    envDir: '../../../',
     envPrefix: ['VITE_', 'API_GATEWAY_'],
     cacheDir: '../../../node_modules/.vite/web/auth',
 

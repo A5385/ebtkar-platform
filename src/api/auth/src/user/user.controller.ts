@@ -1,6 +1,12 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload, Transport } from '@nestjs/microservices';
-import { CheckEmailDto, CreateUserDto, UpdateUserDto, VerifyEmailDto } from '@org/api-dto';
+import {
+    CheckEmailDto,
+    CreateUserDto,
+    SetNewPasswordDto,
+    UpdateUserDto,
+    VerifyEmailDto,
+} from '@org/api-dto';
 import { MESSAGE_PATTERN } from '@org/constants';
 import { CheckEmailResponseType, CreateUserResponseType } from '@org/schemas/auth';
 import { type EndPointResponseType } from '@org/types';
@@ -32,6 +38,13 @@ export class UserController {
         @Payload() dto: VerifyEmailDto,
     ): EndPointResponseType<CreateUserResponseType> {
         return await this.userService.verifyEmail(dto);
+    }
+
+    @MessagePattern(MESSAGE_PATTERN.auth.user.setNewPassword, Transport.TCP)
+    async setNewPassword(
+        @Payload() dto: SetNewPasswordDto,
+    ): EndPointResponseType<CreateUserResponseType> {
+        return await this.userService.setNewPassword(dto);
     }
 
     @MessagePattern(MESSAGE_PATTERN.auth.user.getAllUsers, Transport.TCP)

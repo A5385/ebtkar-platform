@@ -1,3 +1,4 @@
+// src\web\auth\src\components\feature\VerifyEmailForm.tsx
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { CheckEmailSchemaFormType } from '@org/schemas/auth';
 import { CheckEmailSchema } from '@org/schemas/auth';
@@ -9,6 +10,7 @@ import {
     UiFormInputs,
     UiFormSubmit,
     useCheckEmail,
+    useCreateUser,
     useSearchParams,
 } from '@org/shared-web';
 import { useState } from 'react';
@@ -47,9 +49,18 @@ const VerifyEmailForm = () => {
         );
     });
 
+    const createAccount = useCreateUser();
+
     const submit: SubmitHandler<CheckEmailSchemaFormType> = async (data) => {
-        alert(JSON.stringify(data, null, 2));
-        changeStep();
+        await createAccount.mutateAsync(
+            { email: watchEmail, role: 'TENANT' },
+            {
+                onSuccess() {
+                    params.set({ email: watchEmail });
+                    changeStep();
+                },
+            },
+        );
     };
     const formId = 'verify-email-form';
     return (

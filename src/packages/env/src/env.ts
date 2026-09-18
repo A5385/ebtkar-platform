@@ -1,3 +1,4 @@
+// src\packages\env\src\env.ts
 export const envKeys = [
     'NODE_ENV',
     'ORIGIN',
@@ -68,6 +69,7 @@ export const envKeys = [
     // Redis
     'REDIS_HOST',
     'REDIS_PORT',
+    'VITE_API_GATEWAY_URL',
 ] as const;
 
 export type EnvKey = (typeof envKeys)[number];

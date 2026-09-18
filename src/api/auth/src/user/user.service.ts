@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
-import { CreateUserDto, UpdateUserDto, VerifyEmailDto } from '@org/api-dto';
+import { CreateUserDto, SetNewPasswordDto, UpdateUserDto, VerifyEmailDto } from '@org/api-dto';
 import {
     convertToEndDate,
     convertToStartDate,
@@ -13,7 +13,7 @@ import { EVENT_PATTERN } from '@org/constants';
 import { AuthPrismaService } from '@org/database-auth';
 import { User } from '@org/schemas/auth';
 import type { OtpEmailRequestedEvent, UserCreatedEvent } from '@org/types';
-import { randomInt, randomUUID } from 'node:crypto';
+import { hash, randomInt, randomUUID } from 'node:crypto';
 import { lastValueFrom } from 'rxjs';
 import { MICROSERVICE_CLIENT } from '../microservice';
 
@@ -219,8 +219,24 @@ export class UserService {
         return undefined;
     }
 
-    updateUser(updateUserDto: UpdateUserDto) {
-        return `This action updates a #${updateUserDto.userId} user`;
+    async setNewPassword({ email, password }: SetNewPasswordDto) {
+        return await this.apiHandler.handle({
+            method: 'update',
+            logger: this.logger,
+            successMessage: 'password_set_successfully',
+            errorMessage: 'failed_set_password',
+            fn: async () => {
+                const res = await this.prisma.user.update({
+                    where: { email },
+                    data: { password: hash('sha256', password) },
+                });
+
+                return { userId: res.userId };
+            },
+        });
+    }
+    updateUser(dto: UpdateUserDto) {
+        return `This action updates a #${dto.email} user`;
     }
 
     async deleteUser(userId: string) {
