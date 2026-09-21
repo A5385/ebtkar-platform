@@ -31,10 +31,12 @@ model User {
   role        String?      @default("TENANT")
   email       String       @unique
   password    String?
-  otp         Int?
+  otp         String?
   isVerified  DateTime?
   isBlocked   Boolean      @default(false)
   isActive    Boolean      @default(true)
+  isDelete    Boolean?     @default(false)
+  deleteAt    DateTime?
   profile     Profile?
   loginEvents LoginEvent[]
   authCodes   AuthCode[]
@@ -49,7 +51,7 @@ model LoginEvent {
   service   String?
   userAgent String?
   userId    String
-  user      User     @relation(fields: [userId], references: [userId])
+  user      User     @relation(fields: [userId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
   createdAt DateTime @default(now())
 
   @@index([userId, loginAt])
@@ -64,7 +66,7 @@ model AuthCode {
   consumedAt   DateTime?
   //////////////////////////////
   userId       String
-  user         User      @relation(fields: [userId], references: [userId])
+  user         User      @relation(fields: [userId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
   createdAt    DateTime  @default(now())
 
   @@index([userId])
@@ -76,7 +78,8 @@ model Profile {
   fullName  String?
   mobile    String?
   address   String?
+  image     String?
   userId    String   @unique
-  user      User     @relation(fields: [userId], references: [userId])
+  user      User     @relation(fields: [userId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
   createdAt DateTime @default(now())
 }

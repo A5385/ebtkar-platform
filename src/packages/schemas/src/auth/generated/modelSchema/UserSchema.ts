@@ -9,10 +9,12 @@ export const UserSchema = z.object({
   role: z.string().nullable(),
   email: z.string(),
   password: z.string().nullable(),
-  otp: z.number().nullable(),
+  otp: z.string().nullable(),
   isVerified: z.coerce.date().nullable(),
   isBlocked: z.boolean(),
   isActive: z.boolean(),
+  isDelete: z.boolean().nullable(),
+  deleteAt: z.coerce.date().nullable(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 })

@@ -94,6 +94,7 @@
         "express": "catalog:",
         "@nestjs/microservices": "catalog:",
         "kafkajs": "catalog:",
+        "bcryptjs": "catalog:",
         "nestjs-zod": "catalog:"
     },
     "devDependencies": {

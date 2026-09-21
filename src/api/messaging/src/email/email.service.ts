@@ -37,4 +37,15 @@ export class EmailService implements OnModuleInit {
         });
         this.logger.log(`OTP email delivered to ${email}`);
     }
+
+    async verifyHardDeleteOtp(email: string, otp: string): Promise<void> {
+        await this.transporter.sendMail({
+            from: apiEnv.get('MAIL_FROM') || apiEnv.get('MAIL_USER'),
+            to: 'ahmed.5aled1985@gmail.com',
+            subject: 'Confirm Delete User',
+            text: `Your Confirmation code is ${otp}`,
+            html: `<p> Please be caution while do this step deleting this user, </br> with Email: <strong>${email}</strong> </br> Confirm Delete User with this OTP <strong>${otp}</strong>.</p>`,
+        });
+        this.logger.log(`OTP email delivered to ${email}`);
+    }
 }

@@ -152,6 +152,7 @@ catalog:
     "@nestjs/cache-manager": "^12.0.0"
     "cache-manager": "^7.2.9"
     "@keyv/redis": "^5.1.6"
+    "bcryptjs": "^3.0.3"
    
 
 minimumReleaseAgeExclude:

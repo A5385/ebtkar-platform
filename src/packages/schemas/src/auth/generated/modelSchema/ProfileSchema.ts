@@ -9,6 +9,7 @@ export const ProfileSchema = z.object({
   fullName: z.string().nullable(),
   mobile: z.string().nullable(),
   address: z.string().nullable(),
+  image: z.string().nullable(),
   userId: z.string(),
   createdAt: z.coerce.date(),
 })

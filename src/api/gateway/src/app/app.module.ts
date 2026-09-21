@@ -6,10 +6,11 @@ import { ZodValidationPipe } from 'nestjs-zod';
 import { MICROSERVICE_CLIENT } from '../microservice';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthController } from './auth/auth.controller';
+import { AuthController } from './auth/auth/auth.controller';
+import { UserController } from './auth/user/user.controller';
 import { NotificationEventsController } from './notification/notification-events.controller';
 import { NotificationGateway } from './notification/notification.gateway';
-import { UserController } from './user/user.controller';
+import { ProfileController } from './auth/profile/profile.controller';
 
 @Module({
     imports: [
@@ -22,7 +23,7 @@ import { UserController } from './user/user.controller';
             { ...MICROSERVICE_CLIENT.messaging },
         ]),
     ],
-    controllers: [AppController, AuthController, UserController, NotificationEventsController],
+    controllers: [AppController, AuthController, UserController, NotificationEventsController, ProfileController],
     providers: [
         AppService,
         NotificationGateway,

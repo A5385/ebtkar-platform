@@ -1,3 +1,4 @@
+type SuccessType = true | false;
 export type ApiResponseSuccess<T> = {
     success: true;
     statusCode: number;
@@ -16,6 +17,10 @@ export type ApiResponseError = {
     };
 };
 
-export type ApiResponseType<T> = ApiResponseSuccess<T> | ApiResponseError;
+export type ApiResponseType<T, S extends SuccessType = SuccessType> = S extends true
+    ? ApiResponseSuccess<T>
+    : S extends false
+      ? ApiResponseError
+      : never;
 
-export type EndPointResponseType<T> = Promise<ApiResponseType<T>>;
+export type EndPointResponseType<T> = Promise<ApiResponseType<T> | undefined>;

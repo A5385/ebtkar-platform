@@ -24,4 +24,18 @@ export class EmailController {
             throw error;
         }
     }
+    @EventPattern(EVENT_PATTERN.auth.otpVerifyUserHardDelete, Transport.KAFKA)
+    async verifyHardDeleteOtp(@Payload() event: OtpEmailRequestedEvent): Promise<void> {
+        this.logger.log(`Received OTP email event ${event.eventId} for user ${event.userId}`);
+        try {
+            await this.emailService.verifyHardDeleteOtp(event.email, event.otp);
+            this.logger.log(`Completed hard delete OTP email event ${event.eventId}`);
+        } catch (error: unknown) {
+            this.logger.error(
+                `Failed OTP email event ${event.eventId} for user ${event.userId}`,
+                error instanceof Error ? error.stack : String(error),
+            );
+            throw error;
+        }
+    }
 }

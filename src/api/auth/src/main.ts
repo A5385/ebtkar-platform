@@ -1,5 +1,5 @@
 import { apiEnv, bootstrapHybridMicroservice } from '@org/api-shared';
-import { AppModule } from './app.module';
+import { AppModule } from './app/app.module';
 
 async function bootstrap() {
     const port = Number(apiEnv.get('API_AUTH_PORT')) || 4001;

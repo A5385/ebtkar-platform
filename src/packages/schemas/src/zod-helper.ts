@@ -20,3 +20,5 @@ export const strongPasswordValidation = z
     .regex(/[^\p{L}\p{N}\s]/u, {
         error: 'password_must_contain_at_least_one_special_character',
     });
+
+export const optionalStrongPasswordValidation = strongPasswordValidation.optional();

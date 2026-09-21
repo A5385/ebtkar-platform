@@ -1,6 +1,10 @@
 import { constants } from '@org/constants';
 import z from 'zod';
-import { emailValidation, strongPasswordValidation } from '../../zod-helper.js';
+import {
+    emailValidation,
+    optionalStrongPasswordValidation,
+    strongPasswordValidation,
+} from '../../zod-helper.js';
 import UserSchema from '../generated/modelSchema/UserSchema.js';
 
 export const CheckEmailSchema = UserSchema.pick({
@@ -17,7 +21,7 @@ export const CreateUserSchema = UserSchema.pick({
 });
 
 export const VerifyEmailSchema = CheckEmailSchema.extend({
-    otp: z.number().min(constants.verifyEmailOtpLength, { error: 'otp_must_at_least' }),
+    otp: z.string().min(constants.verifyEmailOtpLength, { error: 'otp_must_at_least' }),
 });
 
 export const SetNewPasswordSchema = UserSchema.partial()
@@ -43,10 +47,13 @@ export const UpdateUserSchema = UserSchema.partial()
         otp: true,
         isBlocked: true,
         isActive: true,
+        isVerified: true,
+        password: true,
+        isDelete: true,
     })
     .extend({
         email: emailValidation,
-        password: strongPasswordValidation,
+        password: optionalStrongPasswordValidation,
     });
 
 export type CheckEmailSchemaFormType = z.infer<typeof CheckEmailSchema>;

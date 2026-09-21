@@ -24,7 +24,7 @@ const VerifyOtpForm = () => {
         resolver: zodResolver(VerifyEmailSchema),
         defaultValues: {
             email: params.get('email') ?? '',
-            otp: 0,
+            otp: '',
         },
     });
 
@@ -43,7 +43,7 @@ const VerifyOtpForm = () => {
     return (
         <UiFormContainer>
             <UiFormInputs id={formId} form={form} submit={submit}>
-                <FormTextInput name='otp' type='number' form={form} placeholder='user@domain.com' />
+                <FormTextInput name='otp' form={form} placeholder='user@domain.com' />
             </UiFormInputs>
             <UiFormFooter>
                 <UiFormSubmit form={formId} className='w-full'>

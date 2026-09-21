@@ -174,6 +174,9 @@ catalogs:
     '@vitest/ui':
       specifier: 4.1.11
       version: 4.1.11
+    bcryptjs:
+      specifier: ^3.0.3
+      version: 3.0.3
     cache-manager:
       specifier: ^7.2.9
       version: 7.2.9
@@ -603,6 +606,9 @@ importers:
       '@org/schemas':
         specifier: workspace:*
         version: link:../../packages/schemas
+      bcryptjs:
+        specifier: 'catalog:'
+        version: 3.0.3
       express:
         specifier: 'catalog:'
         version: 5.2.1(supports-color@8.1.1)
@@ -5612,6 +5618,10 @@ packages:
 
   batch@0.6.1:
     resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
+
+  bcryptjs@3.0.3:
+    resolution: {integrity: sha512-GlF5wPWnSa/X5LKM1o0wz0suXIINz1iHRLvTS+sLyi7XPbe5ycmYI3DlZqVGZZtDgl4DmasFg7gOB3JYbphV5g==}
+    hasBin: true
 
   better-result@2.10.0:
     resolution: {integrity: sha512-oQhh0y1qo2/ZKdAAEvHZAqKKiHOFU5k/bW96fE2ScgQOVkJRiHwB+nOS1SgFsYqRlxMDWvefXi9Q3px7QvgNDw==}
@@ -16238,6 +16248,8 @@ snapshots:
       safe-buffer: 5.1.2
 
   batch@0.6.1: {}
+
+  bcryptjs@3.0.3: {}
 
   better-result@2.10.0: {}
 

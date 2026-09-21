@@ -6,10 +6,10 @@
     "scripts": {
         "//": "###################################################################################################################################################################################",
         "// Serve": "#############################################",
-        "gateway:serve": "nx run-many -t serve --projects=api-gateway,api-auth",
+        "gateway:serve": "nx serve api-gateway",
         "api-auth:serve": "nx serve api-auth",
         "api-messaging:serve": "nx serve api-messaging",
-        "backend:serve": "nx run-many -t serve --projects=api-gateway,api-auth,api-messaging --parallel=3",
+        "api:serve": "nx run-many -t serve --projects=api-gateway,api-auth,api-messaging --parallel=3",
         "auth:serve": "nx serve auth",
         "admin:serve": "nx serve admin",
         "serve": "nx run-many -t serve --all",
