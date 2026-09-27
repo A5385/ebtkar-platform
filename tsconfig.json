@@ -71,6 +71,9 @@
         },
         {
             "path": "./src/database/admin"
+        },
+        {
+            "path": "./src/api/admin"
         }
     ],
     "compilerOptions": {}

@@ -24,7 +24,7 @@
                     "api-gateway:serve"
                 ],
                 "options": {
-                    "jestConfig": "api/gateway-e2e/jest.config.cts",
+                    "jestConfig": "src/api/gateway-e2e/jest.config.cjs",
                     "passWithNoTests": true
                 }
             }

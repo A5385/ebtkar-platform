@@ -1,12 +1,18 @@
 // src\packages\env\src\env.ts
 export const envKeys = [
     'NODE_ENV',
+    'ADMIN_EMAIL',
     'ORIGIN',
     // API Gateway
     'API_GATEWAY_HOST',
     'API_GATEWAY_PREFIX',
     'API_GATEWAY_PORT',
     'API_GATEWAY_URL',
+
+    // Admin microservice
+    'API_ADMIN_HOST',
+    'API_ADMIN_PORT',
+    'API_ADMIN_URL',
 
     // Auth microservice
     'API_AUTH_HOST',
@@ -69,7 +75,9 @@ export const envKeys = [
     // Redis
     'REDIS_HOST',
     'REDIS_PORT',
+
     'VITE_API_GATEWAY_URL',
+    'VITE_API_KEY',
 ] as const;
 
 export type EnvKey = (typeof envKeys)[number];

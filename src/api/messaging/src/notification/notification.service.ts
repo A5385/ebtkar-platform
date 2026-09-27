@@ -1,5 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
+import { EventEnvelope } from '@org/api-shared';
 import { EVENT_PATTERN } from '@org/constants';
 import { NotificationPrismaService } from '@org/database-notification';
 import type { NotificationCreatedEvent, UserCreatedEvent } from '@org/types';
@@ -15,7 +16,7 @@ export class NotificationService {
         @Inject('MESSAGING_EVENTS') private readonly events: ClientKafka,
     ) {}
 
-    async createUserCreatedNotification(event: UserCreatedEvent) {
+    async createUserCreatedNotification(event: EventEnvelope & UserCreatedEvent) {
         const notification = await this.prisma.notification.upsert({
             where: { eventId: event.eventId },
             update: {},
@@ -31,7 +32,7 @@ export class NotificationService {
         this.logger.log(
             `Saved admin notification ${notification.notificationId} for user-created event ${event.eventId}`,
         );
-        const outgoing: NotificationCreatedEvent = {
+        const outgoing: EventEnvelope & NotificationCreatedEvent = {
             eventId: randomUUID(),
             occurredAt: new Date().toISOString(),
             notification,

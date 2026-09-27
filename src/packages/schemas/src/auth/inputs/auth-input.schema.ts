@@ -1,3 +1,4 @@
+import z from 'zod';
 import { emailValidation, strongPasswordValidation } from '../../zod-helper.js';
 import UserSchema from '../generated/modelSchema/UserSchema.js';
 
@@ -10,3 +11,5 @@ export const LoginSchema = UserSchema.pick({
         email: emailValidation,
         password: strongPasswordValidation,
     });
+
+    export type LoginSchemaType = z.infer<typeof LoginSchema>

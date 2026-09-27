@@ -19,8 +19,7 @@
                 "continuous": true,
                 "executor": "@nx/js:node",
                 "dependsOn": [
-                    "build",
-                    "watch-deps"
+                    "build"
                 ],
                 "options": {
                     "buildTarget": "api-messaging:build",
@@ -51,8 +50,8 @@
         "@types/nodemailer": "catalog:"
     },
     "scripts": {
-        "dev": "node ../../../tools/deployment/run.cjs dev api-messaging",
-        "dev:build": "node ../../../tools/deployment/run.cjs dev:build api-messaging",
-        "build": "node ../../../tools/deployment/run.cjs build api-messaging"
+        "dev": "pnpm -w exec nx serve api-messaging",
+        "dev:build": "tsc --build tsconfig.app.json --watch",
+        "build": "pnpm -w exec nx build api-messaging"
     }
 }

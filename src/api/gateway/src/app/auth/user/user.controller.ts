@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, Req } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import {
+    ChangeForgetPasswordDto,
     ChangePasswordDto,
     CheckEmailDto,
     CreateUserDto,
@@ -8,9 +9,9 @@ import {
     UpdateUserDto,
     VerifyEmailDto,
 } from '@org/api-dto';
+import { MICROSERVICE_CLIENT } from '@org/api-shared';
 import { MESSAGE_PATTERN } from '@org/constants';
 import type { Request } from 'express';
-import { MICROSERVICE_CLIENT } from '../../../microservice';
 
 @Controller('user')
 export class UserController {
@@ -42,6 +43,16 @@ export class UserController {
     @Post('change-password')
     changePassword(@Body() dto: ChangePasswordDto) {
         return this.authService.send(MESSAGE_PATTERN.auth.user.changePassword, dto);
+    }
+
+    @Post('send-forget-password-otp')
+    sendForgetPasswordOtp(@Body() dto: { email: string }) {
+        return this.authService.send(MESSAGE_PATTERN.auth.user.sendForgetPasswordOtp, dto.email);
+    }
+
+    @Post('change-forget-password')
+    changeForgetPassword(@Body() dto: ChangeForgetPasswordDto) {
+        return this.authService.send(MESSAGE_PATTERN.auth.user.changeForgetPassword, dto);
     }
 
     @Patch('update-user')

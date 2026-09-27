@@ -1,26 +1,28 @@
 /// <reference types='vitest' />
-import react from '@vitejs/plugin-react';
+
+import tailwindcss from '@tailwindcss/vite';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
     root: import.meta.dirname,
-    envDir: process.env.APP_ENV_FILE ? false : '../../..',
+    envDir: '../../../',
     envPrefix: ['VITE_', 'API_GATEWAY_'],
     cacheDir: '../../../node_modules/.vite/web/admin',
+
     server: {
         port: 7001,
         host: 'localhost',
     },
+
     preview: {
         port: 7001,
         host: 'localhost',
     },
-    plugins: [tanstackRouter({ target: 'react', autoCodeSplitting: true }), react()],
-    // Uncomment this if you are using workers.
-    // worker: {
-    //  plugins: [],
-    // },
+
+    plugins: [tanstackRouter({ target: 'react', autoCodeSplitting: true }), tailwindcss(), react()],
+
     build: {
         outDir: './dist',
         emptyOutDir: true,
@@ -29,6 +31,7 @@ export default defineConfig(() => ({
             transformMixedEsModules: true,
         },
     },
+
     test: {
         name: '@org/admin',
         watch: false,

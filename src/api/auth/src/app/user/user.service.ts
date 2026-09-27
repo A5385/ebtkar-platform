@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 import {
+    ChangeForgetPasswordDto,
     ChangePasswordDto,
     CreateUserDto,
     SetNewPasswordDto,
@@ -12,6 +13,9 @@ import {
     convertToStartDate,
     ErrorService,
     extractRequestQueries,
+    generateRandomOtp,
+    MICROSERVICE_CLIENT,
+    publishEvent,
     ResponseHelperService,
     WinstonLoggerService,
 } from '@org/api-shared';
@@ -26,10 +30,7 @@ import {
     UserResponseType,
 } from '@org/schemas/auth';
 import type { ApiResponseType, OtpEmailRequestedEvent, UserCreatedEvent } from '@org/types';
-import { randomInt, randomUUID } from 'node:crypto';
-import { lastValueFrom } from 'rxjs';
 import { compareHashedData, hashData } from '../../helpers/password-helper';
-import { MICROSERVICE_CLIENT } from '../../microservice';
 import { userSelect } from './user.select';
 
 type UserPayload<T extends AuthPrisma.UserSelect> = AuthPrisma.UserGetPayload<{
@@ -51,6 +52,12 @@ export class UserService {
     ) {}
 
     private moduleName = 'User';
+
+    private sharedEvent = {
+        client: this.events,
+        logger: this.logger,
+        moduleName: this.moduleName,
+    };
 
     async checkEmailExist(email: string): Promise<ApiResponseType<CheckEmailResponseType>> {
         return await this.apiHandler.handle({
@@ -83,48 +90,39 @@ export class UserService {
             successMessage: 'user_created',
             logger: this.logger,
             fn: async () => {
-                const otp = randomInt(100_000, 1_000_000);
+                const otp = generateRandomOtp();
 
                 const user = await this.prisma.user.create({
                     data: {
                         email,
                         role: role ?? 'TENANT',
-                        otp: await hashData(otp.toString()),
+                        otp: await hashData(otp),
                     },
                 });
 
-                const occurredAt = new Date().toISOString();
+                const userCreatedPublished = publishEvent<UserCreatedEvent>({
+                    ...this.sharedEvent,
+                    pattern: EVENT_PATTERN.auth.userCreated,
+                    successMessage: `Publishing user-created and OTP-email events for user ${user.userId}`,
+                    payload: {
+                        userId: user.userId,
+                        email: user.email,
+                        role: user.role ?? 'TENANT',
+                    },
+                });
 
-                const userCreated: UserCreatedEvent = {
-                    eventId: randomUUID(),
-                    occurredAt,
-                    userId: user.userId,
-                    email: user.email,
-                    role: user.role ?? 'TENANT',
-                };
+                const otpPublished = publishEvent<OtpEmailRequestedEvent>({
+                    ...this.sharedEvent,
+                    pattern: EVENT_PATTERN.auth.otpEmailRequested,
+                    payload: { userId: user.userId, email: user.email, otp },
+                });
 
-                const otpRequested: OtpEmailRequestedEvent = {
-                    eventId: randomUUID(),
-                    occurredAt,
-                    userId: user.userId,
-                    email: user.email,
-                    otp: String(otp),
-                };
-
-                this.logger.log(
-                    `Publishing user-created and OTP-email events for user ${user.userId}`,
-                    UserService.name,
-                );
-                await Promise.all([
-                    lastValueFrom(this.events.emit(EVENT_PATTERN.auth.userCreated, userCreated)),
-                    lastValueFrom(
-                        this.events.emit(EVENT_PATTERN.auth.otpEmailRequested, otpRequested),
-                    ),
-                ]);
-                this.logger.log(
-                    `Kafka acknowledged both events for user ${user.userId}`,
-                    UserService.name,
-                );
+                if (!userCreatedPublished || !otpPublished) {
+                    this.error.internalServerError(
+                        'failed_to_publish_user_events',
+                        this.moduleName,
+                    );
+                }
                 return {
                     userId: user.userId,
                 };
@@ -303,6 +301,8 @@ export class UserService {
         { email, userId }: FindUniqueUserInput,
         select: T = userSelect as T,
     ): Promise<UserPayload<T> | null> {
+        console.log('🚀 >  UserService >  findUserByIdentifier >  email:', email);
+
         if (!email && !userId) {
             return null;
         }
@@ -358,6 +358,23 @@ export class UserService {
                 });
             },
         });
+    }
+
+    async forgetPasswordOtp(email: string) {
+        return await this.sendOtp({ email, pattern: EVENT_PATTERN.auth.forgetPasswordOtp });
+    }
+
+    async changeForgetPassword({ email, otp, password }: ChangeForgetPasswordDto) {
+        if (!email && !otp && !password)
+            this.error.badRequest('invalid_input_data', this.moduleName);
+
+        const userExist = await this.findUserByIdentifier({ email });
+        if (!userExist) this.error.notFound('user_not_found', this.moduleName);
+
+        const otpMatch = this.compareOtp({ email, otp });
+        if (!otpMatch) this.error.forbidden('invalid_otp', this.moduleName);
+
+        return await this.updateUser({ email, otp: null, password });
     }
 
     async updateUser({
@@ -434,30 +451,23 @@ export class UserService {
         const userExist = await this.findUserByIdentifier({ email }, { userId: true, email: true });
         if (!userExist) this.error.notFound('user_no_longer_exist', this.moduleName);
 
-        const otp = randomInt(100_000, 1_000_000);
+        const otp = generateRandomOtp();
 
         await this.updateUser({
             email,
-            otp: await hashData(otp.toString()),
+            otp: await hashData(otp),
         });
 
-        const otpRequested: OtpEmailRequestedEvent = {
-            eventId: randomUUID(),
-            occurredAt: new Date().toISOString(),
-            userId: userExist.userId,
-            email: userExist.email,
-            otp: String(otp),
-        };
+        const published = publishEvent<OtpEmailRequestedEvent>({
+            ...this.sharedEvent,
+            pattern: EVENT_PATTERN.auth.otpVerifyUserHardDelete,
+            successMessage: `Kafka acknowledged both events for user ${userExist.email}`,
+            payload: { userId: userExist.userId, email: userExist.email, otp },
+        });
 
-        await lastValueFrom(
-            this.events.emit(EVENT_PATTERN.auth.otpVerifyUserHardDelete, otpRequested),
-        );
-
-        this.logger.log(
-            `Kafka acknowledged both events for user ${userExist.email}`,
-            UserService.name,
-        );
-
+        if (!published) {
+            this.error.internalServerError('failed_to_publish_delete_otp_event', this.moduleName);
+        }
         return {
             success: true,
             message: 'confirm_delete_otp_send_to_admin_email',
@@ -532,5 +542,42 @@ export class UserService {
             this.logger.error('userId or email or Password is required');
             return false;
         }
+    }
+
+    async sendOtp({
+        email,
+        pattern,
+        message,
+    }: {
+        email: string;
+        pattern: string;
+        message?: string;
+    }) {
+        if (!email) this.error.badRequest('user_email_is_required', this.moduleName);
+
+        const userExist = await this.findUserByIdentifier({ email });
+
+        if (!userExist) this.error.notFound('user_not_found', this.moduleName);
+
+        const otp = generateRandomOtp();
+
+        await this.updateUser({ email, otp });
+
+        const publishOtpEvent = publishEvent({
+            ...this.sharedEvent,
+            pattern,
+            payload: { email, otp, userId: userExist.userId },
+        });
+
+        if (!publishOtpEvent) {
+            this.error.internalServerError('failed_to_send_otp_email', this.moduleName);
+        }
+
+        return {
+            success: true,
+            statusCode: 201,
+            message: message ?? 'email_send_successfully',
+            data: { userId: userExist.userId },
+        };
     }
 }

@@ -1,9 +1,5 @@
 import { createApiClient, type OperationType } from '@org/http-client';
-import {
-    type QueryDataProps,
-    type QueryDataResult,
-    useQueryData,
-} from '@org/query-client';
+import { type QueryDataProps, type QueryDataResult, useQueryData } from '@org/query-client';
 import type { ApiResponseError, ApiResponseSuccess } from '@org/types';
 import type { QueryKey } from '@tanstack/react-query';
 import { commonConfig } from './web-base-url';
@@ -12,7 +8,7 @@ export type ApiQueryProps<
     TData,
     TSelectedData = TData,
     TQueryKey extends QueryKey = QueryKey,
-> = OperationType & {
+> = Omit<OperationType, 'deviceType' | 'apiKey'> & {
     queryKey: TQueryKey;
     queryOptions?: QueryDataProps<
         TData,
@@ -22,13 +18,10 @@ export type ApiQueryProps<
     >['queryOptions'];
 };
 
-export const useApiQuery = <
-    TData,
-    TSelectedData = TData,
-    TQueryKey extends QueryKey = QueryKey,
->({
+export const useApiQuery = <TData, TSelectedData = TData, TQueryKey extends QueryKey = QueryKey>({
     queryKey,
     queryOptions,
+
     ...operation
 }: ApiQueryProps<TData, TSelectedData, TQueryKey>): QueryDataResult<
     TSelectedData,
@@ -41,6 +34,8 @@ export const useApiQuery = <
         queryFn: async () => {
             const response = await apiClient.get<ApiResponseSuccess<TData>>({
                 ...operation,
+                deviceType: commonConfig.deviceType,
+                apiKey: commonConfig.apiKey,
                 options: { ...commonConfig.options, ...operation.options },
             });
             return response.data;

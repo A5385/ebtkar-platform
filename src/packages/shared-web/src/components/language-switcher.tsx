@@ -1,25 +1,21 @@
 import { Languages } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
-import { i18n } from '../i18n';
+import { useLanguage } from '../hooks/use-language';
 import { Button } from './ui/button';
 
 export function LanguageSwitcher() {
-    const { t } = useTranslation(undefined, { i18n });
-    const isArabic = (i18n.resolvedLanguage ?? i18n.language) === 'ar';
-    const nextLanguage = isArabic ? 'en' : 'ar';
-
+    const { title, changeLanguage, nextLanguage, t } = useLanguage();
     return (
         <Button
             aria-label={
                 nextLanguage === 'ar' ? t('language.switchToArabic') : t('language.switchToEnglish')
             }
-            onClick={() => void i18n.changeLanguage(nextLanguage)}
+            onClick={changeLanguage}
             size='sm'
             type='button'
             variant='outline'
         >
             <Languages aria-hidden='true' />
-            {nextLanguage === 'ar' ? t('language.arabic') : t('language.english')}
+            {title}
         </Button>
     );
 }

@@ -5,4 +5,6 @@ export const RequestKeys = {
     orderDirection: 'desc',
     startDate: 'startDate',
     endDate: 'endDate',
+    apiKey: 'x-api-key',
+    deviceKey: 'x-device-type',
 };

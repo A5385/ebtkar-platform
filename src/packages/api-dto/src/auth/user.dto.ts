@@ -1,4 +1,5 @@
 import {
+    ChangeForgetPassword,
     ChangePasswordSchema,
     CheckEmailSchema,
     CreateUserSchema,
@@ -17,5 +18,7 @@ export class VerifyEmailDto extends createZodDto(VerifyEmailSchema) {}
 export class SetNewPasswordDto extends createZodDto(SetNewPasswordSchema) {}
 
 export class ChangePasswordDto extends createZodDto(ChangePasswordSchema) {}
+
+export class ChangeForgetPasswordDto extends createZodDto(ChangeForgetPassword) {}
 
 export class UpdateUserDto extends createZodDto(UpdateUserSchema) {}

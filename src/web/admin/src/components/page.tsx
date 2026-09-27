@@ -1,9 +1,5 @@
-export function Page() {
-    return (
-        <section className='flex min-h-[calc(100vh-4rem)] items-center justify-center'>
-            <h1 className='text-3xl font-semibold'>Welcome @org/admin</h1>
-        </section>
-    );
+export function HomePage() {
+    return <h1 className='text-3xl font-semibold'>Welcome @org/admin</h1>;
 }
 
-export default Page;
+export default HomePage;

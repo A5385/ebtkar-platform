@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import Page from './page';
+import HomePage from './page';
 
 describe('Page', () => {
     it('renders the dashboard page', () => {
-        render(<Page />);
+        render(<HomePage />);
 
         expect(screen.getByRole('heading', { name: /welcome @org\/admin/i })).toBeTruthy();
     });

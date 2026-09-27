@@ -7,6 +7,7 @@ import {
 } from '../../zod-helper.js';
 import UserSchema from '../generated/modelSchema/UserSchema.js';
 
+const otp = z.string().min(constants.verifyEmailOtpLength, { error: 'otp_must_at_least' });
 export const CheckEmailSchema = UserSchema.pick({
     email: true,
 }).extend({
@@ -21,7 +22,7 @@ export const CreateUserSchema = UserSchema.pick({
 });
 
 export const VerifyEmailSchema = CheckEmailSchema.extend({
-    otp: z.string().min(constants.verifyEmailOtpLength, { error: 'otp_must_at_least' }),
+    otp,
 });
 
 export const SetNewPasswordSchema = UserSchema.partial()
@@ -39,6 +40,18 @@ export const ChangePasswordSchema = z.object({
     oldPassword: z.string({ error: 'old_password_is_required' }),
     newPassword: strongPasswordValidation,
 });
+
+export const ChangeForgetPassword = UserSchema.pick({
+    otp: true,
+    password: true,
+    email: true,
+})
+    .required({ otp: true, password: true, email: true })
+    .extend({
+        email: emailValidation,
+        otp,
+        password: optionalStrongPasswordValidation,
+    });
 
 export const UpdateUserSchema = UserSchema.partial()
     .pick({
@@ -61,4 +74,5 @@ export type VerifyEmailSchemaFormType = z.infer<typeof VerifyEmailSchema>;
 export type CreateUserSchemaFormType = z.infer<typeof CreateUserSchema>;
 export type SetNewPasswordSchemaFormType = z.infer<typeof SetNewPasswordSchema>;
 export type ChangePasswordSchemaFormType = z.infer<typeof ChangePasswordSchema>;
+export type ChangeForgetPasswordFormType = z.infer<typeof ChangeForgetPassword>;
 export type UpdateUserSchemaFormType = z.infer<typeof UpdateUserSchema>;

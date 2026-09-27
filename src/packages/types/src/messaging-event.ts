@@ -1,15 +1,10 @@
-export interface EventEnvelope {
-    eventId: string;
-    occurredAt: string;
-}
-
-export interface OtpEmailRequestedEvent extends EventEnvelope {
+export interface OtpEmailRequestedEvent {
     userId: string;
     email: string;
     otp: string;
 }
 
-export interface UserCreatedEvent extends EventEnvelope {
+export interface UserCreatedEvent {
     userId: string;
     email: string;
     role: string;
@@ -25,7 +20,7 @@ export interface AdminNotification {
     createdAt: string | Date;
 }
 
-export interface NotificationCreatedEvent extends EventEnvelope {
+export interface NotificationCreatedEvent {
     notification: AdminNotification;
 }
 

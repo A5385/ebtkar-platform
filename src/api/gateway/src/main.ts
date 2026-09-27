@@ -7,12 +7,16 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { type MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { apiEnv, RpcHttpExceptionFilter } from '@org/api-shared';
+import { RequestKeys } from '@org/constants';
 import cookieParser from 'cookie-parser';
 import * as express from 'express';
 import { join } from 'path';
 import { AppModule } from './app/app.module';
 
-const authUrl = apiEnv.get('AUTH_URL');
+const origin = [...(apiEnv.get('ORIGIN') || '').split(',').map((value) => value.trim())].filter(
+    Boolean,
+);
+console.log('🚀 >  origin:', origin);
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -33,7 +37,7 @@ async function bootstrap() {
 
     app.use(cookieParser());
     app.enableCors({
-        origin: [authUrl, apiEnv.get('ADMIN_URL'), ...(apiEnv.get('ORIGIN') || '').split(',').map(value => value.trim())].filter(Boolean),
+        origin,
         credentials: true,
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'HEAD', 'DELETE', 'OPTIONS'],
         allowedHeaders: [
@@ -42,6 +46,8 @@ async function bootstrap() {
             'Content-Type',
             'X-Requested-With',
             'X-From-Mobile-App',
+            RequestKeys.apiKey,
+            RequestKeys.deviceKey,
             // LANG_KEY,
             // API_KEY,
             // DEVICE_KEY,

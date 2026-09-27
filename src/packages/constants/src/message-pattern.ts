@@ -14,6 +14,8 @@ export const MESSAGE_PATTERN = {
             verifyOtp: 'VERIFY_OTP',
             setNewPassword: 'SET_NEW_PASSWORD',
             changePassword: 'CHANGE_PASSWORD',
+            sendForgetPasswordOtp: 'SEND_FORGET_PASSWORD_OTP',
+            changeForgetPassword: 'CHANGE_FORGET_PASSWORD',
             getAllUsers: 'GET_ALL_USERS',
             findUserById: 'FIND_USER_BY_ID',
             findUserByEmail: 'FIND_USER_BY_EMAIL',

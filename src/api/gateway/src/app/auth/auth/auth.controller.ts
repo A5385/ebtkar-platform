@@ -1,7 +1,7 @@
 import { Controller, Get, Inject, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { MICROSERVICE_CLIENT } from '@org/api-shared';
 import { MESSAGE_PATTERN } from '@org/constants';
-import { MICROSERVICE_CLIENT } from '../../../microservice';
 
 @Controller('auth')
 export class AuthController {

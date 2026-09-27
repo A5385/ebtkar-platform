@@ -84,7 +84,7 @@
             "options": {
                 "targetName": "test"
             },
-            "exclude": ["api/gateway-e2e/**/*", "api/auth-e2e/**/*", "api/admin-e2e/**/*"]
+            "exclude": ["src/api/gateway-e2e/**/*", "src/api/auth-e2e/**/*", "src/api/admin-e2e/**/*"]
         }
     ],
     "analytics": false,

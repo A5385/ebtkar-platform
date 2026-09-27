@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule } from '@nestjs/microservices';
-import { MICROSERVICE_CLIENT } from '../../microservice.js';
+import { MICROSERVICE_CLIENT } from '@org/api-shared';
 import { UserController } from './user.controller.js';
 import { UserService } from './user.service.js';
 

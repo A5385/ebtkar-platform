@@ -19,6 +19,7 @@
         "name": "http-client"
     },
     "dependencies": {
+        "@org/constants": "workspace:*",
         "tslib": "catalog:"
     },
     "devDependencies": {

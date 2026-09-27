@@ -12,6 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Dashboard_layoutRouteImport } from './routes/dashboard/__layout'
 import { Route as Dashboard_layoutIndexRouteImport } from './routes/dashboard/__layout.index'
+import { Route as Dashboard_layoutUsersRouteImport } from './routes/dashboard/__layout.users'
+import { Route as Dashboard_layoutSettingsGeneralRouteImport } from './routes/dashboard/__layout.settings.general'
+import { Route as Dashboard_layoutSettingsNetworkRouteImport } from './routes/dashboard/__layout.settings.network'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,28 +31,72 @@ const Dashboard_layoutIndexRoute = Dashboard_layoutIndexRouteImport.update({
   path: '/',
   getParentRoute: () => Dashboard_layoutRoute,
 } as any)
+const Dashboard_layoutUsersRoute = Dashboard_layoutUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => Dashboard_layoutRoute,
+} as any)
+const Dashboard_layoutSettingsGeneralRoute =
+  Dashboard_layoutSettingsGeneralRouteImport.update({
+    id: '/settings/general',
+    path: '/settings/general',
+    getParentRoute: () => Dashboard_layoutRoute,
+  } as any)
+const Dashboard_layoutSettingsNetworkRoute =
+  Dashboard_layoutSettingsNetworkRouteImport.update({
+    id: '/settings/network',
+    path: '/settings/network',
+    getParentRoute: () => Dashboard_layoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof Dashboard_layoutRouteWithChildren
+  '/dashboard/users': typeof Dashboard_layoutUsersRoute
   '/dashboard/': typeof Dashboard_layoutIndexRoute
+  '/dashboard/settings/general': typeof Dashboard_layoutSettingsGeneralRoute
+  '/dashboard/settings/network': typeof Dashboard_layoutSettingsNetworkRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard/users': typeof Dashboard_layoutUsersRoute
   '/dashboard': typeof Dashboard_layoutIndexRoute
+  '/dashboard/settings/general': typeof Dashboard_layoutSettingsGeneralRoute
+  '/dashboard/settings/network': typeof Dashboard_layoutSettingsNetworkRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard/__layout': typeof Dashboard_layoutRouteWithChildren
+  '/dashboard/__layout/users': typeof Dashboard_layoutUsersRoute
   '/dashboard/__layout/': typeof Dashboard_layoutIndexRoute
+  '/dashboard/__layout/settings/general': typeof Dashboard_layoutSettingsGeneralRoute
+  '/dashboard/__layout/settings/network': typeof Dashboard_layoutSettingsNetworkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/dashboard/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/dashboard/users'
+    | '/dashboard/'
+    | '/dashboard/settings/general'
+    | '/dashboard/settings/network'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard'
-  id: '__root__' | '/' | '/dashboard/__layout' | '/dashboard/__layout/'
+  to:
+    | '/'
+    | '/dashboard/users'
+    | '/dashboard'
+    | '/dashboard/settings/general'
+    | '/dashboard/settings/network'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard/__layout'
+    | '/dashboard/__layout/users'
+    | '/dashboard/__layout/'
+    | '/dashboard/__layout/settings/general'
+    | '/dashboard/__layout/settings/network'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -80,15 +127,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Dashboard_layoutIndexRouteImport
       parentRoute: typeof Dashboard_layoutRoute
     }
+    '/dashboard/__layout/users': {
+      id: '/dashboard/__layout/users'
+      path: '/users'
+      fullPath: '/dashboard/users'
+      preLoaderRoute: typeof Dashboard_layoutUsersRouteImport
+      parentRoute: typeof Dashboard_layoutRoute
+    }
+    '/dashboard/__layout/settings/general': {
+      id: '/dashboard/__layout/settings/general'
+      path: '/settings/general'
+      fullPath: '/dashboard/settings/general'
+      preLoaderRoute: typeof Dashboard_layoutSettingsGeneralRouteImport
+      parentRoute: typeof Dashboard_layoutRoute
+    }
+    '/dashboard/__layout/settings/network': {
+      id: '/dashboard/__layout/settings/network'
+      path: '/settings/network'
+      fullPath: '/dashboard/settings/network'
+      preLoaderRoute: typeof Dashboard_layoutSettingsNetworkRouteImport
+      parentRoute: typeof Dashboard_layoutRoute
+    }
   }
 }
 
 interface Dashboard_layoutRouteChildren {
+  Dashboard_layoutUsersRoute: typeof Dashboard_layoutUsersRoute
   Dashboard_layoutIndexRoute: typeof Dashboard_layoutIndexRoute
+  Dashboard_layoutSettingsGeneralRoute: typeof Dashboard_layoutSettingsGeneralRoute
+  Dashboard_layoutSettingsNetworkRoute: typeof Dashboard_layoutSettingsNetworkRoute
 }
 
 const Dashboard_layoutRouteChildren: Dashboard_layoutRouteChildren = {
+  Dashboard_layoutUsersRoute: Dashboard_layoutUsersRoute,
   Dashboard_layoutIndexRoute: Dashboard_layoutIndexRoute,
+  Dashboard_layoutSettingsGeneralRoute: Dashboard_layoutSettingsGeneralRoute,
+  Dashboard_layoutSettingsNetworkRoute: Dashboard_layoutSettingsNetworkRoute,
 }
 
 const Dashboard_layoutRouteWithChildren =

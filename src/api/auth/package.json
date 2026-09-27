@@ -22,8 +22,8 @@
                 "cache": true,
                 "executor": "@nx/js:prune-lockfile",
                 "outputs": [
-                    "{workspaceRoot}/api/auth/dist/package.json",
-                    "{workspaceRoot}/api/auth/dist/pnpm-lock.yaml"
+                    "{projectRoot}/dist/package.json",
+                    "{projectRoot}/dist/pnpm-lock.yaml"
                 ],
                 "options": {
                     "buildTarget": "build"
@@ -35,7 +35,7 @@
                 ],
                 "cache": true,
                 "outputs": [
-                    "{workspaceRoot}/api/auth/dist/workspace_modules"
+                    "{projectRoot}/dist/workspace_modules"
                 ],
                 "executor": "@nx/js:copy-workspace-modules",
                 "options": {
@@ -110,8 +110,8 @@
         "webpack-dev-server": "catalog:"
     },
     "scripts": {
-        "dev": "node ../../../tools/deployment/run.cjs dev api-auth",
-        "dev:build": "node ../../../tools/deployment/run.cjs dev:build api-auth",
-        "build": "node ../../../tools/deployment/run.cjs build api-auth"
+        "dev": "pnpm -w exec nx serve api-auth",
+        "dev:build": "tsc --build tsconfig.app.json --watch",
+        "build": "pnpm -w exec nx build api-auth"
     }
 }

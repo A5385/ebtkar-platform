@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Auth_layoutRouteImport } from './routes/auth/__layout'
+import { Route as ProfileIndexRouteImport } from './routes/profile/index'
 import { Route as Auth_layoutIndexRouteImport } from './routes/auth/__layout.index'
 import { Route as Auth_layoutLoginRouteImport } from './routes/auth/__layout.login'
 import { Route as Auth_layoutRegisterRouteImport } from './routes/auth/__layout.register'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const Auth_layoutRoute = Auth_layoutRouteImport.update({
   id: '/auth/__layout',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileIndexRoute = ProfileIndexRouteImport.update({
+  id: '/profile/',
+  path: '/profile/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Auth_layoutIndexRoute = Auth_layoutIndexRouteImport.update({
@@ -44,12 +50,14 @@ const Auth_layoutRegisterRoute = Auth_layoutRegisterRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof Auth_layoutRouteWithChildren
+  '/profile/': typeof ProfileIndexRoute
   '/auth/login': typeof Auth_layoutLoginRoute
   '/auth/register': typeof Auth_layoutRegisterRoute
   '/auth/': typeof Auth_layoutIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/profile': typeof ProfileIndexRoute
   '/auth/login': typeof Auth_layoutLoginRoute
   '/auth/register': typeof Auth_layoutRegisterRoute
   '/auth': typeof Auth_layoutIndexRoute
@@ -58,19 +66,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth/__layout': typeof Auth_layoutRouteWithChildren
+  '/profile/': typeof ProfileIndexRoute
   '/auth/__layout/login': typeof Auth_layoutLoginRoute
   '/auth/__layout/register': typeof Auth_layoutRegisterRoute
   '/auth/__layout/': typeof Auth_layoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/auth/login' | '/auth/register' | '/auth/'
+  fullPaths:
+    '/' | '/auth' | '/profile/' | '/auth/login' | '/auth/register' | '/auth/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth/login' | '/auth/register' | '/auth'
+  to: '/' | '/profile' | '/auth/login' | '/auth/register' | '/auth'
   id:
     | '__root__'
     | '/'
     | '/auth/__layout'
+    | '/profile/'
     | '/auth/__layout/login'
     | '/auth/__layout/register'
     | '/auth/__layout/'
@@ -79,6 +90,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   Auth_layoutRoute: typeof Auth_layoutRouteWithChildren
+  ProfileIndexRoute: typeof ProfileIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -95,6 +107,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof Auth_layoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/': {
+      id: '/profile/'
+      path: '/profile'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof ProfileIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/__layout/': {
@@ -140,6 +159,7 @@ const Auth_layoutRouteWithChildren = Auth_layoutRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Auth_layoutRoute: Auth_layoutRouteWithChildren,
+  ProfileIndexRoute: ProfileIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

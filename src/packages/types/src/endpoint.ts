@@ -12,6 +12,7 @@ export type EndpointType =
     | `profile/find-profile-by-user-email/${string}`
     | `profile/find-profile-By-user-id/${string}`
     | 'profile/update'
+    | 'user/change-forget-password'
     | 'user/change-password'
     | 'user/check-email'
     | 'user/confirm-delete-user'
@@ -21,6 +22,7 @@ export type EndpointType =
     | `user/find-user-by-id/${string}`
     | 'user/get-all-users'
     | `user/hard-delete-user/${string}`
+    | 'user/send-forget-password-otp'
     | 'user/set-new-password'
     | 'user/update-user'
     | 'user/verify-email'

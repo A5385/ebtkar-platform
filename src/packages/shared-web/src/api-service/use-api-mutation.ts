@@ -11,7 +11,10 @@ import { useTranslation } from 'react-i18next';
 import { showApiError, showApiSuccess } from './api-toast';
 import { commonConfig } from './web-base-url';
 
-export type ApiMutationProps<TData, TVariables, TContext = unknown> = OperationType & {
+export type ApiMutationProps<TData, TVariables, TContext = unknown> = Omit<
+    OperationType,
+    'apiKey' | 'deviceType'
+> & {
     method: Exclude<MethodType, 'get'>;
     queryKeys?: QueryKey[];
     showSuccessMessage?: boolean;
@@ -47,6 +50,8 @@ export const useApiMutation = <TData, TVariables = void, TContext = unknown>({
                 const response = await apiClient.request<ApiResponseSuccess<TData>>({
                     ...operation,
                     method,
+                    deviceType: commonConfig.deviceType,
+                    apiKey: commonConfig.apiKey,
                     body: variables as Record<string, unknown>,
                     options: { ...commonConfig.options, ...operation.options },
                 });

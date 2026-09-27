@@ -2,6 +2,7 @@ import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload, Transport } from '@nestjs/microservices';
 
 import {
+    ChangeForgetPasswordDto,
     ChangePasswordDto,
     CheckEmailDto,
     CreateUserDto,
@@ -45,6 +46,14 @@ export class UserController {
     @MessagePattern(MESSAGE_PATTERN.auth.user.changePassword, Transport.TCP)
     async changePassword(@Payload() dto: ChangePasswordDto) {
         return await this.userService.changePassword(dto);
+    }
+    @MessagePattern(MESSAGE_PATTERN.auth.user.sendForgetPasswordOtp, Transport.TCP)
+    async forgetPasswordOtp(@Payload() email: string) {
+        return await this.userService.forgetPasswordOtp(email);
+    }
+    @MessagePattern(MESSAGE_PATTERN.auth.user.changeForgetPassword, Transport.TCP)
+    async changeForgetPassword(@Payload() dto: ChangeForgetPasswordDto) {
+        return await this.userService.changeForgetPassword(dto);
     }
 
     @MessagePattern(MESSAGE_PATTERN.auth.user.updateUser, Transport.TCP)

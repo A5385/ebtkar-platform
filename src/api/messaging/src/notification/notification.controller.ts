@@ -1,5 +1,6 @@
 import { Controller, Logger } from '@nestjs/common';
 import { EventPattern, MessagePattern, Payload, Transport } from '@nestjs/microservices';
+import { EventEnvelope } from '@org/api-shared';
 import { EVENT_PATTERN, MESSAGE_PATTERN } from '@org/constants';
 import type { UserCreatedEvent } from '@org/types';
 import { NotificationService } from './notification.service.js';
@@ -11,10 +12,11 @@ export class NotificationController {
     constructor(private readonly notificationService: NotificationService) {}
 
     @EventPattern(EVENT_PATTERN.auth.userCreated, Transport.KAFKA)
-    async onUserCreated(@Payload() event: UserCreatedEvent) {
+    async onUserCreated(@Payload() event: EventEnvelope & UserCreatedEvent) {
         this.logger.log(`Received user-created event ${event.eventId} for user ${event.userId}`);
         try {
-            const notification = await this.notificationService.createUserCreatedNotification(event);
+            const notification =
+                await this.notificationService.createUserCreatedNotification(event);
             this.logger.log(
                 `Completed user-created event ${event.eventId}; notification ${notification.notificationId} is ready for admins`,
             );

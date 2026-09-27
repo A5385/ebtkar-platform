@@ -33,9 +33,9 @@
         "vitest": "catalog:"
     },
     "scripts": {
-        "dev": "node ../../../tools/deployment/run.cjs dev admin",
-        "dev:build": "node ../../../tools/deployment/run.cjs dev:build admin",
-        "build": "node ../../../tools/deployment/run.cjs build admin"
+        "dev": "vite",
+        "dev:build": "vite build --watch",
+        "build": "pnpm -w exec nx build @org/admin"
     },
     "nx": {
         "targets": {

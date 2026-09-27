@@ -1,16 +1,15 @@
 import { Module } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { ClientsModule } from '@nestjs/microservices';
-import { SharedApiModule } from '@org/api-shared';
+import { MICROSERVICE_CLIENT, SharedApiModule } from '@org/api-shared';
 import { ZodValidationPipe } from 'nestjs-zod';
-import { MICROSERVICE_CLIENT } from '../microservice';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthController } from './auth/auth/auth.controller';
+import { ProfileController } from './auth/profile/profile.controller';
 import { UserController } from './auth/user/user.controller';
 import { NotificationEventsController } from './notification/notification-events.controller';
 import { NotificationGateway } from './notification/notification.gateway';
-import { ProfileController } from './auth/profile/profile.controller';
 
 @Module({
     imports: [
@@ -21,9 +20,16 @@ import { ProfileController } from './auth/profile/profile.controller';
             { ...MICROSERVICE_CLIENT.auth },
             { ...MICROSERVICE_CLIENT.warehouse },
             { ...MICROSERVICE_CLIENT.messaging },
+            { ...MICROSERVICE_CLIENT.admin },
         ]),
     ],
-    controllers: [AppController, AuthController, UserController, NotificationEventsController, ProfileController],
+    controllers: [
+        AppController,
+        AuthController,
+        UserController,
+        NotificationEventsController,
+        ProfileController,
+    ],
     providers: [
         AppService,
         NotificationGateway,

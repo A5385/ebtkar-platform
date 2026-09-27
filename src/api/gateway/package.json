@@ -3,9 +3,9 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "dev:build": "node ../../../tools/deployment/run.cjs dev:build api-gateway",
-        "dev": "node ../../../tools/deployment/run.cjs dev api-gateway",
-        "build": "node ../../../tools/deployment/run.cjs build api-gateway"
+        "dev:build": "tsc --build tsconfig.app.json --watch",
+        "dev": "pnpm -w exec nx serve api-gateway",
+        "build": "pnpm -w exec nx build api-gateway"
     },
     "nx": {
         "name": "api-gateway",
@@ -27,8 +27,8 @@
                 "cache": true,
                 "executor": "@nx/js:prune-lockfile",
                 "outputs": [
-                    "{workspaceRoot}/api/gateway/dist/package.json",
-                    "{workspaceRoot}/api/gateway/dist/pnpm-lock.yaml"
+                    "{projectRoot}/dist/package.json",
+                    "{projectRoot}/dist/pnpm-lock.yaml"
                 ],
                 "options": {
                     "buildTarget": "build"
@@ -40,7 +40,7 @@
                 ],
                 "cache": true,
                 "outputs": [
-                    "{workspaceRoot}/api/gateway/dist/workspace_modules"
+                    "{projectRoot}/dist/workspace_modules"
                 ],
                 "executor": "@nx/js:copy-workspace-modules",
                 "options": {

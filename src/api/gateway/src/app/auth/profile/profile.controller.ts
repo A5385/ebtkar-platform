@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Inject, Param, Patch, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CreateProfileDto, UpdateProfileDto } from '@org/api-dto';
+import { MICROSERVICE_CLIENT } from '@org/api-shared';
 import { MESSAGE_PATTERN } from '@org/constants';
-import { MICROSERVICE_CLIENT } from '../../../microservice';
 
 @Controller('profile')
 export class ProfileController {
