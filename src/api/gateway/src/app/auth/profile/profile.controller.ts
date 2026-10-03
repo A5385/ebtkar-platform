@@ -7,7 +7,7 @@ import { MESSAGE_PATTERN } from '@org/constants';
 @Controller('profile')
 export class ProfileController {
     constructor(
-        @Inject(MICROSERVICE_CLIENT.auth.name)
+        @Inject(MICROSERVICE_CLIENT.combine.name)
         private readonly authService: ClientProxy,
     ) {}
 

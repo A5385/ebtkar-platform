@@ -3,6 +3,8 @@ import { APP_PIPE } from '@nestjs/core';
 import { ClientsModule } from '@nestjs/microservices';
 import { MICROSERVICE_CLIENT, SharedApiModule } from '@org/api-shared';
 import { ZodValidationPipe } from 'nestjs-zod';
+import { AdminConfigController } from './admin/admin-config.controller';
+import { AdminOriginController } from './admin/origin.controller.js';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthController } from './auth/auth/auth.controller';
@@ -10,17 +12,17 @@ import { ProfileController } from './auth/profile/profile.controller';
 import { UserController } from './auth/user/user.controller';
 import { NotificationEventsController } from './notification/notification-events.controller';
 import { NotificationGateway } from './notification/notification.gateway';
-
 @Module({
     imports: [
         SharedApiModule.forRoot({
             appName: 'GATEWAY API',
         }),
         ClientsModule.register([
-            { ...MICROSERVICE_CLIENT.auth },
-            { ...MICROSERVICE_CLIENT.warehouse },
-            { ...MICROSERVICE_CLIENT.messaging },
-            { ...MICROSERVICE_CLIENT.admin },
+            { ...MICROSERVICE_CLIENT.combine },
+            // { ...MICROSERVICE_CLIENT.auth },
+            // { ...MICROSERVICE_CLIENT.warehouse },
+            // { ...MICROSERVICE_CLIENT.messaging },
+            // { ...MICROSERVICE_CLIENT.admin },
         ]),
     ],
     controllers: [
@@ -29,6 +31,8 @@ import { NotificationGateway } from './notification/notification.gateway';
         UserController,
         NotificationEventsController,
         ProfileController,
+        AdminConfigController,
+        AdminOriginController,
     ],
     providers: [
         AppService,

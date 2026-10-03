@@ -2,6 +2,15 @@
 
 export type EndpointType =
     | '/'
+    | 'admin-config/global-settings'
+    | 'admin-config/network-settings'
+    | 'admin-config/token-settings'
+    | 'admin-origin/create-origin'
+    | `admin-origin/delete-origin/${string}`
+    | `admin-origin/find-origin-by-id/${string}`
+    | `admin-origin/find-origins-by-access-id/${string}`
+    | 'admin-origin/get-all-origins'
+    | 'admin-origin/update-origin'
     | 'auth/consume-tokens'
     | 'auth/login'
     | 'auth/logout'

@@ -3,6 +3,7 @@
 import tailwindcss from '@tailwindcss/vite';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
@@ -12,12 +13,12 @@ export default defineConfig(() => ({
     cacheDir: '../../../node_modules/.vite/web/admin',
 
     server: {
-        port: 7001,
+        port: 7000,
         host: 'localhost',
     },
 
     preview: {
-        port: 7001,
+        port: 7000,
         host: 'localhost',
     },
 
@@ -31,7 +32,11 @@ export default defineConfig(() => ({
             transformMixedEsModules: true,
         },
     },
-
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src'),
+        },
+    },
     test: {
         name: '@org/admin',
         watch: false,

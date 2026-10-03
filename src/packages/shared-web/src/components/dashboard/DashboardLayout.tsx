@@ -1,12 +1,12 @@
 import { Outlet } from '@tanstack/react-router';
 import { SidebarProvider } from '../ui/sidebar';
 import { Header } from './header';
-import { AppSidebar } from './Sidebar';
+import { AppSidebar, SidebarProps } from './Sidebar';
 
-export const DashboardLayout = () => {
+export const DashboardLayout = ({ sidebar }: { sidebar: SidebarProps }) => {
     return (
         <SidebarProvider className='h-screen overflow-hidden'>
-            <AppSidebar />
+            <AppSidebar {...sidebar} />
 
             <div className='flex min-w-0 flex-1 flex-col overflow-hidden'>
                 {/* fixed height */}
@@ -21,9 +21,10 @@ export const DashboardLayout = () => {
                             overflow-auto
                             scroll-fade-b
                             rounded-xl
-                            bg-background
+                         
                             p-4
-                            text-foreground
+                            flex flex-col gap-4
+                          
                         '
                     >
                         <Outlet />

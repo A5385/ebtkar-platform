@@ -1,5 +1,6 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import process from 'node:process';
 import { pathExists, resolveFromRoot, walkFiles, workspaceRoot } from './script-helpers.js';
 
 const databasesRoot = resolveFromRoot('src/database');

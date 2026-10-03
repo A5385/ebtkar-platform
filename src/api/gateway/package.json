@@ -94,6 +94,7 @@
         }
     },
     "dependencies": {
+        "@nestjs/cache-manager": "catalog:",
         "@org/api-dto": "workspace:*",
         "@org/database-admin": "workspace:*",
         "@org/api-shared": "workspace:*",

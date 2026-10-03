@@ -1,0 +1,121 @@
+{
+    "name": "@org/api-combine",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "dev": "pnpm -w exec nx serve api-combine",
+        "dev:build": "tsc --build tsconfig.app.json --watch",
+        "build": "pnpm -w exec nx build api-combine"
+    },
+    "nx": {
+        "name": "api-combine",
+        "targets": {
+            "build": {
+                "executor": "nx:run-commands",
+                "outputs": [
+                    "{projectRoot}/dist"
+                ],
+                "options": {
+                    "command": "tsc --build tsconfig.app.json",
+                    "cwd": "src/api/combine"
+                }
+            },
+            "prune-lockfile": {
+                "dependsOn": [
+                    "build"
+                ],
+                "cache": true,
+                "executor": "@nx/js:prune-lockfile",
+                "outputs": [
+                    "{projectRoot}/dist/package.json",
+                    "{projectRoot}/dist/pnpm-lock.yaml"
+                ],
+                "options": {
+                    "buildTarget": "build"
+                }
+            },
+            "copy-workspace-modules": {
+                "dependsOn": [
+                    "build"
+                ],
+                "cache": true,
+                "outputs": [
+                    "{projectRoot}/dist/workspace_modules"
+                ],
+                "executor": "@nx/js:copy-workspace-modules",
+                "options": {
+                    "buildTarget": "build"
+                }
+            },
+            "prune": {
+                "dependsOn": [
+                    "prune-lockfile",
+                    "copy-workspace-modules"
+                ],
+                "executor": "nx:noop"
+            },
+            "serve": {
+                "continuous": true,
+                "executor": "@nx/js:node",
+                "defaultConfiguration": "development",
+                "dependsOn": [
+                    "build",
+                    "watch-deps"
+                ],
+                "options": {
+                    "buildTarget": "api-combine:build",
+                    "runBuildTargetDependencies": false,
+                    "inspect": false
+                },
+                "configurations": {
+                    "development": {
+                        "buildTarget": "api-combine:build:development"
+                    },
+                    "production": {
+                        "buildTarget": "api-combine:build:production"
+                    }
+                }
+            },
+            "test": {
+                "options": {
+                    "passWithNoTests": true
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@org/api-dto": "workspace:*",
+        "@org/api-shared": "workspace:*",
+        "@nestjs/mapped-types": "*",
+        "@org/constants": "workspace:*",
+        "@org/database-auth": "workspace:*",
+        "@org/database-admin": "workspace:*",
+        "@org/database-notification": "workspace:*",
+        "@org/schemas": "workspace:*",
+        "@nestjs/common": "catalog:",
+        "@nestjs/core": "catalog:",
+        "@nestjs/platform-express": "catalog:",
+        "reflect-metadata": "catalog:",
+        "rxjs": "catalog:",
+        "tslib": "catalog:",
+        "express": "catalog:",
+        "@nestjs/microservices": "catalog:",
+        "nodemailer": "catalog:",
+        "kafkajs": "catalog:",
+        "bcryptjs": "catalog:",
+        "nestjs-zod": "catalog:"
+    },
+    "devDependencies": {
+        "@org/types": "workspace:*",
+        "@nestjs/testing": "catalog:",
+        "@types/jest": "catalog:",
+        "@types/express": "catalog:",
+        "jest": "catalog:",
+        "@types/nodemailer": "catalog:",
+        "jest-environment-node": "catalog:",
+        "ts-jest": "catalog:",
+        "webpack": "catalog:",
+        "webpack-cli": "catalog:",
+        "webpack-dev-server": "catalog:"
+    }
+}

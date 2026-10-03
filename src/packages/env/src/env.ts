@@ -9,6 +9,11 @@ export const envKeys = [
     'API_GATEWAY_PORT',
     'API_GATEWAY_URL',
 
+    // Combine microservice
+    'API_COMBINE_HOST',
+    'API_COMBINE_PORT',
+    'API_COMBINE_URL',
+
     // Admin microservice
     'API_ADMIN_HOST',
     'API_ADMIN_PORT',

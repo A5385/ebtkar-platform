@@ -57,6 +57,9 @@
             "path": "../http-client/tsconfig.lib.json"
         },
         {
+            "path": "../constants/tsconfig.lib.json"
+        },
+        {
             "path": "../schemas/tsconfig.lib.json"
         },
         {

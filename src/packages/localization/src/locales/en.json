@@ -1,4 +1,10 @@
 {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "settings": "Settings",
+    "general": "General",
+    "network": "Network",
+    "origin": "Origin",
     "language": {
         "switchToArabic": "Switch language to Arabic",
         "switchToEnglish": "Switch language to English",

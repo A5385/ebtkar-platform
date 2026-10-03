@@ -1,14 +1,4 @@
-import {
-    ChevronDown,
-    Languages,
-    LayoutDashboard,
-    LogOut,
-    Moon,
-    Settings,
-    Sun,
-    User2,
-    Users,
-} from 'lucide-react';
+import { ChevronDown, Languages, LogOut, Moon, Sun, User2 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { useLanguage } from '../../hooks';
 import { useTheme } from '../../providers';
@@ -37,12 +27,8 @@ import {
     useSidebar,
 } from '../ui/sidebar';
 
-type SidebarProps = {
-    title?: string;
-    icon?: ReactNode;
-};
-
-type SidebarMenuLinkProps = {
+export type SidebarMenuLinkType = 'type' | 'button';
+export type SidebarMenuLinkProps = {
     type: 'button';
     id: string;
     title: string;
@@ -50,7 +36,7 @@ type SidebarMenuLinkProps = {
     url: string;
 };
 
-type SidebarMenuGroup = {
+export type SidebarMenuGroup = {
     type: 'group';
     groupLabel: string;
     groupAction: string;
@@ -58,35 +44,14 @@ type SidebarMenuGroup = {
     group: Omit<SidebarMenuLinkProps, 'type'>[];
 };
 
-type SidebarContentProps = SidebarMenuGroup | SidebarMenuLinkProps;
+export type SidebarContentProps = SidebarMenuGroup | SidebarMenuLinkProps;
+export type SidebarProps = {
+    title?: string;
+    icon?: ReactNode;
+    items: SidebarContentProps[];
+};
 
-const itmes: SidebarContentProps[] = [
-    {
-        type: 'button',
-        id: 'dashboard',
-        title: 'Dashboard',
-        icon: <LayoutDashboard />,
-        url: '/dashboard',
-    },
-    {
-        type: 'button',
-        id: 'users',
-        title: 'Users',
-        icon: <Users />,
-        url: '/dashboard/users',
-    },
-    {
-        type: 'group',
-        groupLabel: 'Settings',
-        groupAction: 'Open Settings',
-        groupIcon: <Settings />,
-        group: [
-            { id: 'general', title: 'General', icon: <></>, url: '/dashboard/settings/general' },
-            { id: 'network', title: 'network', icon: <></>, url: '/dashboard/settings/network' },
-        ],
-    },
-];
-export const AppSidebar = ({ title = 'Ebt Platform', icon }: SidebarProps) => {
+export const AppSidebar = ({ title = 'Ebt Platform', icon, items }: SidebarProps) => {
     const { open } = useSidebar();
 
     const { title: langTitle, changeLanguage, t, isArabic } = useLanguage();
@@ -103,7 +68,7 @@ export const AppSidebar = ({ title = 'Ebt Platform', icon }: SidebarProps) => {
                 {open && <h3 className='font-bold text-lg'> {title}</h3>}
             </SidebarHeader>
             <SidebarContent className='py-4'>
-                {itmes.map((item) => {
+                {items.map((item) => {
                     if (item.type === 'button') {
                         return (
                             <SidebarMenuItem key={item.id}>
@@ -131,10 +96,10 @@ export const AppSidebar = ({ title = 'Ebt Platform', icon }: SidebarProps) => {
                                                 <SidebarGroupContent key={subItem.id}>
                                                     <a
                                                         href={subItem.url}
-                                                        className='flex items-center gap-4'
+                                                        className='flex items-center gap-2 ps-2 text-sm font-normal'
                                                     >
-                                                        <span>{open && subItem.title}</span>
                                                         {subItem.icon}
+                                                        <span>{open && subItem.title}</span>
                                                     </a>
                                                 </SidebarGroupContent>
                                             );

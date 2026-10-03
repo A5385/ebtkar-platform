@@ -16,7 +16,7 @@ import type { Request } from 'express';
 @Controller('user')
 export class UserController {
     constructor(
-        @Inject(MICROSERVICE_CLIENT.auth.name)
+        @Inject(MICROSERVICE_CLIENT.combine.name)
         private readonly authService: ClientProxy,
     ) {}
 

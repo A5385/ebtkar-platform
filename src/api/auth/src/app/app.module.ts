@@ -4,11 +4,11 @@ import { ClientsModule } from '@nestjs/microservices';
 import { MICROSERVICE_CLIENT, SharedApiModule } from '@org/api-shared';
 import { AuthPrismaModule } from '@org/database-auth';
 import { ZodValidationPipe } from 'nestjs-zod';
-import { AppController } from './auth/app.controller';
-import { AppService } from './auth/app.service';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [

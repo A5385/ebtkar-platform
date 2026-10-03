@@ -1,0 +1,51 @@
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "types": ["node"],
+        "rootDir": "src",
+        "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "emitDeclarationOnly": false,
+        "target": "es2021"
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": [
+        "out-tsc",
+        "dist",
+        "jest.config.ts",
+        "jest.config.cts",
+        "src/**/*.spec.ts",
+        "src/**/*.test.ts",
+        "eslint.config.js",
+        "eslint.config.cjs",
+        "eslint.config.mjs"
+    ],
+    "references": [
+        {
+            "path": "../../packages/schemas/tsconfig.lib.json"
+        },
+        {
+            "path": "../../database/notification/tsconfig.lib.json"
+        },
+        {
+            "path": "../../database/admin/tsconfig.lib.json"
+        },
+        {
+            "path": "../../database/auth/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/constants/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/api-shared/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/api-dto/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/types/tsconfig.lib.json"
+        }
+    ]
+}

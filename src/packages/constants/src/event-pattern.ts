@@ -8,4 +8,8 @@ export const EVENT_PATTERN = {
     messaging: {
         notificationCreated: 'messaging.notification.created.v1',
     },
+    admin: {
+        configUpdated: 'admin.config.updated.v1',
+        configSync: 'admin.config.sync.v1',
+    },
 } as const;

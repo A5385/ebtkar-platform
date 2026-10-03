@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -26,14 +21,29 @@ generator zod {
   useDefaultValidators     = false
 }
 
-//////////////////////////////////////////////////////
-// PLATFORM CONFIGURATION
-//////////////////////////////////////////////////////
+model ConfigState {
+  id      Boolean @id @default(true)
+  version Int     @default(1)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("config_state")
+}
+
+// platform settings
 model GlobalSettings {
-  id              Boolean @id @default(true)
-  platformName    String  @default("Ebtkar")
-  maintenanceMode Boolean @default(false)
+  id Boolean @id @default(true)
+
+  platformName String  @default("Ebtkar")
+  logo         String?
+  favicon      String?
+
+  maintenanceMode     Boolean @default(false)
+  registrationEnabled Boolean @default(true)
+
+  defaultLocale   String @default("en")
+  defaultTimezone String @default("UTC")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -41,6 +51,53 @@ model GlobalSettings {
   @@map("global_settings")
 }
 
+enum Roles {
+  SUPER_ADMIN
+  ADMIN
+  TENANT
+}
+
+// Cors Settings
+enum HttpMethod {
+  GET
+  POST
+  PUT
+  PATCH
+  DELETE
+  OPTIONS
+  HEAD
+}
+
+model AccessSettings {
+  id          Boolean  @id @default(true)
+  corsEnabled Boolean  @default(true)
+  origins     Origin[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("access_settings")
+}
+
+model Origin {
+  originId       String       @id @default(cuid())
+  origin         String       @unique
+  credentials    Boolean      @default(true)
+  methods        HttpMethod[]
+  allowedHeaders String[]
+  exposedHeaders String[]
+
+  accessSettingsId Boolean?
+  accessSettings   AccessSettings? @relation(fields: [accessSettingsId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([accessSettingsId, origin])
+  @@map("origins")
+}
+
+// network settings
 model NetworkSettings {
   id                Boolean @id @default(true)
   httpClientRetries Int     @default(3)
@@ -52,6 +109,7 @@ model NetworkSettings {
   @@map("network_settings")
 }
 
+// tokens settings
 model TokensConfig {
   id              Boolean @id @default(true)
   accessTokenExp  Int     @default(900)
@@ -63,117 +121,88 @@ model TokensConfig {
   @@map("tokens_config")
 }
 
-//////////////////////////////////////////////////////
-// APPLICATIONS
-//////////////////////////////////////////////////////
-
-model App {
-  appId String @id @default(cuid())
-
-  name String @unique
-  code String @unique
-
-  modules Module[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("apps")
-}
-
-//////////////////////////////////////////////////////
-// MODULES
-//////////////////////////////////////////////////////
-
-model Module {
-  moduleId String @id @default(cuid())
+// warehouse settings & Role and permissions
+model WarehouseSettings {
+  warehouseSettingsId String @id @default(cuid())
 
   name String
-  code String
+  logo String?
+  code String  @unique
 
-  appId       String
-  app         App          @relation(fields: [appId], references: [appId], onDelete: Cascade)
-  permissions Permission[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([appId, code])
-  @@map("modules")
-}
-
-//////////////////////////////////////////////////////
-// ACTIONS
-//////////////////////////////////////////////////////
-
-model Action {
-  actionId String @id @default(cuid())
-
-  name String @unique
-
-  permissions Permission[]
-
-  createdAt DateTime @default(now())
-
-  @@map("actions")
-}
-
-//////////////////////////////////////////////////////
-// PERMISSIONS
-//////////////////////////////////////////////////////
-
-model Permission {
-  permissionId String @id @default(cuid())
-
-  moduleId String
-  actionId String
-  resource String
-
-  module Module @relation(fields: [moduleId], references: [moduleId], onDelete: Cascade)
-  action Action @relation(fields: [actionId], references: [actionId], onDelete: Cascade)
-
-  roles RolePermission[]
+  roles WarehouseRole[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([moduleId, resource, actionId])
-  @@map("permissions")
+  @@map("warehouse_settings")
 }
 
-//////////////////////////////////////////////////////
-// ROLES
-//////////////////////////////////////////////////////
-
-model Role {
-  roleId String @id @default(cuid())
-
-  name         String  @unique
-  description  String?
-  isSuperAdmin Boolean @default(false)
-
-  permissions RolePermission[]
+model WarehouseRole {
+  warehouseRoleId     String                 @id @default(cuid())
+  name                String
+  code                String
+  description         String?
+  isSuperAdmin        Boolean                @default(false)
+  warehouseSettingsId String
+  warehouseSettings   WarehouseSettings      @relation(fields: [warehouseSettingsId], references: [warehouseSettingsId], onDelete: Cascade)
+  permissions         WarehousePermissions[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("roles")
+  @@unique([warehouseSettingsId, code])
+  @@map("warehouse_roles")
 }
 
-//////////////////////////////////////////////////////
-// ROLE PERMISSIONS
-//////////////////////////////////////////////////////
+enum WarehousePermissions {
+  BRANCH_CREATE
+  BRANCH_UPDATE
+  BRANCH_DELETE
+  BRANCH_ARCHIVE
+  BRANCH_READ
 
-model RolePermission {
-  rolePermissionId String @id @default(cuid())
+  STORE_CREATE
+  STORE_UPDATE
+  STORE_DELETE
+  STORE_ARCHIVE
+  STORE_READ
+}
 
-  roleId       String
-  role         Role       @relation(fields: [roleId], references: [roleId], onDelete: Cascade)
-  permissionId String
-  permission   Permission @relation(fields: [permissionId], references: [permissionId], onDelete: Cascade)
+// INVOICE settings & Role and permissions
+model InvoiceSettings {
+  invoiceSettingsId String        @id @default(cuid())
+  name              String        @unique
+  logo              String?
+  code              String        @unique
+  roles             InvoiceRole[]
 
-  @@unique([roleId, permissionId])
-  @@map("role_permissions")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("invoice_settings")
+}
+
+model InvoiceRole {
+  InvoiceRoleId     String               @id @default(cuid())
+  name              String               @unique
+  description       String?
+  isSuperAdmin      Boolean              @default(false)
+  invoiceSettingsId String?
+  invoiceSettings   InvoiceSettings?     @relation(references: [invoiceSettingsId], fields: [invoiceSettingsId], onDelete: Cascade)
+  permissions       InvoicePermissions[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("invoice_role")
+}
+
+enum InvoicePermissions {
+  INVOICE_CREATE
+  INVOICE_UPDATE
+  INVOICE_DELETE
+  INVOICE_ARCHIVE
+  INVOICE_READ
 }
 
 //////////////////////////////////////////////////////

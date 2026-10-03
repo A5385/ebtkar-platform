@@ -153,6 +153,8 @@ catalog:
     "cache-manager": "^7.2.9"
     "@keyv/redis": "^5.1.6"
     "bcryptjs": "^3.0.3"
+    "ioredis": "^6.0.0"
+    "dotenv-expand": "^1000.0.0"
    
 
 minimumReleaseAgeExclude:

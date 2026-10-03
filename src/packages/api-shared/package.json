@@ -19,6 +19,8 @@
         "name": "api-shared"
     },
     "dependencies": {
+       
+        "ioredis": "catalog:",
         "@nestjs/common": "catalog:",
         "@nestjs/core": "catalog:",
         "@org/env": "workspace:*",

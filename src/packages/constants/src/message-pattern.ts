@@ -37,4 +37,22 @@ export const MESSAGE_PATTERN = {
             getAdminNotifications: 'GET_ADMIN_NOTIFICATIONS',
         },
     },
+    admin: {
+        config: {
+            getSnapshot: 'ADMIN_CONFIG_GET_SNAPSHOT',
+            sync: 'ADMIN_CONFIG_SYNC',
+            updateGlobal: 'ADMIN_CONFIG_UPDATE_GLOBAL',
+            updateNetwork: 'ADMIN_CONFIG_UPDATE_NETWORK',
+            updateTokens: 'ADMIN_CONFIG_UPDATE_TOKENS',
+            updateAccess: 'ADMIN_CONFIG_UPDATE_ACCESS',
+        },
+        access: {
+            create: 'CREATE_ORIGIN',
+            update: 'UPDATE_ORIGIN',
+            getAll: 'GET_ALL_ORIGIN',
+            delete: 'DELETE_ORIGIN',
+            findById: 'FIND_BY_ID',
+            findByAccessId: 'FIND_BY_ACCESS_ID',
+        },
+    },
 };

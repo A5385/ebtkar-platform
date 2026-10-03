@@ -6,8 +6,11 @@ import { APP_NAME, SharedApiOptions } from './shared-api.constants.js';
 import { createKeyv } from '@keyv/redis';
 import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { apiEnv } from '../api-env.js';
+import { AdminConfigModule } from './admin-config/admin-config.module.js';
 import { ErrorService } from './error/error.service.js';
 import { WinstonLoggerService } from './logger/logger.service.js';
+import { RedisModule } from './redis/redis.module.js';
 import { ResponseHelperService } from './response-handler/response-helper.service.js';
 
 @Global()
@@ -16,11 +19,18 @@ export class SharedApiModule {
     static forRoot(options: SharedApiOptions): DynamicModule {
         return {
             imports: [
+                RedisModule,
+                AdminConfigModule,
                 CacheModule.registerAsync({
-                    useFactory: async () => ({
-                        stores: [createKeyv('redis://localhost:6379')],
-                        ttl: 60 * 1000,
-                    }),
+                    useFactory: async () => {
+                        const host = apiEnv.get('REDIS_HOST') || '127.0.0.1';
+                        const port = apiEnv.get('REDIS_PORT') || '6379';
+
+                        return {
+                            stores: [createKeyv(`redis://${host}:${port}`)],
+                            ttl: 60 * 1000,
+                        };
+                    },
                     isGlobal: true,
                 }),
             ],
@@ -38,7 +48,13 @@ export class SharedApiModule {
                 ResponseHelperService,
                 ErrorService,
             ],
-            exports: [WinstonLoggerService, ResponseHelperService, ErrorService],
+            exports: [
+                WinstonLoggerService,
+                ResponseHelperService,
+                ErrorService,
+                RedisModule,
+                AdminConfigModule,
+            ],
         };
     }
 }

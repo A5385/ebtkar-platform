@@ -74,6 +74,9 @@
         },
         {
             "path": "./src/api/admin"
+        },
+        {
+            "path": "./src/api/combine"
         }
     ],
     "compilerOptions": {}

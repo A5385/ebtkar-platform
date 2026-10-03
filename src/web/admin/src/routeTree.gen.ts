@@ -15,6 +15,7 @@ import { Route as Dashboard_layoutIndexRouteImport } from './routes/dashboard/__
 import { Route as Dashboard_layoutUsersRouteImport } from './routes/dashboard/__layout.users'
 import { Route as Dashboard_layoutSettingsGeneralRouteImport } from './routes/dashboard/__layout.settings.general'
 import { Route as Dashboard_layoutSettingsNetworkRouteImport } from './routes/dashboard/__layout.settings.network'
+import { Route as Dashboard_layoutSettingsOriginRouteImport } from './routes/dashboard/__layout.settings..origin'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -48,6 +49,12 @@ const Dashboard_layoutSettingsNetworkRoute =
     path: '/settings/network',
     getParentRoute: () => Dashboard_layoutRoute,
   } as any)
+const Dashboard_layoutSettingsOriginRoute =
+  Dashboard_layoutSettingsOriginRouteImport.update({
+    id: '/settings/origin',
+    path: '/settings/origin',
+    getParentRoute: () => Dashboard_layoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -56,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/': typeof Dashboard_layoutIndexRoute
   '/dashboard/settings/general': typeof Dashboard_layoutSettingsGeneralRoute
   '/dashboard/settings/network': typeof Dashboard_layoutSettingsNetworkRoute
+  '/dashboard/settings/origin': typeof Dashboard_layoutSettingsOriginRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -63,6 +71,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof Dashboard_layoutIndexRoute
   '/dashboard/settings/general': typeof Dashboard_layoutSettingsGeneralRoute
   '/dashboard/settings/network': typeof Dashboard_layoutSettingsNetworkRoute
+  '/dashboard/settings/origin': typeof Dashboard_layoutSettingsOriginRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -72,6 +81,7 @@ export interface FileRoutesById {
   '/dashboard/__layout/': typeof Dashboard_layoutIndexRoute
   '/dashboard/__layout/settings/general': typeof Dashboard_layoutSettingsGeneralRoute
   '/dashboard/__layout/settings/network': typeof Dashboard_layoutSettingsNetworkRoute
+  '/dashboard/__layout/settings/origin': typeof Dashboard_layoutSettingsOriginRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -82,6 +92,7 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/dashboard/settings/general'
     | '/dashboard/settings/network'
+    | '/dashboard/settings/origin'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +100,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/dashboard/settings/general'
     | '/dashboard/settings/network'
+    | '/dashboard/settings/origin'
   id:
     | '__root__'
     | '/'
@@ -97,6 +109,7 @@ export interface FileRouteTypes {
     | '/dashboard/__layout/'
     | '/dashboard/__layout/settings/general'
     | '/dashboard/__layout/settings/network'
+    | '/dashboard/__layout/settings/origin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Dashboard_layoutSettingsNetworkRouteImport
       parentRoute: typeof Dashboard_layoutRoute
     }
+    '/dashboard/__layout/settings/origin': {
+      id: '/dashboard/__layout/settings/origin'
+      path: '/settings/origin'
+      fullPath: '/dashboard/settings/origin'
+      preLoaderRoute: typeof Dashboard_layoutSettingsOriginRouteImport
+      parentRoute: typeof Dashboard_layoutRoute
+    }
   }
 }
 
@@ -156,6 +176,7 @@ interface Dashboard_layoutRouteChildren {
   Dashboard_layoutIndexRoute: typeof Dashboard_layoutIndexRoute
   Dashboard_layoutSettingsGeneralRoute: typeof Dashboard_layoutSettingsGeneralRoute
   Dashboard_layoutSettingsNetworkRoute: typeof Dashboard_layoutSettingsNetworkRoute
+  Dashboard_layoutSettingsOriginRoute: typeof Dashboard_layoutSettingsOriginRoute
 }
 
 const Dashboard_layoutRouteChildren: Dashboard_layoutRouteChildren = {
@@ -163,6 +184,7 @@ const Dashboard_layoutRouteChildren: Dashboard_layoutRouteChildren = {
   Dashboard_layoutIndexRoute: Dashboard_layoutIndexRoute,
   Dashboard_layoutSettingsGeneralRoute: Dashboard_layoutSettingsGeneralRoute,
   Dashboard_layoutSettingsNetworkRoute: Dashboard_layoutSettingsNetworkRoute,
+  Dashboard_layoutSettingsOriginRoute: Dashboard_layoutSettingsOriginRoute,
 }
 
 const Dashboard_layoutRouteWithChildren =

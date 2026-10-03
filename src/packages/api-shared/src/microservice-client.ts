@@ -1,9 +1,18 @@
 import { ClientProviderOptions, Transport } from '@nestjs/microservices';
 import { apiEnv } from './api-env.js';
 
-type MicroserviceType = 'auth' | 'warehouse' | 'messaging' | 'admin' | 'authEvents';
+type MicroserviceType =
+    'combine' | 'auth' | 'warehouse' | 'messaging' | 'admin' | 'authEvents' | 'adminEvents';
 
 export const MICROSERVICE_CLIENT: Record<MicroserviceType, ClientProviderOptions> = {
+    combine: {
+        name: 'COMBINE_MICROSERVICE',
+        transport: Transport.TCP,
+        options: {
+            host: apiEnv.get('API_COMBINE_HOST') || '127.0.0.1',
+            port: Number(apiEnv.get('API_COMBINE_PORT')) || 4001,
+        },
+    },
     auth: {
         name: 'AUTH_MICROSERVICE',
         transport: Transport.TCP,
@@ -42,6 +51,19 @@ export const MICROSERVICE_CLIENT: Record<MicroserviceType, ClientProviderOptions
         options: {
             client: {
                 clientId: 'api-auth',
+                brokers: [
+                    `${apiEnv.get('KAFKA_HOST') || '127.0.0.1'}:${apiEnv.get('KAFKA_PORT') || '9092'}`,
+                ],
+            },
+            producerOnlyMode: true,
+        },
+    },
+    adminEvents: {
+        name: 'ADMIN_EVENTS',
+        transport: Transport.KAFKA,
+        options: {
+            client: {
+                clientId: 'api-admin-producer',
                 brokers: [
                     `${apiEnv.get('KAFKA_HOST') || '127.0.0.1'}:${apiEnv.get('KAFKA_PORT') || '9092'}`,
                 ],

@@ -6,7 +6,7 @@ import { MESSAGE_PATTERN } from '@org/constants';
 @Controller('auth')
 export class AuthController {
     constructor(
-        @Inject(MICROSERVICE_CLIENT.auth.name)
+        @Inject(MICROSERVICE_CLIENT.combine.name)
         private readonly authService: ClientProxy,
     ) {}
 

@@ -1,9 +1,6 @@
-export * from './dashboard/DashboardLayout';
-export * from './dashboard/header';
-export * from './dashboard/type';
+export * from './dashboard';
 export * from './GridWrapper';
 export * from './language-switcher';
-// export * from './Sidebar';
 export * from './theme-switcher';
 
 export * from './ui/accordion';
