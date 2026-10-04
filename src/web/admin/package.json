@@ -15,9 +15,10 @@
         "react-dom": "catalog:",
         "react-hook-form": "catalog:",
         "react-i18next": "catalog:",
-        "lucide-react":"catalog:",
+        "lucide-react": "catalog:",
         "socket.io-client": "catalog:",
-        "zod": "catalog:"
+        "zod": "catalog:",
+        "@tanstack/react-table": "catalog:"
     },
     "devDependencies": {
         "@org/types": "workspace:*",

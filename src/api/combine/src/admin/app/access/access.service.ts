@@ -1,7 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOriginDTO, UpdateOriginDTO } from '@org/api-dto';
-import { ErrorService, ResponseHelperService, WinstonLoggerService } from '@org/api-shared';
+import {
+    convertToEndDate,
+    convertToStartDate,
+    ErrorService,
+    extractRequestQueries,
+    ResponseHelperService,
+    WinstonLoggerService,
+} from '@org/api-shared';
 import { AdminPrismaService } from '@org/database-admin';
+import { Origin } from '@org/database-admin/prisma';
 import { AdminConfigPublisherService } from '../config/config.service.js';
 
 @Injectable()
@@ -42,14 +50,50 @@ export class OriginService {
         });
     }
 
-    async getAllOrigin() {
+    async getAllOrigin(query: Record<string, string | string[] | undefined>) {
+        const { pagination, orderBy, filters, startDate, endDate } = extractRequestQueries<Origin>({
+            query,
+            orderBy: [
+                {
+                    createdAt: 'desc',
+                },
+            ],
+            filters: ['origin', 'allowedHeaders', 'methods'],
+        });
+
+        const { origin } = filters;
+
+        const start = startDate ? convertToStartDate(startDate) : undefined;
+
+        const end = endDate ? convertToEndDate(endDate) : undefined;
+
         return this.apiHandler.handle({
             method: 'getAll',
             successMessage: 'origins_successfully_retrieved',
             logger: this.logger,
             fn: () =>
                 this.prisma.origin.findMany({
-                    orderBy: { originId: 'asc' },
+                    where: {
+                        ...(origin && {
+                            origin: {
+                                contains: origin,
+                            },
+                        }),
+
+                        ...((start || end) && {
+                            createdAt: {
+                                ...(start && {
+                                    gte: start,
+                                }),
+
+                                ...(end && {
+                                    lte: end,
+                                }),
+                            },
+                        }),
+                    },
+                    ...pagination,
+                    orderBy,
                 }),
         });
     }

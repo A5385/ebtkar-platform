@@ -9,12 +9,13 @@ import {
     ParseBoolPipe,
     Patch,
     Post,
+    Req,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CreateOriginDTO, UpdateOriginDTO } from '@org/api-dto';
 import { MICROSERVICE_CLIENT } from '@org/api-shared';
 import { MESSAGE_PATTERN } from '@org/constants';
-
+import type { Request } from 'express';
 @CacheTTL(-1)
 @Controller('admin-origin')
 export class AdminOriginController {
@@ -29,8 +30,8 @@ export class AdminOriginController {
     }
 
     @Get('get-all-origins')
-    getAllOrigin() {
-        return this.adminService.send(MESSAGE_PATTERN.admin.access.getAll, {});
+    getAllOrigin(@Req() req: Request) {
+        return this.adminService.send(MESSAGE_PATTERN.admin.access.getAll, { query: req.query });
     }
 
     @Get('find-origin-by-id/:originId')

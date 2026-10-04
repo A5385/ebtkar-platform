@@ -1,5 +1,7 @@
+import { DemoPage } from '@org/shared-web';
+
 export function HomePage() {
-    return <h1 className='text-3xl font-semibold'>Welcome @org/admin</h1>;
+    return <DemoPage />;
 }
 
 export default HomePage;

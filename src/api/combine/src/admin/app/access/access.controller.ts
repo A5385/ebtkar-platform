@@ -4,6 +4,10 @@ import { CreateOriginDTO, UpdateOriginDTO } from '@org/api-dto';
 import { MESSAGE_PATTERN } from '@org/constants';
 import { OriginService } from './access.service.js';
 
+type PayloadQuery = {
+    query: Record<string, string | string[] | undefined>;
+};
+
 @Controller()
 export class OriginController {
     constructor(private readonly originService: OriginService) {}
@@ -14,8 +18,8 @@ export class OriginController {
     }
 
     @MessagePattern(MESSAGE_PATTERN.admin.access.getAll)
-    getAllOrigin() {
-        return this.originService.getAllOrigin();
+    getAllOrigin(@Payload() payload: PayloadQuery) {
+        return this.originService.getAllOrigin(payload.query);
     }
 
     @MessagePattern(MESSAGE_PATTERN.admin.access.findById)

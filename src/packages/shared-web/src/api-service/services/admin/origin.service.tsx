@@ -1,3 +1,5 @@
+// src\packages\shared-web\src\api-service\services\admin\origin.service.tsx
+import { QueryParamsType } from '@org/http-client';
 import { CreateOriginFormType, Origin, UpdateOriginFormType } from '@org/schemas/admin';
 import { useApiMutation } from '../../use-api-mutation';
 import { useApiQuery } from '../../use-api-query';
@@ -6,10 +8,12 @@ export const originKeys = {
     getAll: 'GET_ALL_ORIGIN',
 };
 
-export const useGetAllOrigins = () => {
+export const useGetAllOrigins = (queryParams: QueryParamsType) => {
+    console.log('A useGetAllOrigins', queryParams);
     return useApiQuery<Origin[]>({
         endpoint: 'admin-origin/get-all-origins',
         queryKey: [originKeys.getAll],
+        queryParams,
     });
 };
 export const useCreateOrigin = () => {

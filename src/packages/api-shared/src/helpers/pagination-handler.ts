@@ -74,6 +74,15 @@ export function extractRequestQueries<T, K extends keyof T = keyof T>({
         }
     });
 
+    //     const rawSort = query['sort'];
+    // const requested = typeof rawSort === 'string'
+    //     ? rawSort.split(',').flatMap((part) => {
+    //           const [field, dir] = part.split(':');
+    //           return sortable?.includes(field as keyof T) && (dir === 'asc' || dir === 'desc')
+    //               ? [{ [field]: dir } as OrderedByType<T>]
+    //               : [];
+    //       })
+    //     : [];
     return {
         startDate,
         endDate,
@@ -83,7 +92,7 @@ export function extractRequestQueries<T, K extends keyof T = keyof T>({
             skip: (queryPage - 1) * pageSizeQuery,
         },
 
-        orderBy,
+        //   orderBy: requested.length ? requested : orderBy,orderBy
 
         filters: extractedFilters,
     };

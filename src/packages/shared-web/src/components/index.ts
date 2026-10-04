@@ -1,6 +1,7 @@
 export * from './dashboard';
 export * from './GridWrapper';
 export * from './language-switcher';
+export * from './table';
 export * from './theme-switcher';
 
 export * from './ui/accordion';

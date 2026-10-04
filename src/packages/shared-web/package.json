@@ -37,7 +37,8 @@
         "tailwind-merge": "catalog:",
         "tailwindcss": "catalog:",
         "@tanstack/react-router": "catalog:",
-        "tw-animate-css": "catalog:"
+        "tw-animate-css": "catalog:",
+        "@tanstack/react-table": "catalog:"
     },
     "peerDependencies": {
         "react": "catalog:",

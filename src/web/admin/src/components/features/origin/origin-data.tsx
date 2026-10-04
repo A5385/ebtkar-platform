@@ -1,89 +1,55 @@
+// src\web\admin\src\components\features\origin\origin-data.tsx
 import {
     DashboardSection,
+    DataTable,
     Sheet,
     SheetContent,
     SheetTrigger,
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
     UiButton,
+    UiInput,
+    useDataTableState,
+    useDebouncedValue,
     useGetAllOrigins,
 } from '@org/shared-web';
-import { EditIcon } from 'lucide-react';
-import { ReactNode, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import OriginForm from './origin-form';
+import { useOriginColumns } from './origins-column';
 
 const OriginData = () => {
     const { t } = useTranslation();
-    const { data, isLoading } = useGetAllOrigins();
+    const tableState = useDataTableState();
+    const { setColumnFilters, setPagination } = tableState;
 
-    const [addOpen, setAddOpen] = useState(false);
-    const [selectedOriginId, setSelectedOriginId] = useState<string | null>(null);
+    const [search, setSearch] = useState('');
+    const debouncedSearch = useDebouncedValue(search);
 
-    const columns = useMemo(() => {
-        if (!data?.length) return [];
+    useEffect(() => {
+        setColumnFilters(debouncedSearch ? [{ id: 'origin', value: debouncedSearch }] : []);
+        setPagination((p) => ({ ...p, pageIndex: 0 })); // back to page 1 on new filter
+    }, [debouncedSearch, setColumnFilters, setPagination]);
 
-        return Object.keys(data[0]) as (keyof (typeof data)[number])[];
-    }, [data]);
+    const { data, isLoading } = useGetAllOrigins({
+        filters: tableState.columnFilters,
+        sort: tableState.sorting,
+        pagination: tableState.pagination,
+    });
 
-    if (isLoading) return <div>Loading....</div>;
+    const columns = useOriginColumns();
 
     return (
         <DashboardSection>
-            {/* Add */}
-            <UiSheet open={addOpen} setOpen={setAddOpen} title='add_new_origin'>
-                <OriginForm open={addOpen} setOpen={setAddOpen} />
-            </UiSheet>
-
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        {columns.map((key) => (
-                            <TableHead key={String(key)}>{t(String(key))}</TableHead>
-                        ))}
-
-                        <TableHead>{t('actions')}</TableHead>
-                    </TableRow>
-                </TableHeader>
-
-                <TableBody>
-                    {data?.map((row) => (
-                        <TableRow key={row.originId}>
-                            {columns.map((key) => (
-                                <TableCell key={String(key)}>{String(row[key] ?? '')}</TableCell>
-                            ))}
-
-                            <TableCell>
-                                <UiButton onClick={() => setSelectedOriginId(row.originId)}>
-                                    <EditIcon size={16} />
-                                </UiButton>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-
-            {/* Edit */}
-            <UiSheet
-                open={!!selectedOriginId}
-                setOpen={(open) => {
-                    if (!open) setSelectedOriginId(null);
-                }}
-            >
-                {selectedOriginId && (
-                    <OriginForm
-                        open={!!selectedOriginId}
-                        setOpen={(open) => {
-                            if (!open) setSelectedOriginId(null);
-                        }}
-                        originId={selectedOriginId}
+            <DataTable
+                {...{ data, isLoading, columns, ...tableState }}
+                filters={
+                    <UiInput
+                        type='text'
+                        placeholder={t('origins')}
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className='max-w-sm'
                     />
-                )}
-            </UiSheet>
+                }
+            />
         </DashboardSection>
     );
 };
