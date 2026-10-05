@@ -22,6 +22,7 @@
         }
     },
     "scripts": {
+        "dev:pkg": "tsc -b -v --watch",
         "db:gen": "prisma generate && pnpm --dir ../../.. schemas:post-generate",
         "db:mig": "prisma migrate dev",
         "db:dep": "prisma migrate deploy",
@@ -30,7 +31,15 @@
         "db:format": "prisma format"
     },
     "nx": {
-        "name": "database-notification"
+        "name": "database-notification",
+        "targets": {
+            "dev:pkg": {
+                "executor": "nx:run-script",
+                "options": {
+                    "script": "dev:pkg"
+                }
+            }
+        }
     },
     "dependencies": {
         "@nestjs/common": "catalog:",

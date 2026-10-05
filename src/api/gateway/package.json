@@ -3,13 +3,20 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "dev:build": "tsc --build tsconfig.app.json --watch",
-        "dev": "pnpm -w exec nx serve api-gateway",
-        "build": "pnpm -w exec nx build api-gateway"
+        "dev": "sh -c \"tsc --build tsconfig.app.json --watch & node --watch --enable-source-maps dist/main.js\"",
+        "build": "rimraf dist && nest build",
+        "start:dev": "nest start",
+        "start:api": "node dist/main.js"
     },
     "nx": {
         "name": "api-gateway",
         "targets": {
+            "dev": {
+                "executor": "nx:run-script",
+                "options": {
+                    "script": "dev"
+                }
+            },
             "build": {
                 "executor": "nx:run-commands",
                 "outputs": [
@@ -42,7 +49,6 @@
                 "outputs": [
                     "{projectRoot}/dist/workspace_modules"
                 ],
-                "executor": "@nx/js:copy-workspace-modules",
                 "options": {
                     "buildTarget": "build"
                 }
@@ -61,29 +67,6 @@
                 "options": {
                     "command": "pnpm endpoints:watch",
                     "cwd": "{workspaceRoot}"
-                }
-            },
-            "serve": {
-                "continuous": true,
-                "executor": "@nx/js:node",
-                "defaultConfiguration": "development",
-                "dependsOn": [
-                    "build",
-                    "watch-deps",
-                    "watch-endpoints"
-                ],
-                "options": {
-                    "buildTarget": "api-gateway:build",
-                    "runBuildTargetDependencies": false,
-                    "inspect": false
-                },
-                "configurations": {
-                    "development": {
-                        "buildTarget": "api-gateway:build:development"
-                    },
-                    "production": {
-                        "buildTarget": "api-gateway:build:production"
-                    }
                 }
             },
             "test": {

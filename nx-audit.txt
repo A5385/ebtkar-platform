@@ -1,0 +1,1653 @@
+######## VERSIONS ########
+v24.19.0
+11.24.0
+Nx Version:
+- Local: v23.1.2
+- Global: Not found
+Version 6.0.3
+Legend: production dependency, optional only, dev only
+
+@org/source@0.0.0 D:\MyProjects\ebtkar-platform-nx (PRIVATE)
+│
+│   dependencies:
+├── @nestjs/core@12.0.1 peer#7b7f (2 variations)
+│
+│   devDependencies:
+├── @nx/js@23.1.2
+├── @nx/webpack@23.1.2
+├── @swc/core@1.16.1
+├── nx@23.1.2
+└── typescript@6.0.3
+
+@org/api-admin@0.0.1 D:\MyProjects\ebtkar-platform-nx\src\api\admin (PRIVATE)
+│
+│   dependencies:
+└── @nestjs/core@12.0.1 peer#5bdf (2 variations)
+
+@org/api-auth@0.0.1 D:\MyProjects\ebtkar-platform-nx\src\api\auth (PRIVATE)
+│
+│   dependencies:
+└── @nestjs/core@12.0.1 peer#5bdf (2 variations)
+
+@org/api-combine@0.0.1 D:\MyProjects\ebtkar-platform-nx\src\api\combine (PRIVATE)
+│
+│   dependencies:
+└── @nestjs/core@12.0.1 peer#5bdf (2 variations)
+
+@org/api-gateway@0.0.1 D:\MyProjects\ebtkar-platform-nx\src\api\gateway (PRIVATE)
+│
+│   dependencies:
+└── @nestjs/core@12.0.1 peer#5bdf (2 variations)
+
+@org/api-messaging@0.0.1 D:\MyProjects\ebtkar-platform-nx\src\api\messaging (PRIVATE)
+│
+│   dependencies:
+└── @nestjs/core@12.0.1 peer#5bdf (2 variations)
+
+@org/database-admin@0.0.1 D:\MyProjects\ebtkar-platform-nx\src\database\admin (PRIVATE)
+│
+│   dependencies:
+├── @prisma/client@7.10.0
+│
+│   devDependencies:
+└── prisma@7.10.0
+
+@org/database-auth@0.0.1 D:\MyProjects\ebtkar-platform-nx\src\database\auth (PRIVATE)
+│
+│   dependencies:
+├── @prisma/client@7.10.0
+│
+│   devDependencies:
+└── prisma@7.10.0
+
+@org/database-notification@0.0.1 D:\MyProjects\ebtkar-platform-nx\src\database\notification (PRIVATE)
+│
+│   dependencies:
+├── @prisma/client@7.10.0
+│
+
+######## NX REPORT ########
+
+[7m[1m[36m NX [39m[22m[27m  Report complete - copy this into the issue template
+
+Node           : 24.19.0
+OS             : win32-x64
+Native Target  : x86_64-windows
+pnpm           : 11.24.0
+daemon         : Available
+
+[32mnx                [39m : [1m23.1.2[22m
+[32m@nx/js            [39m : [1m23.1.2[22m
+[32m@nx/eslint        [39m : [1m23.1.2[22m
+[32m@nx/workspace     [39m : [1m23.1.2[22m
+[32m@nx/jest          [39m : [1m23.1.2[22m
+[32m@nx/devkit        [39m : [1m23.1.2[22m
+[32m@nx/eslint-plugin [39m : [1m23.1.2[22m
+[32m@nx/nest          [39m : [1m23.1.2[22m
+[32m@nx/node          [39m : [1m23.1.2[22m
+[32m@nx/playwright    [39m : [1m23.1.2[22m
+[32m@nx/react         [39m : [1m23.1.2[22m
+[32m@nx/vite          [39m : [1m23.1.2[22m
+[32m@nx/vitest        [39m : [1m23.1.2[22m
+[32m@nx/web           [39m : [1m23.1.2[22m
+[32m@nx/webpack       [39m : [1m23.1.2[22m
+[32m@nx/docker        [39m : [1m23.1.2[22m
+[32mtypescript        [39m : [1m6.0.3[22m
+---------------------------------------
+Registered Plugins:
+[32m@nx/js/typescript[39m
+[32m@nx/vite/plugin[39m
+[32m@nx/eslint/plugin[39m
+[32m@nx/vitest[39m
+[32m@nx/playwright/plugin[39m
+[32m@nx/webpack/plugin[39m
+[32m@nx/jest/plugin[39m
+---------------------------------------
+Community plugins:
+[32m@nx-tools/nx-prisma [39m: [1m7.3.0[22m
+---------------------------------------
+Cache Usage: 5.18 MB / 40.00 GB
+---------------------------------------
+⚠️ Unable to construct project graph.
+The Nx Daemon for 'd:\MyProjects\ebtkar-platform-nx' received a message from a different workspace ('D:\MyProjects\ebtkar-platform-nx') and refused to process it. This usually means multiple workspaces are sharing a socket directory; ensure NX_SOCKET_DIR (or NX_DAEMON_SOCKET_DIR) is not set to a shared location.
+Error: The Nx Daemon for 'd:\MyProjects\ebtkar-platform-nx' received a message from a different workspace ('D:\MyProjects\ebtkar-platform-nx') and refused to process it. This usually means multiple workspaces are sharing a socket directory; ensure NX_SOCKET_DIR (or NX_DAEMON_SOCKET_DIR) is not set to a shared location.
+    at assertNotForeignWorkspaceMessage (D:\MyProjects\ebtkar-platform-nx\node_modules\.pnpm\nx@23.1.2_@swc-node+registe_c5ce7ac7ceeacaca2c8bc2466537f5e6\node_modules\nx\dist\src\daemon\message-types\daemon-message.js:29:15)
+    at handleMessage (D:\MyProjects\ebtkar-platform-nx\node_modules\.pnpm\nx@23.1.2_@swc-node+registe_c5ce7ac7ceeacaca2c8bc2466537f5e6\node_modules\nx\dist\src\daemon\server\server.js:126:67)
+    at D:\MyProjects\ebtkar-platform-nx\node_modules\.pnpm\nx@23.1.2_@swc-node+registe_c5ce7ac7ceeacaca2c8bc2466537f5e6\node_modules\nx\dist\src\daemon\server\server.js:82:15
+    at Socket.<anonymous> (D:\MyProjects\ebtkar-platform-nx\node_modules\.pnpm\nx@23.1.2_@swc-node+registe_c5ce7ac7ceeacaca2c8bc2466537f5e6\node_modules\nx\dist\src\utils\consume-messages-from-socket.js:27:21)
+    at Socket.emit (node:events:509:28)
+    at addChunk (node:internal/streams/readable:563:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:514:3)
+    at Readable.push (node:internal/streams/readable:394:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+
+
+######## PROJECTS ########
+
+[7m[1m[31m NX [39m[22m[27m  [31mThe Nx Daemon for 'd:\MyProjects\ebtkar-platform-nx' received a message from a different workspace ('D:\MyProjects\ebtkar-platform-nx') and refused to process it. This usually means multiple workspaces are sharing a socket directory; ensure NX_SOCKET_DIR (or NX_DAEMON_SOCKET_DIR) is not set to a shared location.[39m
+
+Pass --verbose to see the stacktrace.
+
+
+######## RESOLVED api-gateway (بعد الـ inferred targets) ########
+
+[7m[1m[31m NX [39m[22m[27m  [31mThe Nx Daemon for 'd:\MyProjects\ebtkar-platform-nx' received a message from a different workspace ('D:\MyProjects\ebtkar-platform-nx') and refused to process it. This usually means multiple workspaces are sharing a socket directory; ensure NX_SOCKET_DIR (or NX_DAEMON_SOCKET_DIR) is not set to a shared location.[39m
+
+Pass --verbose to see the stacktrace.
+
+
+######## RESOLVED api-combine ########
+
+[7m[1m[31m NX [39m[22m[27m  [31mThe Nx Daemon for 'd:\MyProjects\ebtkar-platform-nx' received a message from a different workspace ('D:\MyProjects\ebtkar-platform-nx') and refused to process it. This usually means multiple workspaces are sharing a socket directory; ensure NX_SOCKET_DIR (or NX_DAEMON_SOCKET_DIR) is not set to a shared location.[39m
+
+Pass --verbose to see the stacktrace.
+
+
+######## ROOT FILES ########
+
+######## pnpm-workspace.yaml ########
+packages:
+  - 'src/packages/*'
+  - 'src/web/*'
+  - 'src/api/*'
+  - 'src/database/*'
+allowBuilds:
+  unrs-resolver: true
+  esbuild: false
+  '@swc/core': false
+  '@nestjs/core': false
+  '@parcel/watcher': true
+  less: true
+  nx: true
+  '@prisma/engines': true
+  prisma: true
+  '@prisma/client': true
+
+catalog:
+  # Nx
+  nx: 23.1.2
+  '@nx-tools/nx-prisma': ^7.3.0
+  '@nx/devkit': 23.1.2
+  '@nx/eslint': 23.1.2
+  '@nx/eslint-plugin': 23.1.2
+  '@nx/jest': 23.1.2
+  '@nx/js': 23.1.2
+  '@nx/nest': 23.1.2
+  '@nx/node': 23.1.2
+  '@nx/playwright': 23.1.2
+  '@nx/react': 23.1.2
+  '@nx/vite': 23.1.2
+  '@nx/vitest': 23.1.2
+  '@nx/web': 23.1.2
+  '@nx/webpack': 23.1.2
+  # TypeScript
+  typescript: 6.0.3
+  typescript-eslint: 8.68.0
+  tslib: 2.8.1
+  ts-node: 10.9.2
+  tsx: ^4.23.12
+  # ESLint and formatting
+  '@eslint/js': 9.39.5
+  eslint: 9.39.5
+  eslint-config-prettier: 10.1.8
+  eslint-plugin-import: 2.32.0
+  eslint-plugin-jsx-a11y: 6.10.2
+  eslint-plugin-playwright: 2.11.0
+  eslint-plugin-react: 7.37.5
+  eslint-plugin-react-hooks: 7.1.1
+  jsonc-eslint-parser: 3.3.0
+  prettier: 3.9.6
+  # SWC
+  '@swc-node/register': 1.12.1
+  '@swc/cli': ~0.8.1
+  '@swc/core': 1.16.1
+  '@swc/helpers': 0.5.23
+  '@swc/jest': 0.2.39
+  # React
+  react: 19.2.8
+  react-dom: 19.2.8
+  '@types/react': 19.2.18
+  '@types/react-dom': 19.2.5
+  # Vite
+  vite: 8.2.2
+  '@vitejs/plugin-react': 6.1.0
+  '@tailwindcss/vite': ^4.3.3
+  vite-plugin-dts: 5.0.3
+  # Vitest
+  vitest: 4.1.11
+  '@vitest/coverage-v8': 4.1.11
+  '@vitest/ui': 4.1.11
+  jsdom: 30.0.1
+  # Jest
+  jest: 30.4.2
+  jest-environment-node: 30.4.1
+  jest-util: 30.4.1
+  ts-jest: 29.4.12
+  '@types/jest': ~30.0.0
+  # Testing
+  '@testing-library/dom': 10.4.1
+  '@testing-library/react': 16.3.2
+  '@playwright/test': 1.62.1
+  # NestJS
+  '@nestjs/common': 12.0.1
+  '@nestjs/core': 12.0.1
+  '@nestjs/platform-express': 12.0.1
+  '@nestjs/schematics': 12.0.0
+  '@nestjs/testing': 12.0.1
+  "@nestjs/microservices": "^12.0.1"
+  "@nestjs/websockets": "^12.0.1"
+  "@nestjs/platform-socket.io": "^12.0.1"
+  kafkajs: ^2.2.4
+  nodemailer: ^7.0.6
+  "@types/nodemailer": ^7.0.1
+  socket.io: ^4.8.1
+  socket.io-client: ^4.8.1
+  jose: ^6.1.0
+  reflect-metadata: 0.2.2
+  rxjs: 7.8.2
+  # Prisma and PostgreSQL
+  prisma: ^7.10.0
+  '@prisma/client': 7.10.0
+  '@prisma/adapter-pg': 7.10.0
+  pg: 8.23.0
+  '@types/pg': ^8.23.1
+  zod-prisma-types: ^3.3.11
+  # Validation and configuration
+  zod: ^4.4.3
+  dotenv: ^17.4.2
+  # Web UI / shadcn
+  '@base-ui/react': ^1.7.0
+  '@fontsource-variable/geist': ^5.3.0
+  '@shadcn/react': ^0.3.0
+  class-variance-authority: ^0.7.1
+  clsx: ^2.1.1
+  cmdk: ^1.1.1
+  date-fns: ^4.4.0
+  embla-carousel-react: ^8.6.0
+  input-otp: ^1.5.0
+  lucide-react: ^1.34.0
+  react-day-picker: ^10.0.1
+  react-resizable-panels: ^4.12.3
+  recharts: 3.10.1
+  shadcn: ^4.19.0
+  tailwind-merge: ^3.6.0
+  tailwindcss: ^4.3.3
+  tw-animate-css: ^1.4.0
+  # Webpack
+  webpack: 5.110.0
+  webpack-cli: 7.2.2
+  webpack-dev-server: 6.0.0
+  # Miscellaneous tooling
+  jiti: 2.7.0
+  '@types/node': ^24
+  i18next: 26.4.0
+  react-i18next: 17.0.12
+  '@tanstack/react-query': 5.102.7
+  '@tanstack/react-router': ^1.170.32
+  '@tanstack/router-plugin': ^1.168.35
+  'cross-env': '^10.1.0'
+  '@babel/core': '^7.14.5'
+  '@babel/preset-react': '^7.14.5'
+  'react-hook-form': '^7.86.0'
+  '@hookform/resolvers': '^5.9.1'
+  "winston": "^3.19.0"
+  "nest-winston": "^1.10.2"
+  "nestjs-zod": "^5.5.0"
+  "cookie-parser": "^1.4.7"
+  "express": "^5.2.1"
+  "@types/express": "^5.0.6"
+  "@types/cookie-parser": "^1.4.10"
+  "@nestjs/cache-manager": "^12.0.0"
+  "cache-manager": "^7.2.9"
+  "@keyv/redis": "^5.1.6"
+  "bcryptjs": "^3.0.3"
+  "ioredis": "^6.0.0"
+  "dotenv-expand": "^1000.0.0"
+  "@tanstack/react-table": "^9.2.5"
+
+minimumReleaseAgeExclude:
+  - '@nestjs/common@12.0.1'
+  - '@nestjs/core@12.0.1'
+  - '@nestjs/platform-express@12.0.1'
+  - '@nestjs/schematics@12.0.0'
+  - '@nestjs/testing@12.0.1'
+  - '@nx/devkit@23.1.2'
+  - '@nx/docker@23.1.2'
+  - '@nx/eslint-plugin@23.1.2'
+  - '@nx/eslint@23.1.2'
+  - '@nx/jest@23.1.2'
+  - '@nx/js@23.1.2'
+  - '@nx/nest@23.1.2'
+  - '@nx/node@23.1.2'
+  - '@nx/nx-darwin-arm64@23.1.2'
+  - '@nx/nx-darwin-x64@23.1.2'
+  - '@nx/nx-freebsd-x64@23.1.2'
+  - '@nx/nx-linux-arm-gnueabihf@23.1.2'
+  - '@nx/nx-linux-arm64-gnu@23.1.2'
+  - '@nx/nx-linux-arm64-musl@23.1.2'
+  - '@nx/nx-linux-x64-gnu@23.1.2'
+  - '@nx/nx-linux-x64-musl@23.1.2'
+  - '@nx/nx-win32-arm64-msvc@23.1.2'
+  - '@nx/nx-win32-x64-msvc@23.1.2'
+  - '@nx/playwright@23.1.2'
+  - '@nx/react@23.1.2'
+  - '@nx/vite@23.1.2'
+  - '@nx/vitest@23.1.2'
+  - '@nx/web@23.1.2'
+  - '@nx/webpack@23.1.2'
+  - '@nx/workspace@23.1.2'
+  - '@tanstack/query-core@5.102.7'
+  - '@tanstack/react-query@5.102.7'
+  - minimizer-webpack-plugin@5.7.0
+  - nx@23.1.2
+  - webpack@5.110.0
+  - '@tanstack/react-table@9.2.5'
+  - '@tanstack/table-core@9.2.5'
+
+######## .gitignore ########
+# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# compiled output
+dist
+tmp
+out-tsc
+
+# dependencies
+node_modules
+**/node_modules
+dist
+build
+.env
+.env.*
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+.nx/cache
+.nx/workspace-data
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
+
+.claude/worktrees
+.claude/settings.local.json
+.nx/polygraph
+.nx/self-healing
+.nx/migrate-runs
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
+test-output
+.pnpm-store
+
+
+
+# Machine-specific SSH configuration
+tools/deployment/dev.config.json
+
+######## tsconfig.json ########
+{
+    "extends": "./tsconfig.base.json",
+    "compileOnSave": false,
+    "files": [],
+    "references": [
+        {
+            "path": "./src/packages/data-service"
+        },
+        {
+            "path": "./src/packages/query-client"
+        },
+        {
+            "path": "./src/packages/http-client"
+        },
+        {
+            "path": "./src/packages/constants"
+        },
+        {
+            "path": "./src/database/warehouse"
+        },
+        {
+            "path": "./src/packages/api-dto"
+        },
+        {
+            "path": "./src/packages/schemas"
+        },
+        {
+            "path": "./src/api/gateway-e2e"
+        },
+        {
+            "path": "./src/packages/shared-web"
+        },
+        {
+            "path": "./src/packages/types"
+        },
+        {
+            "path": "./src/database/auth"
+        },
+        {
+            "path": "./src/web/auth-e2e"
+        },
+        {
+            "path": "./src/packages/env"
+        },
+        {
+            "path": "./src/api/gateway"
+        },
+        {
+            "path": "./src/web/admin"
+        },
+        {
+            "path": "./src/web/auth"
+        },
+        {
+            "path": "./src/api/auth"
+        },
+        {
+            "path": "./src/packages/localization"
+        },
+        {
+            "path": "./src/packages/api-shared"
+        },
+        {
+            "path": "./src/web/admin-e2e"
+        },
+        {
+            "path": "./src/database/notification"
+        },
+        {
+            "path": "./src/api/messaging"
+        },
+        {
+            "path": "./src/database/admin"
+        },
+        {
+            "path": "./src/api/admin"
+        },
+        {
+            "path": "./src/api/combine"
+        }
+    ],
+    "compilerOptions": {}
+}
+
+######## LIBS اللي الـ apps معتمدة عليهم ########
+
+######## src/packages/schemas/package.json ########
+{
+    "name": "@org/schemas",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./auth": {
+            "@org/source": "./src/auth/index.ts",
+            "types": "./dist/auth/index.d.ts",
+            "import": "./dist/auth/index.js",
+            "default": "./dist/auth/index.js"
+        },
+        "./warehouse": {
+            "@org/source": "./src/warehouse/index.ts",
+            "types": "./dist/warehouse/index.d.ts",
+            "import": "./dist/warehouse/index.js",
+            "default": "./dist/warehouse/index.js"
+        },
+        "./admin": {
+            "@org/source": "./src/admin/index.ts",
+            "types": "./dist/admin/index.d.ts",
+            "import": "./dist/admin/index.js",
+            "default": "./dist/admin/index.js"
+        }
+    },
+    "nx": {
+        "name": "shared-schemas"
+    },
+    "dependencies": {
+        "@org/database-admin": "workspace:*",
+        "@org/database-auth": "workspace:*",
+        "@org/database-notification": "workspace:*",
+        "@org/constants": "workspace:*",
+        "@org/database-warehouse": "workspace:*",
+        "tslib": "catalog:",
+        "zod": "catalog:"
+    },
+    "devDependencies": {
+        "vite": "catalog:",
+        "vite-plugin-dts": "catalog:",
+        "vitest": "catalog:"
+    }
+}
+
+######## src/packages/schemas/tsconfig.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "files": [],
+    "include": [],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ]
+}
+
+######## src/packages/schemas/tsconfig.lib.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDeclarationOnly": false,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"]
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        {
+            "path": "../../database/admin/tsconfig.lib.json"
+        },
+        {
+            "path": "../../database/warehouse/tsconfig.lib.json"
+        },
+        {
+            "path": "../constants/tsconfig.lib.json"
+        },
+        {
+            "path": "../../database/notification/tsconfig.lib.json"
+        },
+        {
+            "path": "../../database/auth/tsconfig.lib.json"
+        }
+    ],
+    "exclude": [
+        "vite.config.ts",
+        "vite.config.mts",
+        "vitest.config.ts",
+        "vitest.config.mts",
+        "src/**/*.test.ts",
+        "src/**/*.spec.ts",
+        "src/**/*.test.tsx",
+        "src/**/*.spec.tsx",
+        "src/**/*.test.js",
+        "src/**/*.spec.js",
+        "src/**/*.test.jsx",
+        "src/**/*.spec.jsx"
+    ]
+}
+
+---- src/packages/schemas: ملفات بتتولّد؟ (generator) ----
+
+######## src/packages/constants/package.json ########
+{
+    "name": "@org/constants",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "nx": {
+        "name": "constants"
+    },
+    "dependencies": {
+        "tslib": "catalog:"
+    }
+}
+
+######## src/packages/constants/tsconfig.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "files": [],
+    "include": [],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ]
+}
+
+######## src/packages/constants/tsconfig.lib.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDeclarationOnly": false,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"]
+    },
+    "include": ["src/**/*.ts"],
+    "references": [],
+    "exclude": [
+        "vite.config.ts",
+        "vite.config.mts",
+        "vitest.config.ts",
+        "vitest.config.mts",
+        "src/**/*.test.ts",
+        "src/**/*.spec.ts",
+        "src/**/*.test.tsx",
+        "src/**/*.spec.tsx",
+        "src/**/*.test.js",
+        "src/**/*.spec.js",
+        "src/**/*.test.jsx",
+        "src/**/*.spec.jsx"
+    ]
+}
+
+---- src/packages/constants: ملفات بتتولّد؟ (generator) ----
+
+######## src/packages/api-shared/package.json ########
+{
+    "name": "@org/api-shared",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "nx": {
+        "name": "api-shared"
+    },
+    "dependencies": {
+       
+        "ioredis": "catalog:",
+        "@nestjs/common": "catalog:",
+        "@nestjs/core": "catalog:",
+        "@org/env": "workspace:*",
+        "@org/constants": "workspace:*",
+        "@org/types": "workspace:*",
+        "dotenv": "catalog:",
+        "express": "catalog:",
+        "@nestjs/microservices": "catalog:",
+        "winston": "catalog:",
+        "nest-winston": "catalog:",
+        "date-fns": "catalog:",
+        "@nestjs/cache-manager": "catalog:",
+        "cache-manager": "catalog:",
+        "@keyv/redis": "catalog:"
+    },
+    "devDependencies": {
+        "@types/express": "catalog:"
+    }
+}
+
+######## src/packages/api-shared/tsconfig.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "files": [],
+    "include": [],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ]
+}
+
+######## src/packages/api-shared/tsconfig.lib.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDeclarationOnly": false,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"],
+        "target": "es2021",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "strictBindCallApply": true,
+        "noFallthroughCasesInSwitch": true
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        {
+            "path": "../types/tsconfig.lib.json"
+        },
+        {
+            "path": "../constants/tsconfig.lib.json"
+        },
+        {
+            "path": "../env/tsconfig.lib.json"
+        }
+    ],
+    "exclude": ["jest.config.ts", "jest.config.cts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+}
+
+
+---- src/packages/api-shared: ملفات بتتولّد؟ (generator) ----
+
+######## src/packages/api-dto/package.json ########
+{
+    "name": "@org/api-dto",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "nx": {
+        "name": "api-dto"
+    },
+    "dependencies": {
+        "@org/types": "workspace:*",
+        "@org/schemas": "workspace:*",
+        "nestjs-zod": "catalog:",
+        "zod": "catalog:"
+    }
+}
+
+######## src/packages/api-dto/tsconfig.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "files": [],
+    "include": [],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ]
+}
+
+######## src/packages/api-dto/tsconfig.lib.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDeclarationOnly": false,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"],
+        "target": "es2021",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "strictBindCallApply": true,
+        "noFallthroughCasesInSwitch": true
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        {
+            "path": "../schemas/tsconfig.lib.json"
+        },
+        {
+            "path": "../types/tsconfig.lib.json"
+        }
+    ],
+    "exclude": ["jest.config.ts", "jest.config.cts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+}
+
+---- src/packages/api-dto: ملفات بتتولّد؟ (generator) ----
+
+######## src/packages/types/package.json ########
+{
+    "name": "@org/types",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "nx": {
+        "name": "types"
+    },
+    "dependencies": {
+        "tslib": "catalog:"
+    }
+}
+
+######## src/packages/types/tsconfig.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "files": [],
+    "include": [],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ]
+}
+
+######## src/packages/types/tsconfig.lib.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDeclarationOnly": false,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"]
+    },
+    "include": ["src/**/*.ts"],
+    "references": [],
+    "exclude": [
+        "vite.config.ts",
+        "vite.config.mts",
+        "vitest.config.ts",
+        "vitest.config.mts",
+        "src/**/*.test.ts",
+        "src/**/*.spec.ts",
+        "src/**/*.test.tsx",
+        "src/**/*.spec.tsx",
+        "src/**/*.test.js",
+        "src/**/*.spec.js",
+        "src/**/*.test.jsx",
+        "src/**/*.spec.jsx"
+    ]
+}
+
+---- src/packages/types: ملفات بتتولّد؟ (generator) ----
+
+######## src/database/admin/package.json ########
+{
+    "name": "@org/database-admin",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./prisma": {
+            "@org/source": "./src/generated/prisma/client.ts",
+            "types": "./dist/generated/prisma/client.d.ts",
+            "import": "./dist/generated/prisma/client.js",
+            "default": "./dist/generated/prisma/client.js"
+        },
+        "./prisma-namespace": {
+            "@org/source": "./src/generated/prisma/internal/prismaNamespace.ts",
+            "types": "./dist/generated/prisma/internal/prismaNamespace.d.ts",
+            "import": "./dist/generated/prisma/internal/prismaNamespace.js",
+            "default": "./dist/generated/prisma/internal/prismaNamespace.js"
+        }
+    },
+    "scripts": {
+        "db:gen": "prisma generate && pnpm --dir ../../.. schemas:post-generate",
+        "db:mig": "prisma migrate dev",
+        "db:dep": "prisma migrate deploy",
+        "db:seed": "prisma db seed",
+        "db:studio": "prisma studio",
+        "db:validate": "prisma validate",
+        "db:format": "prisma format",
+        "db:migrate:reset": "prisma migrate reset"
+    },
+    "nx": {
+        "name": "database-admin",
+        "targets": {
+            "prisma-deploy": {
+                "executor": "@nx-tools/nx-prisma:deploy"
+            },
+            "prisma-format": {
+                "executor": "@nx-tools/nx-prisma:format"
+            },
+            "prisma-generate": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "src/database/admin",
+                    "command": "pnpm db:gen"
+                }
+            },
+            "prisma-migrate": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "src/database/admin",
+                    "command": "pnpm db:mig",
+                    "forwardAllArgs": true
+                }
+            },
+            "prisma-pull": {
+                "executor": "@nx-tools/nx-prisma:pull"
+            },
+            "prisma-push": {
+                "executor": "@nx-tools/nx-prisma:push"
+            },
+            "prisma-reset": {
+                "executor": "@nx-tools/nx-prisma:reset"
+            },
+            "prisma-resolve": {
+                "executor": "@nx-tools/nx-prisma:resolve"
+            },
+            "prisma-seed": {
+                "executor": "@nx-tools/nx-prisma:seed"
+            },
+            "prisma-status": {
+                "executor": "@nx-tools/nx-prisma:status"
+            },
+            "prisma-studio": {
+                "executor": "@nx-tools/nx-prisma:studio"
+            },
+            "prisma-validate": {
+                "executor": "@nx-tools/nx-prisma:validate"
+            }
+        }
+    },
+    "dependencies": {
+        "@nestjs/common": "catalog:",
+        "@org/env": "workspace:*",
+        "@prisma/adapter-pg": "catalog:",
+        "@prisma/client": "catalog:",
+        "pg": "catalog:",
+        "dotenv": "catalog:",
+        "tslib": "catalog:",
+        "zod": "catalog:"
+    },
+    "devDependencies": {
+        "dotenv-expand": "catalog:",
+        "@types/pg": "catalog:",
+        "prisma": "catalog:",
+        "vite": "catalog:",
+        "vite-plugin-dts": "catalog:",
+        "vitest": "catalog:",
+        "zod-prisma-types": "catalog:"
+    }
+}
+
+######## src/database/admin/tsconfig.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "types": ["node"]
+    },
+    "include": [],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ]
+}
+
+######## src/database/admin/tsconfig.lib.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDeclarationOnly": false,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"]
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        {
+            "path": "../../packages/env/tsconfig.lib.json"
+        }
+    ],
+    "exclude": [
+        "vite.config.ts",
+        "vite.config.mts",
+        "vitest.config.ts",
+        "vitest.config.mts",
+        "src/**/*.test.ts",
+        "src/**/*.spec.ts",
+        "src/**/*.test.tsx",
+        "src/**/*.spec.tsx",
+        "src/**/*.test.js",
+        "src/**/*.spec.js",
+        "src/**/*.test.jsx",
+        "src/**/*.spec.jsx"
+    ]
+}
+
+---- src/database/admin: ملفات بتتولّد؟ (generator) ----
+src/database/admin/prisma/schema.prisma:1:generator client {
+src/database/admin/prisma/schema.prisma-2-  provider = "prisma-client"
+src/database/admin/prisma/schema.prisma-3-  output   = "../src/generated/prisma"
+src/database/admin/prisma/schema.prisma-4-}
+src/database/admin/prisma/schema.prisma-5-
+src/database/admin/prisma/schema.prisma-6-datasource db {
+src/database/admin/prisma/schema.prisma-7-  provider = "postgresql"
+--
+src/database/admin/prisma/schema.prisma:10:generator zod {
+src/database/admin/prisma/schema.prisma-11-  provider = "npx zod-prisma-types"
+src/database/admin/prisma/schema.prisma-12-  output   = "../../../packages/schemas/src/admin/generated"
+src/database/admin/prisma/schema.prisma-13-
+src/database/admin/prisma/schema.prisma-14-  useMultipleFiles         = true
+src/database/admin/prisma/schema.prisma-15-  writeBarrelFiles         = false
+src/database/admin/prisma/schema.prisma-16-  createInputTypes         = false
+
+######## src/database/auth/package.json ########
+{
+    "name": "@org/database-auth",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./prisma": {
+            "@org/source": "./src/generated/prisma/client.ts",
+            "types": "./dist/generated/prisma/client.d.ts",
+            "import": "./dist/generated/prisma/client.js",
+            "default": "./dist/generated/prisma/client.js"
+        },
+        "./prisma-namespace": {
+            "@org/source": "./src/generated/prisma/internal/prismaNamespace.ts",
+            "types": "./dist/generated/prisma/internal/prismaNamespace.d.ts",
+            "import": "./dist/generated/prisma/internal/prismaNamespace.js",
+            "default": "./dist/generated/prisma/internal/prismaNamespace.js"
+        }
+    },
+    "scripts": {
+        "db:gen": "prisma generate && pnpm --dir ../../.. schemas:post-generate",
+        "db:mig": "prisma migrate dev",
+        "db:dep": "prisma migrate deploy",
+        "db:seed": "prisma db seed",
+        "db:studio": "prisma studio",
+        "db:validate": "prisma validate",
+        "db:format": "prisma format",
+        "db:migrate:reset": "prisma migrate reset"
+    },
+    "nx": {
+        "name": "database-auth",
+        "targets": {
+            "prisma-deploy": {
+                "executor": "@nx-tools/nx-prisma:deploy"
+            },
+            "prisma-format": {
+                "executor": "@nx-tools/nx-prisma:format"
+            },
+            "prisma-generate": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "src/database/auth",
+                    "command": "pnpm db:gen"
+                }
+            },
+            "prisma-migrate": {
+                "executor": "nx:run-commands",
+                "options": {
+                    "cwd": "src/database/auth",
+                    "command": "pnpm db:mig",
+                    "forwardAllArgs": true
+                }
+            },
+            "prisma-pull": {
+                "executor": "@nx-tools/nx-prisma:pull"
+            },
+            "prisma-push": {
+                "executor": "@nx-tools/nx-prisma:push"
+            },
+            "prisma-reset": {
+                "executor": "@nx-tools/nx-prisma:reset"
+            },
+            "prisma-resolve": {
+                "executor": "@nx-tools/nx-prisma:resolve"
+            },
+            "prisma-seed": {
+                "executor": "@nx-tools/nx-prisma:seed"
+            },
+            "prisma-status": {
+                "executor": "@nx-tools/nx-prisma:status"
+            },
+            "prisma-studio": {
+                "executor": "@nx-tools/nx-prisma:studio"
+            },
+            "prisma-validate": {
+                "executor": "@nx-tools/nx-prisma:validate"
+            }
+        }
+    },
+    "dependencies": {
+        "@nestjs/common": "catalog:",
+        "@org/env": "workspace:*",
+        "@prisma/adapter-pg": "catalog:",
+        "@prisma/client": "catalog:",
+        "pg": "catalog:",
+        "dotenv": "catalog:",
+        "tslib": "catalog:",
+        "zod": "catalog:"
+    },
+    "devDependencies": {
+        "@types/pg": "catalog:",
+        "prisma": "catalog:",
+        "vite": "catalog:",
+        "vite-plugin-dts": "catalog:",
+        "vitest": "catalog:",
+        "zod-prisma-types": "catalog:"
+    }
+}
+
+######## src/database/auth/tsconfig.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "types": ["node"]
+    },
+    "include": [],
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ]
+}
+
+######## src/database/auth/tsconfig.lib.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDeclarationOnly": false,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"]
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        {
+            "path": "../../packages/env/tsconfig.lib.json"
+        }
+    ],
+    "exclude": [
+        "vite.config.ts",
+        "vite.config.mts",
+        "vitest.config.ts",
+        "vitest.config.mts",
+        "src/**/*.test.ts",
+        "src/**/*.spec.ts",
+        "src/**/*.test.tsx",
+        "src/**/*.spec.tsx",
+        "src/**/*.test.js",
+        "src/**/*.spec.js",
+        "src/**/*.test.jsx",
+        "src/**/*.spec.jsx"
+    ]
+}
+
+---- src/database/auth: ملفات بتتولّد؟ (generator) ----
+src/database/auth/prisma/schema.prisma:6:generator client {
+src/database/auth/prisma/schema.prisma-7-  provider = "prisma-client"
+src/database/auth/prisma/schema.prisma-8-  output   = "../src/generated/prisma"
+src/database/auth/prisma/schema.prisma-9-}
+src/database/auth/prisma/schema.prisma-10-
+src/database/auth/prisma/schema.prisma-11-datasource db {
+src/database/auth/prisma/schema.prisma-12-  provider = "postgresql"
+--
+src/database/auth/prisma/schema.prisma:15:generator zod {
+src/database/auth/prisma/schema.prisma-16-  provider = "npx zod-prisma-types"
+src/database/auth/prisma/schema.prisma-17-  output   = "../../../packages/schemas/src/auth/generated"
+src/database/auth/prisma/schema.prisma-18-
+src/database/auth/prisma/schema.prisma-19-  useMultipleFiles         = true
+src/database/auth/prisma/schema.prisma-20-  writeBarrelFiles         = false
+src/database/auth/prisma/schema.prisma-21-  createInputTypes         = false
+
+######## src/database/notification/package.json ########
+{
+    "name": "@org/database-notification",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./prisma": {
+            "@org/source": "./src/generated/prisma/client.ts",
+            "types": "./dist/generated/prisma/client.d.ts",
+            "import": "./dist/generated/prisma/client.js",
+            "default": "./dist/generated/prisma/client.js"
+        }
+    },
+    "scripts": {
+        "db:gen": "prisma generate && pnpm --dir ../../.. schemas:post-generate",
+        "db:mig": "prisma migrate dev",
+        "db:dep": "prisma migrate deploy",
+        "db:studio": "prisma studio",
+        "db:validate": "prisma validate",
+        "db:format": "prisma format"
+    },
+    "nx": {
+        "name": "database-notification"
+    },
+    "dependencies": {
+        "@nestjs/common": "catalog:",
+        "@org/env": "workspace:*",
+        "@prisma/adapter-pg": "catalog:",
+        "@prisma/client": "catalog:",
+        "pg": "catalog:",
+        "dotenv": "catalog:",
+        "tslib": "catalog:",
+        "zod": "catalog:"
+    },
+    "devDependencies": {
+        "@types/pg": "catalog:",
+        "prisma": "catalog:",
+        "vite": "catalog:",
+        "vite-plugin-dts": "catalog:",
+        "vitest": "catalog:",
+        "zod-prisma-types": "catalog:"
+    }
+}
+
+######## src/database/notification/tsconfig.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": { "module": "nodenext", "moduleResolution": "nodenext", "types": ["node"] },
+    "include": [],
+    "references": [{ "path": "./tsconfig.lib.json" }]
+}
+
+######## src/database/notification/tsconfig.lib.json ########
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+        "emitDeclarationOnly": false,
+        "types": ["node"]
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        {
+            "path": "../../packages/env/tsconfig.lib.json"
+        }
+    ]
+}
+
+---- src/database/notification: ملفات بتتولّد؟ (generator) ----
+src/database/notification/prisma/schema.prisma:1:generator client {
+src/database/notification/prisma/schema.prisma-2-  provider = "prisma-client"
+src/database/notification/prisma/schema.prisma-3-  output   = "../src/generated/prisma"
+src/database/notification/prisma/schema.prisma-4-}
+src/database/notification/prisma/schema.prisma-5-
+src/database/notification/prisma/schema.prisma-6-datasource db {
+src/database/notification/prisma/schema.prisma-7-  provider = "postgresql"
+--
+src/database/notification/prisma/schema.prisma:10:generator zod {
+src/database/notification/prisma/schema.prisma-11-  provider = "npx zod-prisma-types"
+src/database/notification/prisma/schema.prisma-12-  output   = "../../../packages/schemas/src/notification/generated"
+src/database/notification/prisma/schema.prisma-13-
+src/database/notification/prisma/schema.prisma-14-  useMultipleFiles         = true
+src/database/notification/prisma/schema.prisma-15-  writeBarrelFiles         = false
+src/database/notification/prisma/schema.prisma-16-  createInputTypes         = false
+
+######## SCRIPTS الغريبة ########
+
+######## tools/scripts/generate-endpoint.ts ########
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+import { isTypeScriptFile, resolveFromRoot, walkFiles, workspaceRoot } from './script-helpers.js';
+
+const gatewayPath = resolveFromRoot('src/api/gateway/src/app');
+const endpointPath = resolveFromRoot('src/packages/types/src/endpoint.ts');
+const controllerPattern = /@Controller\(\s*(?:['"]([^'"]*)['"])?\s*\)/;
+const routePattern =
+    /@(Get|Post|Put|Patch|Delete|Options|Head|All)\(\s*(?:['"]([^'"]*)['"])?\s*\)/g;
+
+function joinRoute(controllerPath = '', routePath = ''): string {
+    const route = [controllerPath, routePath]
+        .map((part) => part.replace(/^\/+|\/+$/g, ''))
+        .filter(Boolean)
+        .join('/');
+
+    return route || '/';
+}
+
+function toEndpointType(route: string): string {
+    if (!route.includes(':')) {
+        return `'${route}'`;
+    }
+
+    const parameterizedRoute = route.replace(/:[^/]+/g, '${string}');
+    return `\`${parameterizedRoute}\``;
+}
+
+async function discoverEndpoints(): Promise<string[]> {
+    const controllerFiles = (await walkFiles(gatewayPath, isTypeScriptFile))
+        .filter((filePath) => filePath.endsWith('.controller.ts'))
+        .sort((left, right) => left.localeCompare(right));
+    const endpoints = new Set<string>();
+
+    for (const controllerFile of controllerFiles) {
+        const source = await fs.readFile(controllerFile, 'utf8');
+        const controllerMatch = controllerPattern.exec(source);
+
+        if (!controllerMatch) {
+            console.warn(
+                `Skipped controller without @Controller(): ${path.relative(workspaceRoot, controllerFile)}`,
+            );
+            continue;
+        }
+
+        for (const routeMatch of source.matchAll(routePattern)) {
+            endpoints.add(joinRoute(controllerMatch[1], routeMatch[2]));
+        }
+    }
+
+    return [...endpoints].sort((left, right) => left.localeCompare(right));
+}
+
+async function main(): Promise<void> {
+    const endpoints = await discoverEndpoints();
+
+    if (endpoints.length === 0) {
+        throw new Error(`No endpoints found in ${path.relative(workspaceRoot, gatewayPath)}.`);
+    }
+
+    const output = [
+        '// This file is auto-generated. Do not edit manually.',
+        '',
+        'export type EndpointType =',
+        ...endpoints.map((endpoint) => `    | ${toEndpointType(endpoint)}`),
+        ';',
+        '',
+    ].join('\n');
+
+    await fs.writeFile(endpointPath, output, 'utf8');
+    console.log(`Generated: ${path.relative(workspaceRoot, endpointPath)}`);
+}
+
+main().catch((error: unknown) => {
+    console.error('Failed to generate endpoint types.');
+    console.error(error);
+    process.exitCode = 1;
+});
+
+######## tools/scripts/post-generate-schemas.ts ########
+import './fix-generated-esm-imports.js';
+import './generate-schema-barrels.js';
+
+######## APPS: entry و modules ########
+
+######## src/api/gateway/src/main.ts ########
+import { Logger } from '@nestjs/common';
+import { CorsOptionsDelegate } from '@nestjs/common/internal';
+import { NestFactory } from '@nestjs/core';
+import { type MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { AdminConfigService, apiEnv, RpcHttpExceptionFilter } from '@org/api-shared';
+import { RequestKeys } from '@org/constants';
+import cookieParser from 'cookie-parser';
+import type { Request } from 'express';
+import * as express from 'express';
+import { join } from 'path';
+import { AppModule } from './app/app.module';
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+
+    const adminService = app.get(AdminConfigService);
+
+    await adminService.loadFromRedis();
+    const access = adminService.tryGet()?.access;
+    console.log('🚀 >  bootstrap >  access:', access);
+
+    const corsOptionsDelegate: CorsOptionsDelegate<Request> = (req, callback) => {
+        const requestOrigin = req.headers.origin;
+
+        const originConfig = access?.origins.find(
+            (config) => config.credentials && config.origin === requestOrigin,
+        );
+
+        console.log('matched config:', originConfig);
+
+        if (!requestOrigin || !originConfig) {
+            return callback(null, {
+                origin: false,
+            });
+        }
+
+        return callback(null, {
+            origin: requestOrigin,
+            credentials: originConfig.credentials ?? true,
+            methods: originConfig.methods,
+            allowedHeaders: [
+                ...(originConfig.allowedHeaders ?? []),
+                RequestKeys.apiKey,
+                RequestKeys.deviceKey,
+            ],
+        });
+    };
+
+    const brokers = [
+        `${apiEnv.get('KAFKA_HOST') || '127.0.0.1'}:${apiEnv.get('KAFKA_PORT') || '9092'}`,
+    ];
+
+    app.connectMicroservice<MicroserviceOptions>({
+        transport: Transport.KAFKA,
+        options: {
+            client: {
+                clientId: 'api-gateway-notifications',
+                brokers,
+            },
+            consumer: {
+                groupId: 'api-gateway-notifications-v1',
+            },
+        },
+    });
+
+    const globalPrefix = apiEnv.get('API_GATEWAY_PREFIX') || '';
+    const port = apiEnv.get('API_GATEWAY_PORT') || 4000;
+    const host = apiEnv.get('API_GATEWAY_HOST') || '';
+
+    app.enableCors(corsOptionsDelegate);
+
+    app.use(cookieParser());
+
+    app.setGlobalPrefix(globalPrefix);
+
+    const uploadsPath = join(process.cwd(), 'uploads');
+
+    app.use(
+        `/${globalPrefix}/uploads`,
+        express.static(uploadsPath, {
+            index: false,
+            fallthrough: false,
+            redirect: false,
+        }),
+    );
+
+    app.useGlobalFilters(new RpcHttpExceptionFilter());
+
+    await app.startAllMicroservices();
+    await app.listen(port);
+
+    Logger.log(`🚀 API Gateway is running on: ${host}:${port}/${globalPrefix}`);
+}
+
+bootstrap();
+
+######## src/api/combine/src/main.ts ########
+// src\api\combine\src\main.ts
+import { apiEnv, bootstrapHybridMicroservice } from '@org/api-shared';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+    const port = Number(apiEnv.get('API_COMBINE_PORT')) || 4001;
+    const host = apiEnv.get('API_COMBINE_HOST') || '127.0.0.1';
+
+    await bootstrapHybridMicroservice({
+        appName: 'Combine microservice',
+        module: AppModule,
+        tcp: { host, port },
+        kafka: { clientId: 'api-combine-consumer', groupId: 'api-combine-v1' },
+    });
+}
+
+void bootstrap();
+
+######## src/api/gateway/src/app/app.module.ts ########
+import { Module } from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
+import { ClientsModule } from '@nestjs/microservices';
+import { MICROSERVICE_CLIENT, SharedApiModule } from '@org/api-shared';
+import { ZodValidationPipe } from 'nestjs-zod';
+import { AdminConfigController } from './admin/admin-config.controller';
+import { AdminOriginController } from './admin/origin.controller.js';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AuthController } from './auth/auth/auth.controller';
+import { ProfileController } from './auth/profile/profile.controller';
+import { UserController } from './auth/user/user.controller';
+import { NotificationEventsController } from './notification/notification-events.controller';
+import { NotificationGateway } from './notification/notification.gateway';
+@Module({
+    imports: [
+        SharedApiModule.forRoot({
+            appName: 'GATEWAY API',
+        }),
+        ClientsModule.register([
+            { ...MICROSERVICE_CLIENT.combine },
+            // { ...MICROSERVICE_CLIENT.auth },
+            // { ...MICROSERVICE_CLIENT.warehouse },
+            // { ...MICROSERVICE_CLIENT.messaging },
+            // { ...MICROSERVICE_CLIENT.admin },
+        ]),
+    ],
+    controllers: [
+        AppController,
+        AuthController,
+        UserController,
+        NotificationEventsController,
+        ProfileController,
+        AdminConfigController,
+        AdminOriginController,
+    ],
+    providers: [
+        AppService,
+        NotificationGateway,
+        {
+            provide: APP_PIPE,
+            useClass: ZodValidationPipe,
+        },
+    ],
+})
+export class AppModule {}
+
+######## الـ output و git status (يوريني لو watch-endpoints بيكتب ملفات) ########
+?? nx-audit.txt
+total 272
+drwxr-xr-x 1 Meda None      0 Sep  3 01:01 .
+drwxr-xr-x 1 Meda None      0 Sep 29 00:42 ..
+drwxr-xr-x 1 Meda None      0 Sep 29 23:45 app
+-rw-r--r-- 1 Meda None     45 Sep 29 19:07 main.d.ts
+-rw-r--r-- 1 Meda None    102 Oct  5 01:14 main.d.ts.map
+-rw-r--r-- 1 Meda None   2969 Sep 29 22:01 main.js
+-rw-r--r-- 1 Meda None     53 Sep 22 22:17 microservice.d.ts
+-rw-r--r-- 1 Meda None    118 Sep 22 22:17 microservice.d.ts.map
+-rw-r--r-- 1 Meda None   1189 Sep 22 22:17 microservice.js
+-rw-r--r-- 1 Meda None 253648 Oct  5 01:18 tsconfig.app.tsbuildinfo

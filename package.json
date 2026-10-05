@@ -4,6 +4,9 @@
     "private": true,
     "license": "MIT",
     "scripts": {
+        "gateway:dev": "nx dev api-gateway",
+        "combine:dev": "nx dev api-combine",
+        "dev:pkg": "sh -c \"pnpm --filter @org/api-dto dev:pkg & pnpm --filter @org/api-shared dev:pkg & pnpm --filter @org/constants dev:pkg & pnpm --filter @org/types dev:pkg & pnpm --filter @org/env dev:pkg & pnpm --filter @org/database-admin dev:pkg & pnpm --filter @org/database-auth dev:pkg & pnpm --filter @org/database-notification dev:pkg & pnpm --filter @org/database-warehouse dev:pkg & wait\"",
         "//": "###################################################################################################################################################################################",
         "// Serve": "#############################################",
         "gateway:serve": "nx serve api-gateway",

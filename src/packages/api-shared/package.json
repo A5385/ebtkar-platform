@@ -15,11 +15,21 @@
         },
         "./package.json": "./package.json"
     },
+    "scripts": {
+        "dev:pkg": "tsc -b -v --watch"
+    },
     "nx": {
-        "name": "api-shared"
+        "name": "api-shared",
+        "targets": {
+            "dev:pkg": {
+                "executor": "nx:run-script",
+                "options": {
+                    "script": "dev:pkg"
+                }
+            }
+        }
     },
     "dependencies": {
-       
         "ioredis": "catalog:",
         "@nestjs/common": "catalog:",
         "@nestjs/core": "catalog:",

@@ -67,6 +67,12 @@ async function main(): Promise<void> {
         '',
     ].join('\n');
 
+    const existing = await fs.readFile(endpointPath, 'utf8').catch(() => '');
+
+    if (existing === output) {
+        return;
+    }
+
     await fs.writeFile(endpointPath, output, 'utf8');
     console.log(`Generated: ${path.relative(workspaceRoot, endpointPath)}`);
 }

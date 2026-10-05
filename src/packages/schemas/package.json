@@ -33,8 +33,19 @@
             "default": "./dist/admin/index.js"
         }
     },
+    "scripts": {
+        "dev:pkg": "tsc -b -v --watch"
+    },
     "nx": {
-        "name": "shared-schemas"
+        "name": "shared-schemas",
+        "targets": {
+            "dev:pkg": {
+                "executor": "nx:run-script",
+                "options": {
+                    "script": "dev:pkg"
+                }
+            }
+        }
     },
     "dependencies": {
         "@org/database-admin": "workspace:*",

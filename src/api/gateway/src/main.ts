@@ -26,7 +26,7 @@ async function bootstrap() {
             (config) => config.credentials && config.origin === requestOrigin,
         );
 
-        console.log('matched config:', originConfig);
+        // console.log('matched config:', originConfig);
 
         if (!requestOrigin || !originConfig) {
             return callback(null, {

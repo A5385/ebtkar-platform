@@ -1,0 +1,60 @@
+@nestjs/core@12.0.1 peer#5bdf (2 variations)
+├─┬ @nestjs/cache-manager@12.0.0
+│ ├── @org/api-gateway@0.0.1 (dependencies)
+│ └── @org/api-shared@0.0.1 (dependencies)
+├─┬ @nestjs/microservices@12.0.1 peer#1dea (2 variations)
+│ ├── @nestjs/core@12.0.1 [circular]
+│ ├─┬ @nestjs/testing@12.0.1 peer#9071 (2 variations)
+│ │ ├── @org/api-admin@0.0.1 (devDependencies)
+│ │ ├── @org/api-auth@0.0.1 (devDependencies)
+│ │ ├── @org/api-combine@0.0.1 (devDependencies)
+│ │ └── @org/api-gateway@0.0.1 (devDependencies)
+│ ├── @org/api-admin@0.0.1 (dependencies)
+│ ├── @org/api-auth@0.0.1 (dependencies)
+│ ├── @org/api-combine@0.0.1 (dependencies)
+│ ├── @org/api-gateway@0.0.1 (dependencies)
+│ ├── @org/api-messaging@0.0.1 (dependencies)
+│ └── @org/api-shared@0.0.1 (dependencies)
+├─┬ @nestjs/platform-express@12.0.1 peer#b411 (2 variations)
+│ ├── @nestjs/core@12.0.1 [circular]
+│ ├── @nestjs/testing@12.0.1 peer#9071 (2 variations) [deduped]
+│ ├── @org/api-admin@0.0.1 (dependencies)
+│ ├── @org/api-auth@0.0.1 (dependencies)
+│ ├── @org/api-combine@0.0.1 (dependencies)
+│ ├── @org/api-gateway@0.0.1 (dependencies)
+│ └── @org/api-messaging@0.0.1 (dependencies)
+├── @nestjs/testing@12.0.1 peer#9071 (2 variations) [deduped]
+├─┬ @nestjs/websockets@12.0.1 peer#6ed5 (2 variations)
+│ ├── @nestjs/core@12.0.1 [circular]
+│ ├── @nestjs/microservices@12.0.1 peer#1dea (2 variations) [deduped]
+│ ├─┬ @nestjs/platform-socket.io@12.0.1 peer#17df (2 variations)
+│ │ ├── @nestjs/websockets@12.0.1 [circular]
+│ │ └── @org/api-gateway@0.0.1 (dependencies)
+│ └── @org/api-gateway@0.0.1 (dependencies)
+├── @org/api-admin@0.0.1 (dependencies)
+├── @org/api-auth@0.0.1 (dependencies)
+├── @org/api-combine@0.0.1 (dependencies)
+├── @org/api-gateway@0.0.1 (dependencies)
+├── @org/api-messaging@0.0.1 (dependencies)
+└── @org/api-shared@0.0.1 (dependencies)
+
+@nestjs/core@12.0.1 peer#7b7f (2 variations)
+├─┬ @nestjs/microservices@12.0.1 peer#50bf (2 variations)
+│ ├── @nestjs/core@12.0.1 [circular]
+│ └─┬ @nestjs/testing@12.0.1 peer#da7b (2 variations)
+│   └── @org/source@0.0.0 (devDependencies)
+├─┬ @nestjs/platform-express@12.0.1 peer#400d (2 variations)
+│ ├── @nestjs/core@12.0.1 [circular]
+│ ├── @nestjs/testing@12.0.1 peer#da7b (2 variations) [deduped]
+│ └── @org/source@0.0.0 (dependencies)
+├── @nestjs/testing@12.0.1 peer#da7b (2 variations) [deduped]
+├─┬ @nestjs/websockets@12.0.1 peer#2c81 (2 variations)
+│ ├── @nestjs/core@12.0.1 [circular]
+│ ├── @nestjs/microservices@12.0.1 peer#50bf (2 variations) [deduped]
+│ └─┬ @nestjs/platform-socket.io@12.0.1 peer#b6f0 (2 variations)
+│   └── @nestjs/websockets@12.0.1 [circular]
+├─┬ @nx/nest@23.1.2
+│ └── @org/source@0.0.0 (devDependencies)
+└── @org/source@0.0.0 (dependencies)
+
+Found 1 version, 2 instances of @nestjs/core

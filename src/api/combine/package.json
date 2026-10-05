@@ -3,13 +3,20 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "dev": "pnpm -w exec nx serve api-combine",
-        "dev:build": "tsc --build tsconfig.app.json --watch",
-        "build": "pnpm -w exec nx build api-combine"
+        "dev": "sh -c \"tsc --build tsconfig.app.json --watch & node --watch --enable-source-maps dist/main.js\"",
+        "build": "rimraf dist && nest build",
+        "start:dev": "nest start",
+        "start:api": "node dist/main.js"
     },
     "nx": {
         "name": "api-combine",
         "targets": {
+            "dev": {
+                "executor": "nx:run-script",
+                "options": {
+                    "script": "dev"
+                }
+            },
             "build": {
                 "executor": "nx:run-commands",
                 "outputs": [
@@ -42,10 +49,10 @@
                 "outputs": [
                     "{projectRoot}/dist/workspace_modules"
                 ],
-                "executor": "@nx/js:copy-workspace-modules",
                 "options": {
                     "buildTarget": "build"
-                }
+                },
+                "executor": "@nx/js:copy-workspace-modules"
             },
             "prune": {
                 "dependsOn": [
@@ -53,28 +60,6 @@
                     "copy-workspace-modules"
                 ],
                 "executor": "nx:noop"
-            },
-            "serve": {
-                "continuous": true,
-                "executor": "@nx/js:node",
-                "defaultConfiguration": "development",
-                "dependsOn": [
-                    "build",
-                    "watch-deps"
-                ],
-                "options": {
-                    "buildTarget": "api-combine:build",
-                    "runBuildTargetDependencies": false,
-                    "inspect": false
-                },
-                "configurations": {
-                    "development": {
-                        "buildTarget": "api-combine:build:development"
-                    },
-                    "production": {
-                        "buildTarget": "api-combine:build:production"
-                    }
-                }
             },
             "test": {
                 "options": {

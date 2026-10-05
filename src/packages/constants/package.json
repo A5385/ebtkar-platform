@@ -15,8 +15,19 @@
             "default": "./dist/index.js"
         }
     },
+    "scripts": {
+        "dev:pkg": "tsc -b -v --watch"
+    },
     "nx": {
-        "name": "constants"
+        "name": "constants",
+        "targets": {
+            "dev:pkg": {
+                "executor": "nx:run-script",
+                "options": {
+                    "script": "dev:pkg"
+                }
+            }
+        }
     },
     "dependencies": {
         "tslib": "catalog:"

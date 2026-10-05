@@ -28,6 +28,7 @@
         }
     },
     "scripts": {
+        "dev:pkg": "tsc -b -v --watch",
         "db:gen": "prisma generate && pnpm --dir ../../.. schemas:post-generate",
         "db:mig": "prisma migrate dev",
         "db:dep": "prisma migrate deploy",
@@ -40,6 +41,12 @@
     "nx": {
         "name": "database-warehouse",
         "targets": {
+            "dev:pkg": {
+                "executor": "nx:run-script",
+                "options": {
+                    "script": "dev:pkg"
+                }
+            },
             "prisma-deploy": {
                 "executor": "@nx-tools/nx-prisma:deploy"
             },
