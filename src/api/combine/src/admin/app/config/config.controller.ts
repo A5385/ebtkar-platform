@@ -29,8 +29,8 @@ export class AdminConfigPublisherController {
     }
 
     @MessagePattern(MESSAGE_PATTERN.admin.config.updateNetwork, Transport.TCP)
-    updateNetwork(@Payload() patch: NetworkSettingsDTO) {
-        return this.config.updateNetwork(patch);
+    async updateNetwork(@Payload() patch: NetworkSettingsDTO) {
+        return await this.config.updateNetwork(patch);
     }
 
     @MessagePattern(MESSAGE_PATTERN.admin.config.updateTokens, Transport.TCP)
@@ -41,5 +41,10 @@ export class AdminConfigPublisherController {
     @MessagePattern(MESSAGE_PATTERN.admin.config.updateAccess, Transport.TCP)
     updateAccess(@Payload() patch: AccessSettingsDTO) {
         return this.config.updateAccess(patch);
+    }
+
+    @MessagePattern(MESSAGE_PATTERN.admin.config.getNetworkSetting, Transport.TCP)
+    async getNetworkSetting() {
+        return await this.config.getNetworkSetting();
     }
 }

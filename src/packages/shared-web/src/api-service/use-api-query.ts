@@ -27,8 +27,11 @@ export const useApiQuery = <TData, TSelectedData = TData, TQueryKey extends Quer
     TSelectedData,
     ApiResponseError
 > => {
-    console.log('B queryFn', operation);
-    const apiClient = createApiClient({ baseUrl: commonConfig.baseUrl });
+    // console.log('B queryFn', operation);
+    const apiClient = createApiClient({
+        baseUrl: commonConfig.baseUrl,
+        socketUrl: commonConfig.socketUrl,
+    });
 
     // id and queryParams are part of the request, so they must be part of the cache key
     const fullQueryKey = [

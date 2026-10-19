@@ -1,10 +1,10 @@
 // This file is auto-generated. Do not edit manually.
 
 export type EndpointType =
-    | '/'
     | 'admin-config/global-settings'
-    | 'admin-config/network-settings'
     | 'admin-config/token-settings'
+    | 'admin-network/get-network'
+    | 'admin-network/update-network'
     | 'admin-origin/create-origin'
     | `admin-origin/delete-origin/${string}`
     | `admin-origin/find-origin-by-id/${string}`

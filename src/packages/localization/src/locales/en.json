@@ -22,6 +22,9 @@
     "page_count": "Page {{page}} of {{totalPage}}",
     "row_selected": "{{selectedRowCount}} of {{totalRowCount}} row(s) selected.",
     "row_per_page": "Rows per page",
+    "are_you_sure_you_want_to_delete_this_origin": "Are you sure you want to delete this origin: {{origin}}?",
+    "yes_delete_it": "Yes, Delete it!",
+    "no_keep_it": "No, Keep it",
     "language": {
         "switchToArabic": "Switch language to Arabic",
         "switchToEnglish": "Switch language to English",

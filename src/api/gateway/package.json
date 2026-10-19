@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "dev": "sh -c \"tsc --build tsconfig.app.json --watch & node --watch --enable-source-maps dist/main.js\"",
+        "dev": "sh -c \"rimraf dist && tsc --build tsconfig.app.json && (tsc --build tsconfig.app.json --watch & node --watch --enable-source-maps dist/main.js)\"",
         "build": "rimraf dist && nest build",
         "start:dev": "nest start",
         "start:api": "node dist/main.js"
@@ -80,6 +80,8 @@
         "@nestjs/cache-manager": "catalog:",
         "@org/api-dto": "workspace:*",
         "@org/database-admin": "workspace:*",
+        "@org/infra": "workspace:*",
+        "@org/helpers": "workspace:*",
         "@org/api-shared": "workspace:*",
         "@nestjs/mapped-types": "*",
         "@org/constants": "workspace:*",
@@ -98,7 +100,8 @@
         "socket.io": "catalog:",
         "cookie-parser": "catalog:",
         "express": "catalog:",
-        "nestjs-zod": "catalog:"
+        "nestjs-zod": "catalog:",
+        "@nestjs/throttler": "catalog:"
     },
     "devDependencies": {
         "@types/express": "catalog:",

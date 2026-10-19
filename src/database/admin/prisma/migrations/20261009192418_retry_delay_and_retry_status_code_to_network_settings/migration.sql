@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "network_settings" ADD COLUMN     "retryDelay" INTEGER NOT NULL DEFAULT 2000,
+ADD COLUMN     "retryStatusCodes" INTEGER[] DEFAULT ARRAY[408, 409, 425, 429, 500, 502, 503, 504]::INTEGER[];

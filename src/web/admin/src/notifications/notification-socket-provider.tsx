@@ -1,5 +1,5 @@
-import type { RealtimeAdminNotification } from '@org/types';
 import { toast, webEnv } from '@org/shared-web';
+import type { RealtimeAdminNotification } from '@org/types';
 import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { io } from 'socket.io-client';
 
@@ -13,12 +13,16 @@ export function NotificationSocketProvider({ children }: { children: ReactNode }
     const [notifications, setNotifications] = useState<RealtimeAdminNotification[]>([]);
 
     useEffect(() => {
-        const gatewayUrl = webEnv.get('API_GATEWAY_URL') ?? 'http://localhost:4000';
+        const gatewayUrl = webEnv.get('VITE_SOCKET_URL') ?? 'http://localhost:4000';
         const gatewayOrigin = new URL(gatewayUrl, window.location.origin).origin;
         const socket = io(`${gatewayOrigin}/notifications`, { withCredentials: true });
         const onCreated = (notification: RealtimeAdminNotification) => {
             setNotifications((current) => [notification, ...current]);
-            toast.add({ title: notification.title, description: notification.message, type: 'info' });
+            toast.add({
+                title: notification.title,
+                description: notification.message,
+                type: 'info',
+            });
         };
         socket.on('notification.created', onCreated);
         return () => {

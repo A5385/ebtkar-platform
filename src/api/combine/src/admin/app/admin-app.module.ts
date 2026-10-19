@@ -2,8 +2,11 @@
 import { Module } from '@nestjs/common';
 import { SharedApiModule } from '@org/api-shared';
 import { AdminPrismaModule } from '@org/database-admin';
-import { AccessModule } from './access/access.module';
 import { AdminConfigPublisherModule } from './config/config.module.js';
+import { InvoiceModule } from './invoice/invoice.module';
+import { NetworkModule } from './network/network.module';
+import { AccessModule } from './origin/origin.module';
+import { WarehouseModule } from './warehouse/warehouse.module';
 
 @Module({
     imports: [
@@ -13,6 +16,9 @@ import { AdminConfigPublisherModule } from './config/config.module.js';
         }),
         AdminConfigPublisherModule,
         AccessModule,
+        NetworkModule,
+        WarehouseModule,
+        InvoiceModule,
     ],
     controllers: [],
 })

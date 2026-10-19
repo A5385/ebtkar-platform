@@ -1,3 +1,5 @@
+// src\packages\api-shared\src\shared-service\admin-config\admin-config.service.ts
+
 import { Injectable, Logger, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common';
 import type { AdminConfigUpdatedEvent } from '@org/types';
 import { AdminConfigCache } from './admin-config.cache.js';

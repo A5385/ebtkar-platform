@@ -1,7 +1,6 @@
 import z from 'zod';
 import AccessSettingsSchema from '../generated/modelSchema/AccessSettingsSchema.js';
 import GlobalSettingsSchema from '../generated/modelSchema/GlobalSettingsSchema.js';
-import NetworkSettingsSchema from '../generated/modelSchema/NetworkSettingsSchema.js';
 import TokensConfigSchema from '../generated/modelSchema/TokensConfigSchema.js';
 
 const globalSettingsSchema = GlobalSettingsSchema.omit({
@@ -10,15 +9,6 @@ const globalSettingsSchema = GlobalSettingsSchema.omit({
     updatedAt: true,
 }).partial();
 type GlobalSettingsFormType = z.infer<typeof globalSettingsSchema>;
-
-const networkSettingsSchema = NetworkSettingsSchema.omit({
-    id: true,
-
-    createdAt: true,
-    updatedAt: true,
-}).partial();
-
-type NetworkSettingsFormType = z.infer<typeof networkSettingsSchema>;
 
 const tokenSettingsSchema = TokensConfigSchema.omit({
     id: true,
@@ -36,11 +26,6 @@ const accessSettingsSchema = AccessSettingsSchema.omit({
 
 type AccessSettingsFormType = z.infer<typeof accessSettingsSchema>;
 
-export { accessSettingsSchema, globalSettingsSchema, networkSettingsSchema, tokenSettingsSchema };
+export { accessSettingsSchema, globalSettingsSchema, tokenSettingsSchema };
 
-export type {
-    AccessSettingsFormType,
-    GlobalSettingsFormType,
-    NetworkSettingsFormType,
-    TokenSettingsFormType,
-};
+export type { AccessSettingsFormType, GlobalSettingsFormType, TokenSettingsFormType };

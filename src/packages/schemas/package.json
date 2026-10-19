@@ -14,11 +14,41 @@
             "import": "./dist/index.js",
             "default": "./dist/index.js"
         },
+        "./admin": {
+            "@org/source": "./src/admin/index.ts",
+            "types": "./dist/admin/index.d.ts",
+            "import": "./dist/admin/index.js",
+            "default": "./dist/admin/index.js"
+        },
+        "./admin/schema": {
+            "@org/source": "./src/admin/schema.ts",
+            "types": "./dist/admin/schema.d.ts",
+            "import": "./dist/admin/schema.js",
+            "default": "./dist/admin/schema.js"
+        },
         "./auth": {
             "@org/source": "./src/auth/index.ts",
             "types": "./dist/auth/index.d.ts",
             "import": "./dist/auth/index.js",
             "default": "./dist/auth/index.js"
+        },
+        "./auth/schema": {
+            "@org/source": "./src/auth/schema.ts",
+            "types": "./dist/auth/schema.d.ts",
+            "import": "./dist/auth/schema.js",
+            "default": "./dist/auth/schema.js"
+        },
+        "./notification": {
+            "@org/source": "./src/notification/index.ts",
+            "types": "./dist/notification/index.d.ts",
+            "import": "./dist/notification/index.js",
+            "default": "./dist/notification/index.js"
+        },
+        "./notification/schema": {
+            "@org/source": "./src/notification/schema.ts",
+            "types": "./dist/notification/schema.d.ts",
+            "import": "./dist/notification/schema.js",
+            "default": "./dist/notification/schema.js"
         },
         "./warehouse": {
             "@org/source": "./src/warehouse/index.ts",
@@ -26,15 +56,15 @@
             "import": "./dist/warehouse/index.js",
             "default": "./dist/warehouse/index.js"
         },
-        "./admin": {
-            "@org/source": "./src/admin/index.ts",
-            "types": "./dist/admin/index.d.ts",
-            "import": "./dist/admin/index.js",
-            "default": "./dist/admin/index.js"
+        "./warehouse/schema": {
+            "@org/source": "./src/warehouse/schema.ts",
+            "types": "./dist/warehouse/schema.d.ts",
+            "import": "./dist/warehouse/schema.js",
+            "default": "./dist/warehouse/schema.js"
         }
     },
     "scripts": {
-        "dev:pkg": "tsc -b -v --watch"
+        "dev:pkg": "rimraf dist && tsc -b -v --watch"
     },
     "nx": {
         "name": "shared-schemas",

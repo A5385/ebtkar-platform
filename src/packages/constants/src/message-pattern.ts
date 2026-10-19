@@ -41,6 +41,9 @@ export const MESSAGE_PATTERN = {
         config: {
             getSnapshot: 'ADMIN_CONFIG_GET_SNAPSHOT',
             sync: 'ADMIN_CONFIG_SYNC',
+            getNetworkSetting: 'GET_NETWORK_SETTINGS',
+            getGlobal: 'GET_GLOBAL_SETTINGS',
+            getToken: 'GET_TOKEN_SETTINGS',
             updateGlobal: 'ADMIN_CONFIG_UPDATE_GLOBAL',
             updateNetwork: 'ADMIN_CONFIG_UPDATE_NETWORK',
             updateTokens: 'ADMIN_CONFIG_UPDATE_TOKENS',

@@ -7,7 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Pool } from 'pg';
 
-import { HttpMethod, PrismaClient } from '../src/generated/prisma/client.js';
+import { HttpMethod, PrismaClient, RateLimit } from '../src/generated/prisma/client.js';
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 
@@ -53,6 +53,35 @@ const origins = (env.ORIGIN ?? '')
     .filter(Boolean);
 
 // console.log('🚀 > origins:', origins);
+const minutes = (value = 1) => value * 60 * 1000;
+
+export const RATE_LIMITS: Omit<RateLimit, 'rateLimitId' | 'updatedAt' | 'createdAt'>[] = [
+    {
+        name: 'default',
+        ttl: minutes(),
+        limit: 100,
+        networkSettingId: true,
+    },
+    {
+        name: 'login',
+        ttl: minutes(),
+        limit: 5,
+        networkSettingId: true,
+    },
+    {
+        name: 'otpAndPswReset',
+        ttl: minutes(5),
+        limit: 5,
+        networkSettingId: true,
+    },
+    {
+        name: 'reports',
+        ttl: minutes(),
+        limit: 20,
+        networkSettingId: true,
+    },
+    { name: 'fileUpload', ttl: minutes(), limit: 10, networkSettingId: true },
+];
 
 async function main() {
     await Promise.all([
@@ -85,6 +114,13 @@ async function main() {
             update: {},
             create: { id: true },
         }),
+        ...RATE_LIMITS.map(({ name, ...rate }) =>
+            prisma.rateLimit.upsert({
+                where: { name },
+                update: { ...rate },
+                create: { name, ...rate },
+            }),
+        ),
 
         ...origins.map((origin) =>
             prisma.origin.upsert({

@@ -26,9 +26,9 @@ import {
     DefaultUserMutationResponse,
     DeleteUserResponseType,
     GetAllUserResponse,
-    User,
     UserResponseType,
 } from '@org/schemas/auth';
+import { User } from '@org/schemas/auth/schema';
 import type { ApiResponseType, OtpEmailRequestedEvent, UserCreatedEvent } from '@org/types';
 import { compareHashedData, hashData } from '../../helpers/password-helper';
 import { userSelect } from './user.select';

@@ -32,9 +32,11 @@ export default defineConfig(() => ({
             transformMixedEsModules: true,
         },
     },
+
     resolve: {
+        conditions: ['@org/source'],
         alias: {
-            '@': path.resolve(__dirname, './src'),
+            '@': path.resolve(import.meta.dirname, './src'),
         },
     },
     test: {

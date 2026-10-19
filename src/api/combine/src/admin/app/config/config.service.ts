@@ -1,5 +1,5 @@
-import { Inject, Injectable, type OnModuleInit } from '@nestjs/common';
-import { ClientKafka } from '@nestjs/microservices';
+//src\api\combine\src\admin\app\config\config.service.ts
+import { Injectable, type OnApplicationShutdown, type OnModuleInit } from '@nestjs/common';
 import {
     AccessSettingsDTO,
     GlobalSettingsDTO,
@@ -9,8 +9,7 @@ import {
 import {
     AdminConfigClient,
     AdminConfigService,
-    MICROSERVICE_CLIENT,
-    publishEvent,
+    ResponseHelperService,
     WinstonLoggerService,
     type AdminAccessSettings,
     type AdminConfigSnapshot,
@@ -21,6 +20,7 @@ import {
 import { EVENT_PATTERN } from '@org/constants';
 import { AdminPrismaService } from '@org/database-admin';
 import { HttpMethod } from '@org/database-admin/prisma';
+import { connectKafkaProducer, disconnectKafkaProducer, publishKafkaEvent } from '@org/infra';
 import type {
     AdminConfigChangeReason,
     AdminConfigScope,
@@ -28,21 +28,25 @@ import type {
 } from '@org/types';
 
 @Injectable()
-export class AdminConfigPublisherService implements OnModuleInit {
-    private readonly moduleName = 'AdminConfig';
+export class AdminConfigPublisherService implements OnModuleInit, OnApplicationShutdown {
+    // private readonly moduleName = 'AdminConfig';
 
     constructor(
+        private readonly handler: ResponseHelperService,
         private readonly prisma: AdminPrismaService,
         private readonly redisConfig: AdminConfigClient,
         private readonly localConfig: AdminConfigService,
         private readonly logger: WinstonLoggerService,
-        @Inject(MICROSERVICE_CLIENT.adminEvents.name) private readonly events: ClientKafka,
     ) {}
 
     async onModuleInit() {
+        await connectKafkaProducer();
         await this.syncToRedis('boot', 'ALL');
     }
 
+    async onApplicationShutdown() {
+        await disconnectKafkaProducer();
+    }
     getSnapshot() {
         return this.localConfig.tryGet() ?? this.buildSnapshotFromDb();
     }
@@ -98,14 +102,11 @@ export class AdminConfigPublisherService implements OnModuleInit {
 
         return this.syncToRedis('update', scope);
     }
-
     private async notify(
         snapshot: AdminConfigSnapshot,
         reason: AdminConfigChangeReason,
         scope: AdminConfigScope,
-    ) {
-        await this.redisConfig.publishInvalidate(snapshot.version, reason);
-
+    ): Promise<void> {
         const payload: AdminConfigUpdatedEvent = {
             scope,
             version: snapshot.version,
@@ -113,18 +114,19 @@ export class AdminConfigPublisherService implements OnModuleInit {
             reason,
         };
 
-        await publishEvent<AdminConfigUpdatedEvent>({
-            payload,
-            client: this.events,
-            pattern:
+        await publishKafkaEvent({
+            topic:
                 reason === 'boot'
                     ? EVENT_PATTERN.admin.configSync
                     : EVENT_PATTERN.admin.configUpdated,
-            logger: this.logger,
-            moduleName: this.moduleName,
+            messages: [
+                {
+                    key: 'admin-config',
+                    value: JSON.stringify(payload),
+                },
+            ],
         });
     }
-
     private async buildSnapshotFromDb(): Promise<AdminConfigSnapshot> {
         const [state, global, access, network, tokens, warehouse, invoice] = await Promise.all([
             this.prisma.configState.upsert({
@@ -174,6 +176,9 @@ export class AdminConfigPublisherService implements OnModuleInit {
             ? {
                   httpClientRetries: network.httpClientRetries,
                   requestTimeoutMs: network.requestTimeoutMs,
+                  paginationPageSize: network.paginationPageSize,
+                  retryDelay: network.retryDelay,
+                  retryStatusCodes: network.retryStatusCodes,
               }
             : null;
 
@@ -194,5 +199,15 @@ export class AdminConfigPublisherService implements OnModuleInit {
             warehouse,
             invoice,
         };
+    }
+
+    async getNetworkSetting() {
+        const res = await this.handler.handle({
+            method: 'getAll',
+            logger: this.logger,
+            fn: async () => await this.prisma.networkSettings.findUnique({ where: { id: true } }),
+        });
+
+        return res;
     }
 }

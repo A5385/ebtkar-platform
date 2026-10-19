@@ -26,6 +26,7 @@ export async function bootstrapHybridMicroservice({
     const brokers = [
         `${apiEnv.get('KAFKA_HOST') || '127.0.0.1'}:${apiEnv.get('KAFKA_PORT') || '9092'}`,
     ];
+
     const app = await NestFactory.create(module);
 
     app.connectMicroservice<MicroserviceOptions>(
@@ -35,6 +36,7 @@ export async function bootstrapHybridMicroservice({
         },
         { inheritAppConfig: true },
     );
+
     app.connectMicroservice<MicroserviceOptions>(
         {
             transport: Transport.KAFKA,

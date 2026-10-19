@@ -1,0 +1,46 @@
+{
+    "name": "@org/infra",
+    "version": "0.0.1",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "@org/source": "./src/index.ts",
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./socket": {
+            "@org/source": "./src/socket.ts",
+            "types": "./dist/socket.d.ts",
+            "import": "./dist/socket.js",
+            "default": "./dist/socket.js"
+        }
+    },
+    "scripts": {
+        "dev:pkg": "rimraf dist && tsc -b -v --watch"
+    },
+    "nx": {
+        "name": "infra",
+        "targets": {
+            "dev:pkg": {
+                "executor": "nx:run-script",
+                "options": {
+                    "script": "dev:pkg"
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@org/env": "workspace:*",
+        "ioredis": "catalog:",
+        "kafkajs": "catalog:",
+        "socket.io-client": "catalog:",
+        "tslib": "catalog:",
+        "zod": "catalog:"
+    }
+}

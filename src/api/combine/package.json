@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "dev": "sh -c \"tsc --build tsconfig.app.json --watch & node --watch --enable-source-maps dist/main.js\"",
+        "dev": "sh -c \"rimraf dist && tsc --build tsconfig.app.json && (tsc --build tsconfig.app.json --watch & node --watch --enable-source-maps dist/main.js)\"",
         "build": "rimraf dist && nest build",
         "start:dev": "nest start",
         "start:api": "node dist/main.js"
@@ -69,6 +69,8 @@
         }
     },
     "dependencies": {
+        "@org/infra": "workspace:*",
+        "@org/helpers": "workspace:*",
         "@org/api-dto": "workspace:*",
         "@org/api-shared": "workspace:*",
         "@nestjs/mapped-types": "*",

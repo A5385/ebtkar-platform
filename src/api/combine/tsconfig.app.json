@@ -45,6 +45,12 @@
             "path": "../../packages/api-dto/tsconfig.lib.json"
         },
         {
+            "path": "../../packages/helpers/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/infra/tsconfig.lib.json"
+        },
+        {
             "path": "../../packages/types/tsconfig.lib.json"
         }
     ]

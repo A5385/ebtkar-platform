@@ -1,0 +1,296 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram id="notification-architecture" name="Enterprise Notification System">
+    <mxGraphModel dx="1722" dy="1002" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="businessGroup" parent="1" style="swimlane;html=1;rounded=1;horizontal=0;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="Business Services" vertex="1">
+          <mxGeometry height="500" width="250" x="40" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="authService" parent="businessGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="Auth Service" vertex="1">
+          <mxGeometry height="60" width="170" x="40" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="invoiceService" parent="businessGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="Invoice Service" vertex="1">
+          <mxGeometry height="60" width="170" x="40" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="warehouseService" parent="businessGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="Warehouse Service" vertex="1">
+          <mxGeometry height="60" width="170" x="40" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="otherServices" parent="businessGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="CRM / Other Services" vertex="1">
+          <mxGeometry height="60" width="170" x="40" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="kafka" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" value="Kafka&#xa;Event Bus" vertex="1">
+          <mxGeometry height="100" width="190" x="360" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="notificationGroup" parent="1" style="swimlane;html=1;rounded=1;horizontal=0;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" value="Notification Service" vertex="1">
+          <mxGeometry height="650" width="390" x="620" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eventConsumer" parent="notificationGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="Event Consumer" vertex="1">
+          <mxGeometry height="55" width="200" x="95" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="idempotency" parent="notificationGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="Idempotency /&#xa;Deduplication" vertex="1">
+          <mxGeometry height="60" width="200" x="95" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="router" parent="notificationGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="Notification Router" vertex="1">
+          <mxGeometry height="55" width="200" x="95" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="preferences" parent="notificationGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="User Preferences" vertex="1">
+          <mxGeometry height="60" width="155" x="30" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="templates" parent="notificationGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="Templates" vertex="1">
+          <mxGeometry height="60" width="155" x="205" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="notificationApi" parent="notificationGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" value="Notification API&#xa;REST" vertex="1">
+          <mxGeometry height="60" width="200" x="95" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="notificationDispatcher" parent="notificationGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontStyle=1;" value="Notification Dispatcher" vertex="1">
+          <mxGeometry height="60" width="200" x="95" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="retryDlq" parent="notificationGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Retry / DLQ" vertex="1">
+          <mxGeometry height="45" width="200" x="95" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="storageGroup" parent="1" style="swimlane;html=1;rounded=1;horizontal=0;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" value="Notification Storage" vertex="1">
+          <mxGeometry height="180" width="390" x="620" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="notificationDb" parent="storageGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;fontStyle=1;" value="PostgreSQL&#xa;Notification DB&#xa;(Source of Truth)" vertex="1">
+          <mxGeometry height="80" width="170" x="30" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="redis" parent="storageGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;" value="Redis&#xa;Cache / PubSub" vertex="1">
+          <mxGeometry height="80" width="140" x="220" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="channelDispatcher" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;" value="Channel Dispatcher" vertex="1">
+          <mxGeometry height="90" width="190" x="1080" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="deliveryGroup" parent="1" style="swimlane;html=1;rounded=1;horizontal=0;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" value="Delivery Channels" vertex="1">
+          <mxGeometry height="650" width="360" x="1340" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="websocket" parent="deliveryGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" value="WebSocket Gateway" vertex="1">
+          <mxGeometry height="60" width="270" x="45" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="emailWorker" parent="deliveryGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" value="Email Worker" vertex="1">
+          <mxGeometry height="60" width="270" x="45" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="pushWorker" parent="deliveryGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" value="Push Worker" vertex="1">
+          <mxGeometry height="60" width="270" x="45" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="smsWorker" parent="deliveryGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" value="SMS Worker" vertex="1">
+          <mxGeometry height="60" width="270" x="45" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="emailProvider" parent="deliveryGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" value="Email Provider" vertex="1">
+          <mxGeometry height="55" width="270" x="45" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="fcm" parent="deliveryGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" value="Firebase Cloud Messaging" vertex="1">
+          <mxGeometry height="55" width="270" x="45" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="smsProvider" parent="deliveryGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" value="SMS Provider" vertex="1">
+          <mxGeometry height="55" width="270" x="45" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="clientsGroup" parent="1" style="swimlane;html=1;rounded=1;horizontal=0;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="Clients" vertex="1">
+          <mxGeometry height="180" width="620" x="1080" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="webApp" parent="clientsGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="Web Application" vertex="1">
+          <mxGeometry height="60" width="160" x="35" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mobileApp" parent="clientsGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="Mobile Application" vertex="1">
+          <mxGeometry height="60" width="160" x="225" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="notificationCenter" parent="clientsGroup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" value="Notification Center&#xa;History / Unread / Mark Read" vertex="1">
+          <mxGeometry height="60" width="170" x="415" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="authKafka" edge="1" parent="1" source="authService" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeWidth=1.5;" target="kafka" value="Domain Events">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="invoiceKafka" edge="1" parent="1" source="invoiceService" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeWidth=1.5;" target="kafka" value="Domain Events">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="warehouseKafka" edge="1" parent="1" source="warehouseService" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeWidth=1.5;" target="kafka" value="Domain Events">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="otherKafka" edge="1" parent="1" source="otherServices" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeWidth=1.5;" target="kafka" value="Domain Events">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kafkaConsumer" edge="1" parent="1" source="kafka" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeWidth=2;" target="eventConsumer" value="Notification Events">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="90" />
+              <mxPoint x="720" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="consumerIdempotency" edge="1" parent="1" source="eventConsumer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="idempotency">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="idempotencyRouter" edge="1" parent="1" source="idempotency" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="router">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="routerPreferences" edge="1" parent="1" source="router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="preferences">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="routerTemplates" edge="1" parent="1" source="router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="templates">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="preferencesDb" edge="1" parent="1" source="preferences" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="notificationDb" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="400" />
+              <mxPoint x="600" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="templatesDb" edge="1" parent="1" source="templates" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="notificationDb" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="460" />
+              <mxPoint x="950" y="700" />
+              <mxPoint x="580" y="700" />
+              <mxPoint x="580" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dbDispatcher" edge="1" parent="1" source="notificationDb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeWidth=2;" target="notificationDispatcher" value="Persisted Notification">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="820" y="900" />
+              <mxPoint x="1040" y="900" />
+              <mxPoint x="1040" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dispatcherChannels" edge="1" parent="1" source="notificationDispatcher" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeWidth=2;" target="channelDispatcher" value="Dispatch">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="channelWebsocket" edge="1" parent="1" source="channelDispatcher" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="websocket" value="Real-time">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1110" y="250" />
+              <mxPoint x="1110" y="120" />
+              <mxPoint x="1320" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="channelEmail" edge="1" parent="1" source="channelDispatcher" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="emailWorker" value="Email">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="250" />
+              <mxPoint x="1160" y="260" />
+              <mxPoint x="1320" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="channelPush" edge="1" parent="1" source="channelDispatcher" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="pushWorker" value="Push">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="channelSms" edge="1" parent="1" source="channelDispatcher" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="smsWorker" value="SMS">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1130" y="420" />
+              <mxPoint x="1320" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="emailProviderEdge" edge="1" parent="1" source="emailWorker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="emailProvider" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1670" y="260" />
+              <mxPoint x="1670" y="457" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pushProviderEdge" edge="1" parent="1" source="pushWorker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="fcm" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1710" y="350" />
+              <mxPoint x="1710" y="537" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="smsProviderEdge" edge="1" parent="1" source="smsWorker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="smsProvider" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1690" y="440" />
+              <mxPoint x="1690" y="617" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="redisWebsocket" edge="1" parent="1" source="redis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;strokeWidth=1.5;" target="websocket" value="WebSocket Pub/Sub">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="990" y="855" />
+              <mxPoint x="990" y="40" />
+              <mxPoint x="1510" y="40" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="websocketWeb" edge="1" parent="1" source="websocket" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="webApp" value="Real-time Notification">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1720" y="170" />
+              <mxPoint x="1720" y="740" />
+              <mxPoint x="1280" y="740" />
+              <mxPoint x="1280" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcmMobile" edge="1" parent="1" source="fcm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="mobileApp" value="Push Notification">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1720" y="537" />
+              <mxPoint x="1720" y="735" />
+              <mxPoint x="1385" y="735" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="webApi" edge="1" parent="1" source="webApp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="notificationApi" value="Notification API">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1190" y="720" />
+              <mxPoint x="1025" y="720" />
+              <mxPoint x="1025" y="550" />
+              <mxPoint x="950" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mobileApi" edge="1" parent="1" source="mobileApp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" target="notificationApi" value="Notification API">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1330" y="920" />
+              <mxPoint x="1030" y="920" />
+              <mxPoint x="1030" y="540" />
+              <mxPoint x="930" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="apiDb" edge="1" parent="1" source="notificationApi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeWidth=1.5;" target="notificationDb" value="History / Unread / Read">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="550" />
+              <mxPoint x="700" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="notificationCenterEdge" edge="1" parent="1" source="notificationCenter" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;" target="notificationApi" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1665" y="930" />
+              <mxPoint x="1050" y="930" />
+              <mxPoint x="1050" y="505" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="retryEdge" edge="1" parent="1" source="notificationDispatcher" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;dashed=1;" target="retryDlq" value="Failed Delivery">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="retryBack" edge="1" parent="1" source="retryDlq" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;dashed=1;" target="notificationDispatcher" value="Retry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="notes" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacingTop=10;spacingLeft=10;" value="Architecture Principles&#xa;&#xa;• Kafka = Event Backbone&#xa;• Notification DB = Source of Truth&#xa;• Redis = Cache + WebSocket Pub/Sub&#xa;• WebSocket = Real-time delivery only&#xa;• DB keeps notifications when clients are offline&#xa;• Idempotency prevents duplicate notifications&#xa;• Workers isolate external provider failures&#xa;• Retry / DLQ handles failed delivery&#xa;• tenantId should be included in notification data&#xa;• eventId should be used for deduplication" vertex="1">
+          <mxGeometry height="290" width="500" x="40" y="650" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

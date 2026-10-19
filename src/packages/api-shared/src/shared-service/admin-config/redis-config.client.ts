@@ -1,32 +1,25 @@
+//src\packages\api-shared\src\shared-service\admin-config\redis-config.client.ts
 import { Injectable } from '@nestjs/common';
-import { ADMIN_CONFIG_CHANNEL, ADMIN_CONFIG_KEYS } from '@org/constants';
-import type { AdminConfigChangeReason, AdminConfigInvalidateMessage } from '@org/types';
-import { RedisService } from '../redis/redis.service.js';
-import { AdminConfigSnapshot } from './admin-config.interface.js';
+import { ADMIN_CONFIG_KEYS } from '@org/constants';
+import { getCachedData, setCacheData } from '@org/infra';
+import type { AdminConfigSnapshot } from './admin-config.interface.js';
 
 @Injectable()
 export class AdminConfigClient {
-    constructor(private readonly redis: RedisService) {}
-
     async getSnapshot(): Promise<AdminConfigSnapshot | null> {
-        return this.redis.get<AdminConfigSnapshot>(ADMIN_CONFIG_KEYS.SNAPSHOT);
+        return getCachedData(ADMIN_CONFIG_KEYS.SNAPSHOT) as Promise<AdminConfigSnapshot | null>;
     }
 
     async writeSnapshot(snapshot: AdminConfigSnapshot): Promise<void> {
         await Promise.all([
-            this.redis.set(ADMIN_CONFIG_KEYS.SNAPSHOT, snapshot),
-            this.redis.set(ADMIN_CONFIG_KEYS.VERSION, snapshot.version),
-            this.redis.set(ADMIN_CONFIG_KEYS.GLOBAL, snapshot.global),
-            this.redis.set(ADMIN_CONFIG_KEYS.ACCESS, snapshot.access),
-            this.redis.set(ADMIN_CONFIG_KEYS.NETWORK, snapshot.network),
-            this.redis.set(ADMIN_CONFIG_KEYS.AUTH, snapshot.tokens),
-            this.redis.set(ADMIN_CONFIG_KEYS.WAREHOUSE, snapshot.warehouse),
-            this.redis.set(ADMIN_CONFIG_KEYS.INVOICE, snapshot.invoice),
+            setCacheData(ADMIN_CONFIG_KEYS.SNAPSHOT, JSON.stringify(snapshot)),
+            setCacheData(ADMIN_CONFIG_KEYS.VERSION, JSON.stringify(snapshot.version)),
+            setCacheData(ADMIN_CONFIG_KEYS.GLOBAL, JSON.stringify(snapshot.global)),
+            setCacheData(ADMIN_CONFIG_KEYS.ACCESS, JSON.stringify(snapshot.access)),
+            setCacheData(ADMIN_CONFIG_KEYS.NETWORK, JSON.stringify(snapshot.network)),
+            setCacheData(ADMIN_CONFIG_KEYS.AUTH, JSON.stringify(snapshot.tokens)),
+            setCacheData(ADMIN_CONFIG_KEYS.WAREHOUSE, JSON.stringify(snapshot.warehouse)),
+            setCacheData(ADMIN_CONFIG_KEYS.INVOICE, JSON.stringify(snapshot.invoice)),
         ]);
-    }
-
-    async publishInvalidate(version: number, reason: AdminConfigChangeReason): Promise<void> {
-        const message: AdminConfigInvalidateMessage = { version, reason };
-        await this.redis.publish(ADMIN_CONFIG_CHANNEL, JSON.stringify(message));
     }
 }

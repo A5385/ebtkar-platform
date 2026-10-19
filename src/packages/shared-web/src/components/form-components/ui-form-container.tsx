@@ -13,7 +13,7 @@ export const UiFormContainer = ({ className, children, title, description }: UiF
     const hasHeader = Boolean(title || description);
 
     return (
-        <Card className={cn('w-full sm:max-w-md', className)}>
+        <Card className={cn('w-full ', className)}>
             {hasHeader && (
                 <CardHeader className='flex w-full flex-col items-center justify-center px-4 text-center'>
                     {title && <CardTitle className='text-2xl font-semibold'>{title}</CardTitle>}

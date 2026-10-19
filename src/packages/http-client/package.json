@@ -20,7 +20,10 @@
     },
     "dependencies": {
         "@org/constants": "workspace:*",
-        "tslib": "catalog:"
+        "@org/database-admin": "workspace:*",
+        "@org/infra": "workspace:*",
+        "tslib": "catalog:",
+        "ofetch": "catalog:"
     },
     "devDependencies": {
         "@org/types": "workspace:*"

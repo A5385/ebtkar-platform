@@ -1,4 +1,4 @@
-// shared.module.ts
+// src\packages\api-shared\src\shared-service\shared.module.ts
 import { DynamicModule, Global, Module } from '@nestjs/common';
 
 import { APP_NAME, SharedApiOptions } from './shared-api.constants.js';
@@ -12,6 +12,7 @@ import { ErrorService } from './error/error.service.js';
 import { WinstonLoggerService } from './logger/logger.service.js';
 import { RedisModule } from './redis/redis.module.js';
 import { ResponseHelperService } from './response-handler/response-helper.service.js';
+// import { SocketModule } from './socket/socket.module.js';
 
 @Global()
 @Module({})
@@ -21,6 +22,7 @@ export class SharedApiModule {
             imports: [
                 RedisModule,
                 AdminConfigModule,
+                // SocketModule,
                 CacheModule.registerAsync({
                     useFactory: async () => {
                         const host = apiEnv.get('REDIS_HOST') || '127.0.0.1';
@@ -54,6 +56,7 @@ export class SharedApiModule {
                 ErrorService,
                 RedisModule,
                 AdminConfigModule,
+                // SocketModule,
             ],
         };
     }

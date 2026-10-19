@@ -52,9 +52,6 @@
             "path": "./src/web/auth"
         },
         {
-            "path": "./src/api/auth"
-        },
-        {
             "path": "./src/packages/localization"
         },
         {
@@ -67,16 +64,16 @@
             "path": "./src/database/notification"
         },
         {
-            "path": "./src/api/messaging"
-        },
-        {
             "path": "./src/database/admin"
         },
         {
-            "path": "./src/api/admin"
+            "path": "./src/api/combine"
         },
         {
-            "path": "./src/api/combine"
+            "path": "./src/packages/helpers"
+        },
+        {
+            "path": "./src/packages/infra"
         }
     ],
     "compilerOptions": {}

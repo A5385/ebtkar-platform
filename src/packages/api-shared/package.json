@@ -16,7 +16,7 @@
         "./package.json": "./package.json"
     },
     "scripts": {
-        "dev:pkg": "tsc -b -v --watch"
+        "dev:pkg": "rimraf dist && tsc -b -v --watch"
     },
     "nx": {
         "name": "api-shared",
@@ -30,21 +30,24 @@
         }
     },
     "dependencies": {
-        "ioredis": "catalog:",
+        "@keyv/redis": "catalog:",
+        "@nestjs/cache-manager": "catalog:",
         "@nestjs/common": "catalog:",
         "@nestjs/core": "catalog:",
-        "@org/env": "workspace:*",
+        "@nestjs/microservices": "catalog:",
+        "@nestjs/throttler": "catalog:",
         "@org/constants": "workspace:*",
+        "@org/env": "workspace:*",
+        "@org/infra": "workspace:*",
         "@org/types": "workspace:*",
+        "cache-manager": "catalog:",
+        "date-fns": "catalog:",
         "dotenv": "catalog:",
         "express": "catalog:",
-        "@nestjs/microservices": "catalog:",
-        "winston": "catalog:",
+        "ioredis": "catalog:",
         "nest-winston": "catalog:",
-        "date-fns": "catalog:",
-        "@nestjs/cache-manager": "catalog:",
-        "cache-manager": "catalog:",
-        "@keyv/redis": "catalog:"
+        "socket.io": "catalog:",
+        "winston": "catalog:"
     },
     "devDependencies": {
         "@types/express": "catalog:"

@@ -1,10 +1,13 @@
+import type { LocalizationInstance, SupportedLocale } from '@org/localization';
 import type { QueryClient } from '@org/query-client';
 import type { ReactNode } from 'react';
-import type { LocalizationInstance, SupportedLocale } from '@org/localization';
-import { ThemeProvider, type Theme, type ThemeProviderProps } from './theme-provider';
+
+import { Toaster } from '../components/ui/toast';
+import { DialogProvider } from './dialog-provider';
 import { LocalizationProvider, type LocalizationProviderProps } from './localization-provider';
 import { QueryProvider } from './query-provider';
-import { Toaster } from '../components/ui/toast';
+import { SheetProvider } from './sheet-provider';
+import { ThemeProvider, type Theme, type ThemeProviderProps } from './theme-provider';
 
 export interface GlobalProviderProps {
     children: ReactNode;
@@ -29,6 +32,7 @@ export function GlobalProvider({
         defaultTheme,
         storageKey: themeStorageKey,
     };
+
     const localizationProps: Omit<LocalizationProviderProps, 'children'> = {
         fallbackLocale,
         i18nInstance,
@@ -39,7 +43,11 @@ export function GlobalProvider({
         <ThemeProvider {...themeProps}>
             <LocalizationProvider {...localizationProps}>
                 <QueryProvider client={queryClient}>
-                    <Toaster>{children}</Toaster>
+                    <SheetProvider>
+                        <DialogProvider>
+                            <Toaster>{children}</Toaster>
+                        </DialogProvider>
+                    </SheetProvider>
                 </QueryProvider>
             </LocalizationProvider>
         </ThemeProvider>

@@ -26,7 +26,6 @@ export type ApiMutationProps<TData, TVariables, TContext = unknown> = Omit<
         TContext
     >['mutationOptions'];
 };
-
 export const useApiMutation = <TData, TVariables = void, TContext = unknown>({
     method,
     queryKeys,
@@ -41,21 +40,35 @@ export const useApiMutation = <TData, TVariables = void, TContext = unknown>({
     TContext
 > => {
     const { t } = useTranslation();
-    const apiClient = createApiClient({ baseUrl: commonConfig.baseUrl });
+    const apiClient = createApiClient({
+        baseUrl: commonConfig.baseUrl,
+        socketUrl: commonConfig.socketUrl,
+    });
 
     return useMutationData<TData, TVariables, ApiResponseError, TContext>({
         queryKeys,
         mutationFn: async (variables) => {
             try {
+                const { id, ...body } =
+                    variables && typeof variables === 'object' && !Array.isArray(variables)
+                        ? (variables as Record<string, unknown>)
+                        : { id: undefined };
+
                 const response = await apiClient.request<ApiResponseSuccess<TData>>({
                     ...operation,
+                    id: typeof id === 'string' ? id : operation.id,
                     method,
                     deviceType: commonConfig.deviceType,
                     apiKey: commonConfig.apiKey,
-                    body: variables as Record<string, unknown>,
-                    options: { ...commonConfig.options, ...operation.options },
+                    body: method === 'delete' && id ? undefined : body,
+                    options: {
+                        ...commonConfig.options,
+                        ...operation.options,
+                    },
                 });
+
                 if (showSuccessMessage) showApiSuccess(t, response);
+
                 return response.data;
             } catch (error) {
                 if (showErrorMessage) showApiError(t, error);

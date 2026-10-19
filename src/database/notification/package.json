@@ -22,7 +22,7 @@
         }
     },
     "scripts": {
-        "dev:pkg": "tsc -b -v --watch",
+        "dev:pkg": "rimraf dist && tsc -b -v --watch",
         "db:gen": "prisma generate && pnpm --dir ../../.. schemas:post-generate",
         "db:mig": "prisma migrate dev",
         "db:dep": "prisma migrate deploy",

@@ -21,6 +21,9 @@
             "path": "../types/tsconfig.lib.json"
         },
         {
+            "path": "../infra/tsconfig.lib.json"
+        },
+        {
             "path": "../constants/tsconfig.lib.json"
         },
         {
@@ -29,4 +32,3 @@
     ],
     "exclude": ["jest.config.ts", "jest.config.cts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }
-

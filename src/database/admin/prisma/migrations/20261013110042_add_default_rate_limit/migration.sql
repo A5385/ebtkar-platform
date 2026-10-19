@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "rate_limit" ALTER COLUMN "limit" SET DEFAULT 100,
+ALTER COLUMN "ttl" SET DEFAULT 60000;

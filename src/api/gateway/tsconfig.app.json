@@ -33,6 +33,12 @@
             "path": "../../packages/api-shared/tsconfig.lib.json"
         },
         {
+            "path": "../../packages/helpers/tsconfig.lib.json"
+        },
+        {
+            "path": "../../packages/infra/tsconfig.lib.json"
+        },
+        {
             "path": "../../database/admin/tsconfig.lib.json"
         },
         {

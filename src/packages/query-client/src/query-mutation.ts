@@ -1,3 +1,4 @@
+// src\packages\query-client\src\query-mutation.ts
 import {
     type MutationFunction,
     type QueryKey,
@@ -14,26 +15,13 @@ export type MutationDataResult<
     TContext = unknown,
 > = UseMutationResult<TData, TError, TVariables, TContext>;
 
-export type MutationDataProps<
-    TData,
-    TVariables = void,
-    TError = Error,
-    TContext = unknown,
-> = {
+export type MutationDataProps<TData, TVariables = void, TError = Error, TContext = unknown> = {
     mutationFn: MutationFunction<TData, TVariables>;
     queryKeys?: QueryKey[];
-    mutationOptions?: Omit<
-        UseMutationOptions<TData, TError, TVariables, TContext>,
-        'mutationFn'
-    >;
+    mutationOptions?: Omit<UseMutationOptions<TData, TError, TVariables, TContext>, 'mutationFn'>;
 };
 
-export const useMutationData = <
-    TData,
-    TVariables = void,
-    TError = Error,
-    TContext = unknown,
->({
+export const useMutationData = <TData, TVariables = void, TError = Error, TContext = unknown>({
     mutationFn,
     queryKeys,
     mutationOptions,

@@ -6,6 +6,7 @@ const createOriginSchema = OriginSchema.omit({
     accessSettingsId: true,
     createdAt: true,
     updatedAt: true,
+    exposedHeaders: true,
 }).extend({
     origin: z.string().trim().min(1),
 });

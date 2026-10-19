@@ -1,0 +1,147 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram id="config-architecture" name="Configuration Architecture">
+    <mxGraphModel dx="826" dy="481" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="adminPanel" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="Admin Panel" vertex="1">
+          <mxGeometry height="60" width="140" x="650" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="XyKB78id68XnOsfaruop-1" edge="1" parent="1" source="adminApi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="kafka">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XyKB78id68XnOsfaruop-2" connectable="0" parent="XyKB78id68XnOsfaruop-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Publish change event" vertex="1">
+          <mxGeometry relative="1" x="-0.0676" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="adminApi" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" value="Admin API" vertex="1">
+          <mxGeometry height="60" width="140" x="650" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="adminDb" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;fontStyle=1;" value="Admin DB&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Source of Truth&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="150" x="420" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="redis" parent="1" style="shape=rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;fontColor=#000000;strokeColor=#b85450;fontStyle=1;" value="Redis&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Bootstrap / Recovery&lt;/font&gt;" vertex="1">
+          <mxGeometry height="102" width="178.5" x="630.75" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="kafka" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;fillColor=#ffe6cc;fontColor=#000000;strokeColor=#d79b00;fontStyle=1;" value="Kafka&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Change Events&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="150" x="1380" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="adminPanel" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="adminApi" value="Manage configuration">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="adminApi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="adminDb" value="Persist">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="adminApi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="redis" value="Publish / Update">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gateway" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" value="Gateway API" vertex="1">
+          <mxGeometry height="60" width="150" x="100" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" value="Auth API / WEB" vertex="1">
+          <mxGeometry height="60" width="150" x="480" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="warehouse" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" value="Warehouse API / WEB" vertex="1">
+          <mxGeometry height="60" width="170" x="860" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="gatewayCache" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Local Cache" vertex="1">
+          <mxGeometry height="60" width="150" x="100" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="gatewayDb" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Gateway DB" vertex="1">
+          <mxGeometry height="80" width="150" x="100" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="authCache" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Local Cache" vertex="1">
+          <mxGeometry height="60" width="150" x="480" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="authDb" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Auth DB" vertex="1">
+          <mxGeometry height="80" width="150" x="480" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="warehouseCache" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Local Cache" vertex="1">
+          <mxGeometry height="60" width="150" x="870" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="warehouseDb" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Warehouse DB" vertex="1">
+          <mxGeometry height="80" width="150" x="870" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="redisGateway" edge="1" parent="1" source="redis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="gateway" value="Load config">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="redisAuth" edge="1" parent="1" source="redis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="auth" value="Load config">
+          <mxGeometry relative="1" x="0.2558" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="redisWarehouse" edge="1" parent="1" source="redis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="warehouse" value="Load config">
+          <mxGeometry relative="1" x="0.3455" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gatewayToCache" edge="1" parent="1" source="gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="gatewayCache" value="Runtime access">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cacheGatewayDb" edge="1" parent="1" source="gatewayCache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="gatewayDb" value="Cache miss → DB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="authToCache" edge="1" parent="1" source="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="authCache" value="Runtime access">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cacheAuthDb" edge="1" parent="1" source="authCache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="authDb" value="Cache miss → DB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="warehouseToCache" edge="1" parent="1" source="warehouse" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="warehouseCache" value="Runtime access">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cacheWarehouseDb" edge="1" parent="1" source="warehouseCache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="warehouseDb" value="Cache miss → DB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kafkaGateway" edge="1" parent="1" source="kafka" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="gateway" value="configuration.updated">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1455" y="10" />
+              <mxPoint x="140" y="10" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kafkaAuth" edge="1" parent="1" source="kafka" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="auth" value="configuration.updated">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1340" y="240" />
+              <mxPoint x="1340" y="450" />
+              <mxPoint x="590" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kafkaWarehouse" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="warehouse" value="configuration.updated">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1455" y="530" />
+            </Array>
+            <mxPoint x="1455" y="280" as="sourcePoint" />
+            <mxPoint x="1000" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gatewayEventDb" edge="1" parent="1" source="gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="gatewayDb" value="&lt;span&gt;Update config&lt;/span&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gatewayEventCache" edge="1" parent="1" source="gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="gatewayCache" value="Update cache">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="authEventDb" edge="1" parent="1" source="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="authDb" value="&lt;span style=&quot;background-color: light-dark(rgb(255, 255, 255), rgb(237, 237, 237));&quot;&gt;Update config&lt;/span&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="authEventCache" edge="1" parent="1" source="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="authCache" value="Update cache">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="warehouseEventDb" edge="1" parent="1" source="warehouse" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="warehouseDb" value="Update config">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="warehouseEventCache" edge="1" parent="1" source="warehouse" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;" target="warehouseCache" value="Update cache">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Configuration Strategy&lt;br&gt;&lt;br&gt;• Admin DB = Source of Truth&lt;br&gt;• Redis = Bootstrap / Recovery&lt;br&gt;• Kafka = Change Propagation&lt;br&gt;• Service DB = Durable Local Replica&lt;br&gt;• Local Cache = Runtime Fast Path" vertex="1">
+          <mxGeometry height="190" width="260" x="1270" y="740" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

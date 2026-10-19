@@ -1,8 +1,10 @@
 export * from './dashboard';
-export * from './GridWrapper';
-export * from './language-switcher';
+export * from './form-components';
+export * from './form-inputs';
+export * from './model';
+export * from './shared';
+export * from './system';
 export * from './table';
-export * from './theme-switcher';
 
 export * from './ui/accordion';
 export * from './ui/alert';
@@ -65,16 +67,3 @@ export * from './ui/toast';
 export * from './ui/toggle';
 export * from './ui/toggle-group';
 export * from './ui/tooltip';
-
-export * from './system/ui-button';
-export * from './system/ui-input';
-export * from './system/ui-text-area';
-
-export * from './form-inputs/error-message';
-export * from './form-inputs/form-text-area';
-export * from './form-inputs/form-text-input';
-
-export * from './form-components/ui-form-container';
-export * from './form-components/ui-form-footer';
-export * from './form-components/ui-form-inputs';
-export * from './form-components/ui-form-submit';

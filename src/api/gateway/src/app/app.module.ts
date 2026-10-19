@@ -1,19 +1,26 @@
+// src\api\gateway\src\app\app.module.ts
 import { Module } from '@nestjs/common';
-import { APP_PIPE } from '@nestjs/core';
+import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { ClientsModule } from '@nestjs/microservices';
-import { MICROSERVICE_CLIENT, SharedApiModule } from '@org/api-shared';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { CustomThrottlerGuard, MICROSERVICE_CLIENT, SharedApiModule } from '@org/api-shared';
+import { RATE_LIMITS } from '@org/constants';
 import { ZodValidationPipe } from 'nestjs-zod';
-import { AdminConfigController } from './admin/admin-config.controller';
-import { AdminOriginController } from './admin/origin.controller.js';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AuthController } from './auth/auth/auth.controller';
-import { ProfileController } from './auth/profile/profile.controller';
-import { UserController } from './auth/user/user.controller';
-import { NotificationEventsController } from './notification/notification-events.controller';
-import { NotificationGateway } from './notification/notification.gateway';
+import { AdminConfigController } from './admin/gateway-admin-config.controller';
+import { AdminNetworkController } from './admin/gateway-admin-network.controller';
+import { AdminOriginController } from './admin/gateway-origin.controller.js';
+import { AuthController } from './auth/auth/gateway-auth.controller';
+import { ProfileController } from './auth/profile/gateway-profile.controller';
+import { UserController } from './auth/user/gateway-user.controller';
+import { NotificationEventsController } from './notification/gateway-notification-events.controller';
+import { NotificationGateway } from './notification/gateway-notification.gateway';
+import { SocketModule } from './socket/socket..module';
 @Module({
     imports: [
+        SocketModule,
+        ThrottlerModule.forRoot({
+            throttlers: [{ ...RATE_LIMITS.default }],
+        }),
         SharedApiModule.forRoot({
             appName: 'GATEWAY API',
         }),
@@ -26,20 +33,23 @@ import { NotificationGateway } from './notification/notification.gateway';
         ]),
     ],
     controllers: [
-        AppController,
         AuthController,
         UserController,
         NotificationEventsController,
         ProfileController,
         AdminConfigController,
         AdminOriginController,
+        AdminNetworkController,
     ],
     providers: [
-        AppService,
         NotificationGateway,
         {
             provide: APP_PIPE,
             useClass: ZodValidationPipe,
+        },
+        {
+            provide: APP_GUARD,
+            useClass: CustomThrottlerGuard,
         },
     ],
 })

@@ -16,7 +16,7 @@
         }
     },
     "scripts": {
-        "dev:pkg": "tsc -b -v --watch"
+        "dev:pkg": "rimraf dist && tsc -b -v --watch"
     },
     "nx": {
         "name": "constants",

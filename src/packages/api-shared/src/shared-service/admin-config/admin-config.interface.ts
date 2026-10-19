@@ -1,22 +1,15 @@
 export type AdminConfigScope =
-    | 'ALL'
-    | 'GLOBAL'
-    | 'ACCESS'
-    | 'NETWORK'
-    | 'AUTH'
-    | 'WAREHOUSE'
-    | 'INVOICE';
+    'ALL' | 'GLOBAL' | 'ACCESS' | 'NETWORK' | 'AUTH' | 'WAREHOUSE' | 'INVOICE';
 
 export interface AdminAccessOrigin {
-   originId     :string
-  origin       :string
-  credentials    :boolean
-  methods      :  string[]
-  allowedHeaders :string[]
-  exposedHeaders :string[]
+    originId: string;
+    origin: string;
+    credentials: boolean;
+    methods: string[];
+    allowedHeaders: string[];
+    exposedHeaders: string[];
 
-  accessSettingsId :boolean
- 
+    accessSettingsId: boolean;
 }
 
 export interface AdminAccessSettings {
@@ -37,6 +30,9 @@ export interface AdminGlobalSettings {
 export interface AdminNetworkSettings {
     httpClientRetries: number;
     requestTimeoutMs: number;
+    paginationPageSize: number;
+    retryDelay: number;
+    retryStatusCodes: number[];
 }
 
 export interface AdminTokensConfig {

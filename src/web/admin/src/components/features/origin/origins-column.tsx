@@ -1,28 +1,52 @@
-import { Origin } from '@org/schemas/admin';
+import type { Origin } from '@org/schemas/admin/schema';
 import {
     Button,
     DataTableFeatures,
     DataTableSelect,
+    DeleteModel,
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuTrigger,
     useDataTableDateColumns,
+    useDeleteOrigin,
+    useDialog,
+    useSheet,
 } from '@org/shared-web';
 import { createColumnHelper } from '@tanstack/react-table';
-import { MoreHorizontal } from 'lucide-react';
+import { CheckCheckIcon, EditIcon, MoreHorizontal, Trash, X } from 'lucide-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import OriginForm from './origin-form';
 
 export const useOriginColumns = () => {
+    const { openDialog, closeDialog } = useDialog();
+    const { openSheet } = useSheet();
     const { t } = useTranslation();
     const dateColumns = useDataTableDateColumns<Origin>();
+
+    const deleteOrigin = useDeleteOrigin();
+
     return useMemo(() => {
         const { accessor, columns, display } = createColumnHelper<DataTableFeatures, Origin>();
         return columns([
             DataTableSelect({ display }),
             accessor('origin', { header: t('origin') }),
+            accessor('credentials', {
+                header: t('credentials'),
+                cell: ({ row }) => {
+                    return (
+                        <span>
+                            {row.original.credentials ? (
+                                <CheckCheckIcon color='green' />
+                            ) : (
+                                <X color='red' />
+                            )}
+                        </span>
+                    );
+                },
+            }),
             accessor('allowedHeaders', {
                 header: t('allowed_headers'),
                 cell: ({ row }) => {
@@ -53,7 +77,7 @@ export const useOriginColumns = () => {
             display({
                 id: 'actions',
                 cell: ({ row }) => {
-                    const originId = row.original.originId;
+                    const origin = row.original;
 
                     return (
                         <DropdownMenu>
@@ -65,8 +89,54 @@ export const useOriginColumns = () => {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align='end'>
                                 <DropdownMenuGroup>
-                                    <DropdownMenuItem>View customer</DropdownMenuItem>
-                                    <DropdownMenuItem>View payment details</DropdownMenuItem>
+                                    <DropdownMenuItem
+                                        onClick={() =>
+                                            openSheet({
+                                                title: 'Update origin',
+                                                description: 'Update origin to the system',
+                                                sheet: <OriginForm origin={origin} />,
+                                            })
+                                        }
+                                    >
+                                        <EditIcon color='gray' /> {t('edit')}
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem
+                                        onClick={() =>
+                                            openDialog({
+                                                dialog: (
+                                                    <DeleteModel
+                                                        message={t(
+                                                            'are_you_sure_you_want_to_delete_this_origin',
+                                                            { origin: origin.origin },
+                                                        )}
+                                                        confirm={{
+                                                            onClick: async () => {
+                                                                await deleteOrigin.mutateAsync(
+                                                                    {
+                                                                        id: origin.originId,
+                                                                    },
+                                                                    {
+                                                                        onSuccess() {
+                                                                            closeDialog();
+                                                                        },
+                                                                    },
+                                                                );
+                                                            },
+                                                        }}
+                                                        cancel={{
+                                                            onClick: () => {
+                                                                closeDialog();
+                                                            },
+                                                        }}
+                                                    />
+                                                ),
+                                            })
+                                        }
+                                        className={'text-red-500'}
+                                    >
+                                        <Trash color='red' />
+                                        {t('delete')}
+                                    </DropdownMenuItem>
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
@@ -74,5 +144,5 @@ export const useOriginColumns = () => {
                 },
             }),
         ]);
-    }, [t, dateColumns]);
+    }, [t, dateColumns, openSheet, openDialog, deleteOrigin, closeDialog]);
 };

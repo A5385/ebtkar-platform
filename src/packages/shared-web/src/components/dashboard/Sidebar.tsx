@@ -80,7 +80,7 @@ export const AppSidebar = ({ title = 'Ebt Platform', icon, items }: SidebarProps
                         );
                     } else {
                         return (
-                            <Collapsible className='group/collapsible'>
+                            <Collapsible className='group/collapsible' key={item.groupLabel}>
                                 <SidebarGroup>
                                     <SidebarGroupLabel
                                         render={<CollapsibleTrigger />}

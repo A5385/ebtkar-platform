@@ -83,6 +83,7 @@ export const envKeys = [
 
     'VITE_API_GATEWAY_URL',
     'VITE_API_KEY',
+    'VITE_SOCKET_URL',
 ] as const;
 
 export type EnvKey = (typeof envKeys)[number];

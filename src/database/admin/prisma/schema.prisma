@@ -99,14 +99,30 @@ model Origin {
 
 // network settings
 model NetworkSettings {
-  id                Boolean @id @default(true)
-  httpClientRetries Int     @default(3)
-  requestTimeoutMs  Int     @default(30000)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                 Boolean     @id @default(true)
+  httpClientRetries  Int         @default(3)
+  requestTimeoutMs   Int         @default(30000)
+  paginationPageSize Int         @default(10)
+  retryDelay         Int         @default(2000)
+  retryStatusCodes   Int[]       @default([408, 409, 425, 429, 500, 502, 503, 504])
+  rateLimits         RateLimit[]
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
 
   @@map("network_settings")
+}
+
+model RateLimit {
+  rateLimitId      String           @id @default(cuid())
+  name             String           @unique
+  limit            Int              @default(100)
+  ttl              Int              @default(60000)
+  networkSettingId Boolean?
+  networkSetting   NetworkSettings? @relation(fields: [networkSettingId], references: [id], onDelete: Cascade)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@map("rate_limit")
 }
 
 // tokens settings

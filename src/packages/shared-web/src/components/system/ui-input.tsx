@@ -6,9 +6,8 @@ import { UiButton } from './ui-button';
 
 type InputProps = ComponentProps<typeof Input>;
 
-export type UiInputProps = Omit<InputProps, 'value' | 'onChange'> & {
+export type UiInputProps = Omit<InputProps, 'value'> & {
     value?: string | number;
-    onChange?: InputProps['onChange'] | ((value: number | undefined) => void);
     allowDecimal?: boolean;
     allowNegative?: boolean;
 };
@@ -24,8 +23,6 @@ export const UiInput = ({
     ...props
 }: UiInputProps) => {
     const [showPassword, setShowPassword] = useState(false);
-
-    const [numberText, setNumberText] = useState(value === undefined ? '' : String(value));
 
     const style = cn('h-10', className);
 
@@ -78,16 +75,13 @@ export const UiInput = ({
                 {...props}
                 type='text'
                 inputMode={allowDecimal ? 'decimal' : 'numeric'}
-                value={numberText}
+                value={value ?? ''}
                 disabled={disabled}
                 className={style}
                 onChange={(event) => {
                     const nextValue = event.currentTarget.value;
 
-                    // Prevent anything except the configured number format.
                     if (!pattern.test(nextValue)) return;
-
-                    setNumberText(nextValue);
 
                     if (
                         nextValue === '' ||
